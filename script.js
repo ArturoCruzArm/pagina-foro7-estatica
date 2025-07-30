@@ -329,7 +329,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // Registrar Service Worker para PWA
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', function() {
-        navigator.serviceWorker.register('/service-worker.js')
+        navigator.serviceWorker.register('./service-worker.js')
             .then(function(registration) {
                 console.log('ServiceWorker registrado exitosamente: ', registration.scope);
             }, function(err) {
@@ -549,27 +549,36 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Funciones para Invitaciones Digitales
 function initInvitationTabs() {
-    const tabBtns = document.querySelectorAll('.tab-btn');
-    const invitationDemos = document.querySelectorAll('.invitation-demo');
-    
-    tabBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const target = btn.getAttribute('data-target');
+    // Usar setTimeout para asegurar que el DOM esté completamente cargado
+    setTimeout(() => {
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const invitationDemos = document.querySelectorAll('.invitation-demo');
+        
+        console.log('Inicializando tabs de invitaciones:', tabBtns.length, 'botones encontrados');
+        
+        tabBtns.forEach((btn, index) => {
+            // Verificar que el botón tenga contenido antes de agregar evento
+            const currentContent = btn.innerHTML;
+            console.log(`Botón ${index}:`, currentContent);
             
-            // Remover active de todos los tabs y demos
-            tabBtns.forEach(tab => tab.classList.remove('active'));
-            invitationDemos.forEach(demo => demo.classList.remove('active'));
-            
-            // Activar el tab clickeado
-            btn.classList.add('active');
-            
-            // Activar el demo correspondiente
-            const targetDemo = document.querySelector(`[data-type="${target}"]`);
-            if (targetDemo) {
-                targetDemo.classList.add('active');
-            }
+            btn.addEventListener('click', () => {
+                const target = btn.getAttribute('data-target');
+                
+                // Remover active de todos los tabs y demos
+                tabBtns.forEach(tab => tab.classList.remove('active'));
+                invitationDemos.forEach(demo => demo.classList.remove('active'));
+                
+                // Activar el tab clickeado
+                btn.classList.add('active');
+                
+                // Activar el demo correspondiente
+                const targetDemo = document.querySelector(`[data-type="${target}"]`);
+                if (targetDemo) {
+                    targetDemo.classList.add('active');
+                }
+            });
         });
-    });
+    }, 100); // Pequeño delay para asegurar carga completa
 }
 
 function initPriceCalculator() {
@@ -1145,8 +1154,26 @@ document.addEventListener('keydown', function(event) {
     }
 });
 
+// Función de debug para verificar botones
+function debugTabButtons() {
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    console.log('=== DEBUG BOTONES ===');
+    tabBtns.forEach((btn, index) => {
+        console.log(`Botón ${index}:`);
+        console.log('- innerHTML:', btn.innerHTML);
+        console.log('- textContent:', btn.textContent);
+        console.log('- data-target:', btn.getAttribute('data-target'));
+        console.log('---');
+    });
+}
+
 // Inicializar efectos adicionales
 document.addEventListener('DOMContentLoaded', function() {
+    // Debug inicial
+    setTimeout(() => {
+        debugTabButtons();
+    }, 500);
+    
     initAdvancedParallax();
     init3DEffects();
     initChatBot();
