@@ -64,11 +64,38 @@
 
     <main>
         <section id="inicio" class="hero">
+            <div class="hero-background">
+                <div class="hero-particles"></div>
+                <div class="hero-overlay"></div>
+            </div>
             <div class="hero-content">
                 <div class="hero-text">
-                    <h1>Producciones Foro 7</h1>
+                    <div class="hero-badge">
+                        <i class="fas fa-award"></i>
+                        <span>Profesionales en León, Gto.</span>
+                    </div>
+                    <h1>
+                        <span class="hero-title-main">Producciones Foro 7</span>
+                        <span class="hero-title-sub">Tu historia merece lo mejor</span>
+                    </h1>
                     <p class="slogan">"Capturamos tu historia, fotograma a fotograma"</p>
                     <p class="hero-description">🎬 Especialistas en <strong>Fotografía</strong>, <strong>Video 4K</strong> y <strong>Tomas Aéreas</strong> para bodas y eventos sociales en León, Guanajuato</p>
+                    
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <div class="stat-number" data-target="500">0</div>
+                            <div class="stat-label">Bodas Capturadas</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" data-target="10">0</div>
+                            <div class="stat-label">Años de Experiencia</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" data-target="100">0</div>
+                            <div class="stat-label">% Satisfacción</div>
+                        </div>
+                    </div>
+                    
                     <div class="hero-highlights">
                         <div class="highlight-item">
                             <i class="fas fa-camera"></i>
@@ -83,13 +110,38 @@
                             <span>Dron Aéreo</span>
                         </div>
                     </div>
-                    <a href="https://wa.me/5214779203776" class="cta-button" target="_blank">
-                        <i class="fab fa-whatsapp"></i>
-                        Contactar por WhatsApp
-                    </a>
+                    
+                    <div class="hero-buttons">
+                        <a href="https://wa.me/5214779203776" class="cta-button primary" target="_blank">
+                            <i class="fab fa-whatsapp"></i>
+                            Cotizar Ahora
+                        </a>
+                        <a href="#portafolio" class="cta-button secondary">
+                            <i class="fas fa-play"></i>
+                            Ver Portafolio
+                        </a>
+                    </div>
                 </div>
                 <div class="hero-image">
-                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Boda elegante - Producciones Foro 7" loading="lazy">
+                    <div class="image-container">
+                        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Boda elegante - Producciones Foro 7" loading="lazy">
+                        <div class="image-overlay">
+                            <div class="play-button" onclick="openVideoModal()">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="floating-elements">
+                        <div class="floating-icon camera">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                        <div class="floating-icon video">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <div class="floating-icon heart">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -220,6 +272,115 @@
             </div>
         </section>
 
+        <section class="testimonials">
+            <div class="container">
+                <h2>Lo que Dicen Nuestros Clientes</h2>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <div class="quote-icon">
+                                <i class="fas fa-quote-left"></i>
+                            </div>
+                            <p>"Arturo y su equipo capturaron nuestra boda de manera espectacular. Cada foto cuenta una historia y el video nos hace revivir ese día mágico. ¡Altamente recomendados!"</p>
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" alt="María González" loading="lazy">
+                            </div>
+                            <div class="author-info">
+                                <h4>María & Carlos González</h4>
+                                <p>Boda en Hacienda del Sol, León</p>
+                                <span class="date">Diciembre 2024</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <div class="quote-icon">
+                                <i class="fas fa-quote-left"></i>
+                            </div>
+                            <p>"La quinceañera de mi hija quedó perfecta gracias a Foro 7. Las tomas con dron fueron increíbles y el video cinematográfico superó nuestras expectativas."</p>
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" alt="Roberto Hernández" loading="lazy">
+                            </div>
+                            <div class="author-info">
+                                <h4>Roberto Hernández</h4>
+                                <p>XV Años de Sofía, León</p>
+                                <span class="date">Noviembre 2024</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <div class="quote-icon">
+                                <i class="fas fa-quote-left"></i>
+                            </div>
+                            <p>"Profesionales de primera. El servicio fue excepcional desde la cotización hasta la entrega final. Las fotos son obras de arte. ¡Gracias Foro 7!"</p>
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" alt="Ana Martínez" loading="lazy">
+                            </div>
+                            <div class="author-info">
+                                <h4>Ana & Miguel Martínez</h4>
+                                <p>Boda en Jardín de los Remedios</p>
+                                <span class="date">Octubre 2024</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-stats">
+                    <div class="stat-box">
+                        <div class="stat-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <div class="stat-number" data-target="98">0</div>
+                        <div class="stat-text">% Clientes Satisfechos</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-icon">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                        <div class="stat-number" data-target="15000">0</div>
+                        <div class="stat-text">Fotos Capturadas</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-icon">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <div class="stat-number" data-target="50">0</div>
+                        <div class="stat-text">Eventos Premiados</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section id="portafolio" class="portfolio">
             <div class="container">
                 <h2>Nuestro Portafolio</h2>
@@ -236,41 +397,53 @@
                     <div class="gallery-section">
                         <h3>Galería de Fotos</h3>
                         <div class="photo-gallery">
-                            <div class="photo-item">
-                                <a href="https://www.instagram.com/p/BocsmG4hj3Y/" target="_blank" rel="noopener" title="Ver en Instagram: Boda profesional">
-                                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=85" alt="Boda Profesional León - Producciones Foro 7" loading="lazy">
-                                    <div class="photo-overlay">
-                                        <i class="fab fa-instagram"></i>
-                                        <span>Ver en Instagram</span>
-                                    </div>
-                                </a>
+                            <div class="photo-item" onclick="openLightbox(0)">
+                                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=85" alt="Boda Profesional León - Producciones Foro 7" loading="lazy">
+                                <div class="photo-overlay">
+                                    <i class="fas fa-search-plus"></i>
+                                    <span>Ver Imagen</span>
+                                </div>
+                                <div class="photo-category">Bodas</div>
                             </div>
-                            <div class="photo-item">
-                                <a href="https://www.instagram.com/p/DMud9pJA6Rs/" target="_blank" rel="noopener" title="Ver en Instagram: Fotografía de boda">
-                                    <img src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=85" alt="Fotografía de Boda León, Guanajuato" loading="lazy">
-                                    <div class="photo-overlay">
-                                        <i class="fab fa-instagram"></i>
-                                        <span>Ver en Instagram</span>
-                                    </div>
-                                </a>
+                            <div class="photo-item" onclick="openLightbox(1)">
+                                <img src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=85" alt="Fotografía de Boda León, Guanajuato" loading="lazy">
+                                <div class="photo-overlay">
+                                    <i class="fas fa-search-plus"></i>
+                                    <span>Ver Imagen</span>
+                                </div>
+                                <div class="photo-category">Fotografía</div>
                             </div>
-                            <div class="photo-item">
-                                <a href="https://www.instagram.com/foro7/" target="_blank" rel="noopener" title="Ver más en Instagram @foro7">
-                                    <img src="https://images.unsplash.com/photo-1594736797933-d0f06b6fde26?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=85" alt="Ceremonia Especial - Video 4K" loading="lazy">
-                                    <div class="photo-overlay">
-                                        <i class="fab fa-instagram"></i>
-                                        <span>Ver más trabajos</span>
-                                    </div>
-                                </a>
+                            <div class="photo-item" onclick="openLightbox(2)">
+                                <img src="https://images.unsplash.com/photo-1594736797933-d0f06b6fde26?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=85" alt="Ceremonia Especial - Video 4K" loading="lazy">
+                                <div class="photo-overlay">
+                                    <i class="fas fa-search-plus"></i>
+                                    <span>Ver Imagen</span>
+                                </div>
+                                <div class="photo-category">Video 4K</div>
                             </div>
-                            <div class="photo-item">
-                                <a href="https://www.instagram.com/foro7/" target="_blank" rel="noopener" title="Síguenos en Instagram @foro7">
-                                    <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=85" alt="Momento Único - Estilo Cinematográfico" loading="lazy">
-                                    <div class="photo-overlay">
-                                        <i class="fab fa-instagram"></i>
-                                        <span>Síguenos @foro7</span>
-                                    </div>
-                                </a>
+                            <div class="photo-item" onclick="openLightbox(3)">
+                                <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=85" alt="Momento Único - Estilo Cinematográfico" loading="lazy">
+                                <div class="photo-overlay">
+                                    <i class="fas fa-search-plus"></i>
+                                    <span>Ver Imagen</span>
+                                </div>
+                                <div class="photo-category">Dron</div>
+                            </div>
+                            <div class="photo-item" onclick="openLightbox(4)">
+                                <img src="https://images.unsplash.com/photo-1469371670807-013ccf25f16a?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=85" alt="Quinceañera Elegante" loading="lazy">
+                                <div class="photo-overlay">
+                                    <i class="fas fa-search-plus"></i>
+                                    <span>Ver Imagen</span>
+                                </div>
+                                <div class="photo-category">XV Años</div>
+                            </div>
+                            <div class="photo-item" onclick="openLightbox(5)">
+                                <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=85" alt="Ceremonia Religiosa" loading="lazy">
+                                <div class="photo-overlay">
+                                    <i class="fas fa-search-plus"></i>
+                                    <span>Ver Imagen</span>
+                                </div>
+                                <div class="photo-category">Ceremonias</div>
                             </div>
                         </div>
                         
@@ -525,6 +698,38 @@
             <p><strong>Iconos:</strong> Font Awesome</p>
             <p><strong>Tipografías:</strong> Google Fonts (Playfair Display, Inter)</p>
             <p><strong>Hosting:</strong> GitHub Pages</p>
+        </div>
+    </div>
+
+    <!-- Modal de Video -->
+    <div id="videoModal" class="modal">
+        <div class="modal-content video-modal">
+            <span class="close" onclick="closeVideoModal()">&times;</span>
+            <h2>Video Destacado - Producciones Foro 7</h2>
+            <div class="video-container">
+                <iframe src="" width="100%" height="400" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Lightbox -->
+    <div id="lightboxModal" class="modal lightbox-modal">
+        <div class="lightbox-content">
+            <span class="close" onclick="closeLightbox()">&times;</span>
+            <button class="lightbox-nav prev" onclick="changeLightboxImage(-1)">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="lightbox-nav next" onclick="changeLightboxImage(1)">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            <img id="lightboxImage" src="" alt="">
+            <div class="lightbox-info">
+                <h3 id="lightboxTitle"></h3>
+                <p id="lightboxDescription"></p>
+            </div>
+            <div class="lightbox-dots">
+                <!-- Dots will be generated by JavaScript -->
+            </div>
         </div>
     </div>
 

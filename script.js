@@ -1,3 +1,38 @@
+// Variables globales para lightbox
+let currentImageIndex = 0;
+const lightboxImages = [
+    {
+        src: 'https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=85',
+        title: 'Boda Profesional León',
+        description: 'Capturamos cada momento especial de tu boda con la más alta calidad profesional'
+    },
+    {
+        src: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=85',
+        title: 'Fotografía de Boda',
+        description: 'Retratos únicos que reflejan la esencia de cada pareja'
+    },
+    {
+        src: 'https://images.unsplash.com/photo-1594736797933-d0f06b6fde26?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=85',
+        title: 'Video 4K Cinematográfico',
+        description: 'Producción cinematográfica de alta calidad para tu evento especial'
+    },
+    {
+        src: 'https://images.unsplash.com/photo-1606800052052-a08af7148866?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=85',
+        title: 'Tomas Aéreas con Dron',
+        description: 'Perspectivas únicas y espectaculares desde el aire'
+    },
+    {
+        src: 'https://images.unsplash.com/photo-1469371670807-013ccf25f16a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=85',
+        title: 'Quinceañera Elegante',
+        description: 'Celebraciones de XV años con estilo y distinción'
+    },
+    {
+        src: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=85',
+        title: 'Ceremonia Religiosa',
+        description: 'Momentos sagrados capturados con respeto y profesionalismo'
+    }
+];
+
 // Navegación móvil
 document.addEventListener('DOMContentLoaded', function() {
     const navToggle = document.querySelector('.nav-toggle');
@@ -20,6 +55,12 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
+    
+    // Inicializar contadores animados
+    initCounters();
+    
+    // Generar dots para lightbox
+    generateLightboxDots();
 });
 
 // Scroll suave para navegación
@@ -291,21 +332,198 @@ if ('serviceWorker' in navigator) {
     });
 }
 
+// Funciones para contadores animados
+function initCounters() {
+    const counters = document.querySelectorAll('[data-target]');
+    const speed = 200;
+
+    const updateCount = (counter) => {
+        const target = +counter.getAttribute('data-target');
+        const count = +counter.innerText;
+        const inc = target / speed;
+
+        if (count < target) {
+            counter.innerText = Math.ceil(count + inc);
+            setTimeout(() => updateCount(counter), 10);
+        } else {
+            counter.innerText = target;
+        }
+    };
+
+    // Intersection Observer para activar contadores cuando sean visibles
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const counter = entry.target;
+                if (!counter.classList.contains('animated')) {
+                    counter.classList.add('animated');
+                    updateCount(counter);
+                }
+            }
+        });
+    });
+
+    counters.forEach(counter => {
+        observer.observe(counter);
+    });
+}
+
+// Funciones del Lightbox
+function openLightbox(index) {
+    currentImageIndex = index;
+    const modal = document.getElementById('lightboxModal');
+    const img = document.getElementById('lightboxImage');
+    const title = document.getElementById('lightboxTitle');
+    const description = document.getElementById('lightboxDescription');
+    
+    const imageData = lightboxImages[currentImageIndex];
+    img.src = imageData.src;
+    img.alt = imageData.title;
+    title.textContent = imageData.title;
+    description.textContent = imageData.description;
+    
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+    
+    updateLightboxDots();
+}
+
+function closeLightbox() {
+    const modal = document.getElementById('lightboxModal');
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
+
+function changeLightboxImage(direction) {
+    currentImageIndex += direction;
+    
+    if (currentImageIndex >= lightboxImages.length) {
+        currentImageIndex = 0;
+    } else if (currentImageIndex < 0) {
+        currentImageIndex = lightboxImages.length - 1;
+    }
+    
+    const img = document.getElementById('lightboxImage');
+    const title = document.getElementById('lightboxTitle');
+    const description = document.getElementById('lightboxDescription');
+    
+    const imageData = lightboxImages[currentImageIndex];
+    
+    // Animación de transición
+    img.style.opacity = '0';
+    setTimeout(() => {
+        img.src = imageData.src;
+        img.alt = imageData.title;
+        title.textContent = imageData.title;
+        description.textContent = imageData.description;
+        img.style.opacity = '1';
+    }, 150);
+    
+    updateLightboxDots();
+}
+
+function generateLightboxDots() {
+    const dotsContainer = document.querySelector('.lightbox-dots');
+    if (dotsContainer) {
+        dotsContainer.innerHTML = '';
+        lightboxImages.forEach((_, index) => {
+            const dot = document.createElement('div');
+            dot.className = 'lightbox-dot';
+            dot.onclick = () => {
+                currentImageIndex = index;
+                changeLightboxImage(0);
+            };
+            dotsContainer.appendChild(dot);
+        });
+    }
+}
+
+function updateLightboxDots() {
+    const dots = document.querySelectorAll('.lightbox-dot');
+    dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentImageIndex);
+    });
+}
+
+// Funciones del Modal de Video
+function openVideoModal() {
+    const modal = document.getElementById('videoModal');
+    const iframe = modal.querySelector('iframe');
+    iframe.src = 'https://www.youtube.com/embed/c6z6Fs1bxZ8?autoplay=1';
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+}
+
+function closeVideoModal() {
+    const modal = document.getElementById('videoModal');
+    const iframe = modal.querySelector('iframe');
+    iframe.src = '';
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
+
+// Cerrar modales con Escape
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeLightbox();
+        closeVideoModal();
+        closePrivacyModal();
+        closeCreditsModal();
+    }
+});
+
+// Cerrar modal al hacer clic fuera del contenido
+window.addEventListener('click', function(e) {
+    const lightboxModal = document.getElementById('lightboxModal');
+    const videoModal = document.getElementById('videoModal');
+    const privacyModal = document.getElementById('privacyModal');
+    const creditsModal = document.getElementById('creditsModal');
+    
+    if (e.target === lightboxModal) {
+        closeLightbox();
+    }
+    if (e.target === videoModal) {
+        closeVideoModal();
+    }
+    if (e.target === privacyModal) {
+        closePrivacyModal();
+    }
+    if (e.target === creditsModal) {
+        closeCreditsModal();
+    }
+});
+
+// Navegación del lightbox con teclado
+document.addEventListener('keydown', function(e) {
+    const lightboxModal = document.getElementById('lightboxModal');
+    if (lightboxModal.style.display === 'block') {
+        if (e.key === 'ArrowLeft') {
+            changeLightboxImage(-1);
+        } else if (e.key === 'ArrowRight') {
+            changeLightboxImage(1);
+        }
+    }
+});
+
 // Funcionalidad adicional para mejorar UX
 document.addEventListener('DOMContentLoaded', function() {
     // Agregar indicador de carga para formulario
     const submitBtn = document.querySelector('.submit-btn');
-    const originalText = submitBtn.textContent;
-    
-    document.getElementById('contactForm').addEventListener('submit', function() {
-        submitBtn.textContent = 'Enviando...';
-        submitBtn.disabled = true;
+    if (submitBtn) {
+        const originalText = submitBtn.textContent;
         
-        setTimeout(() => {
-            submitBtn.textContent = originalText;
-            submitBtn.disabled = false;
-        }, 2000);
-    });
+        document.getElementById('contactForm').addEventListener('submit', function() {
+            submitBtn.textContent = 'Enviando...';
+            submitBtn.classList.add('loading');
+            submitBtn.disabled = true;
+            
+            setTimeout(() => {
+                submitBtn.textContent = originalText;
+                submitBtn.classList.remove('loading');
+                submitBtn.disabled = false;
+            }, 2000);
+        });
+    }
     
     // Mejorar accesibilidad del menú móvil
     const navToggle = document.querySelector('.nav-toggle');
