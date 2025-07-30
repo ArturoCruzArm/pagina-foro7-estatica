@@ -2,32 +2,32 @@
 let currentImageIndex = 0;
 const lightboxImages = [
     {
-        src: 'https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=85',
+        src: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=85',
         title: 'Boda Profesional León',
         description: 'Capturamos cada momento especial de tu boda con la más alta calidad profesional'
     },
     {
-        src: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=85',
+        src: 'https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=85',
         title: 'Fotografía de Boda',
         description: 'Retratos únicos que reflejan la esencia de cada pareja'
     },
     {
-        src: 'https://images.unsplash.com/photo-1594736797933-d0f06b6fde26?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=85',
+        src: 'https://images.unsplash.com/photo-1465495976277-4387d4b0e4a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=85',
         title: 'Video 4K Cinematográfico',
         description: 'Producción cinematográfica de alta calidad para tu evento especial'
     },
     {
-        src: 'https://images.unsplash.com/photo-1606800052052-a08af7148866?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=85',
+        src: 'https://images.unsplash.com/photo-1527529482837-4698179dc6ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=85',
         title: 'Tomas Aéreas con Dron',
         description: 'Perspectivas únicas y espectaculares desde el aire'
     },
     {
-        src: 'https://images.unsplash.com/photo-1469371670807-013ccf25f16a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=85',
+        src: 'https://images.unsplash.com/photo-1594736797933-d0f06b6fde26?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=85',
         title: 'Quinceañera Elegante',
         description: 'Celebraciones de XV años con estilo y distinción'
     },
     {
-        src: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=85',
+        src: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=85',
         title: 'Ceremonia Religiosa',
         description: 'Momentos sagrados capturados con respeto y profesionalismo'
     }
@@ -639,23 +639,224 @@ function initPriceCalculator() {
     calculatePrice();
 }
 
-// Parallax Effect para Invitaciones Digitales
-function initParallaxEffect() {
-    const section = document.querySelector('.digital-invitations');
-    if (!section) return;
+// Parallax Effect Avanzado
+function initAdvancedParallax() {
+    const parallaxElements = [
+        { selector: '.hero-image', speed: 0.5 },
+        { selector: '.phone-frame', speed: 0.3 },
+        { selector: '.service-card', speed: 0.2 },
+        { selector: '.testimonial-card', speed: 0.15 },
+        { selector: '.floating-icon', speed: 0.8 }
+    ];
     
-    window.addEventListener('scroll', () => {
-        const scrolled = window.pageYOffset;
-        const rate = scrolled * -0.5;
+    function updateParallax() {
+        const scrollTop = window.pageYOffset;
         
-        const parallaxElements = section.querySelectorAll('.phone-frame');
-        parallaxElements.forEach(element => {
-            element.style.transform = `translateY(${rate}px)`;
+        parallaxElements.forEach(({ selector, speed }) => {
+            const elements = document.querySelectorAll(selector);
+            elements.forEach((element, index) => {
+                const rect = element.getBoundingClientRect();
+                const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+                
+                if (isVisible) {
+                    const yPos = -(scrollTop * speed);
+                    const rotate = scrollTop * speed * 0.1;
+                    
+                    // Diferentes efectos para diferentes elementos
+                    if (selector === '.floating-icon') {
+                        element.style.transform = `translateY(${yPos}px) rotate(${rotate}deg) scale(${1 + Math.sin(scrollTop * 0.01) * 0.1})`;
+                    } else if (selector === '.phone-frame') {
+                        element.style.transform = `translateY(${yPos}px) rotateX(${rotate * 0.5}deg) rotateY(${rotate}deg)`;
+                    } else {
+                        element.style.transform = `translateY(${yPos}px)`;
+                    }
+                }
+            });
+        });
+    }
+    
+    // Throttle para mejor performance
+    let ticking = false;
+    function requestParallaxUpdate() {
+        if (!ticking) {
+            requestAnimationFrame(() => {
+                updateParallax();
+                ticking = false;
+            });
+            ticking = true;
+        }
+    }
+    
+    window.addEventListener('scroll', requestParallaxUpdate);
+}
+
+// Efectos 3D Avanzados
+function init3DEffects() {
+    // Efecto de mouse tracking para cards
+    const cards = document.querySelectorAll('.service-card, .testimonial-card');
+    
+    cards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            const rotateX = (y - centerY) / 10;
+            const rotateY = (centerX - x) / 10;
+            
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(20px)`;
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
         });
     });
 }
 
+// Sistema de Chat Bot Inteligente
+function initChatBot() {
+    // Crear el chat bot
+    const chatBot = document.createElement('div');
+    chatBot.className = 'chat-bot';
+    chatBot.innerHTML = `
+        <div class="chat-header">
+            <div class="chat-avatar">
+                <i class="fas fa-robot"></i>
+            </div>
+            <div class="chat-info">
+                <h4>Asistente Foro 7</h4>
+                <span class="status">En línea</span>
+            </div>
+            <button class="chat-toggle" onclick="toggleChat()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="message bot-message">
+                <div class="message-content">
+                    ¡Hola! 👋 Soy el asistente virtual de Foro 7. ¿En qué puedo ayudarte?
+                </div>
+                <div class="message-time">${new Date().toLocaleTimeString('es-MX', {hour: '2-digit', minute:'2-digit'})}</div>
+            </div>
+        </div>
+        <div class="quick-options">
+            <button class="quick-btn" onclick="sendQuickMessage('Quiero cotizar una boda')">
+                💒 Cotizar Boda
+            </button>
+            <button class="quick-btn" onclick="sendQuickMessage('Me interesan las invitaciones digitales')">
+                💌 Invitaciones
+            </button>
+            <button class="quick-btn" onclick="sendQuickMessage('Quiero ver el portafolio')">
+                📸 Ver Portafolio
+            </button>
+        </div>
+        <div class="chat-input">
+            <input type="text" placeholder="Escribe tu mensaje..." id="chatInput" onkeypress="handleChatKeyPress(event)">
+            <button onclick="sendMessage()" class="send-btn">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    `;
+    
+    document.body.appendChild(chatBot);
+    
+    // Botón flotante del chat
+    const chatFloatBtn = document.createElement('div');
+    chatFloatBtn.className = 'chat-float-btn';
+    chatFloatBtn.innerHTML = `
+        <i class="fas fa-comment-alt"></i>
+        <div class="chat-notification">1</div>
+    `;
+    chatFloatBtn.onclick = toggleChat;
+    
+    document.body.appendChild(chatFloatBtn);
+}
+
+// Funciones del Chat Bot
+function toggleChat() {
+    const chatBot = document.querySelector('.chat-bot');
+    const floatBtn = document.querySelector('.chat-float-btn');
+    
+    if (chatBot.classList.contains('active')) {
+        chatBot.classList.remove('active');
+        floatBtn.style.display = 'flex';
+    } else {
+        chatBot.classList.add('active');
+        floatBtn.style.display = 'none';
+    }
+}
+
+function sendMessage() {
+    const input = document.getElementById('chatInput');
+    const message = input.value.trim();
+    
+    if (message) {
+        addMessage(message, 'user');
+        input.value = '';
+        
+        // Simular respuesta del bot
+        setTimeout(() => {
+            const response = getBotResponse(message);
+            addMessage(response, 'bot');
+        }, 1000);
+    }
+}
+
+function sendQuickMessage(message) {
+    addMessage(message, 'user');
+    setTimeout(() => {
+        const response = getBotResponse(message);
+        addMessage(response, 'bot');
+    }, 500);
+}
+
+function addMessage(content, type) {
+    const messagesContainer = document.getElementById('chatMessages');
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `message ${type}-message`;
+    
+    messageDiv.innerHTML = `
+        <div class="message-content">${content}</div>
+        <div class="message-time">${new Date().toLocaleTimeString('es-MX', {hour: '2-digit', minute:'2-digit'})}</div>
+    `;
+    
+    messagesContainer.appendChild(messageDiv);
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+}
+
+function getBotResponse(message) {
+    const lowerMessage = message.toLowerCase();
+    
+    if (lowerMessage.includes('boda') || lowerMessage.includes('matrimonio')) {
+        return `¡Perfecto! 💒 Nuestros paquetes de boda incluyen fotografía HD, video 4K y tomas con dron desde $15,000. ¿Te gustaría que te contactemos por WhatsApp para una cotización personalizada? <a href="https://wa.me/5214779203776?text=Hola!%20Me%20interesa%20un%20paquete%20de%20boda%20💒" target="_blank">¡Contactar ahora!</a>`;
+    } else if (lowerMessage.includes('invitacion') || lowerMessage.includes('digital')) {
+        return `¡Excelente elección! 💌 Nuestras invitaciones digitales web son desde $1,500 e incluyen diseño personalizado, RSVP digital y más. Puedes usar nuestra calculadora arriba para ver el precio exacto. ¿Qué tipo de evento es?`;
+    } else if (lowerMessage.includes('precio') || lowerMessage.includes('costo')) {
+        return `💰 Nuestros precios varían según el servicio:<br>
+        📸 Solo Fotografía: desde $8,000<br>
+        🎬 Foto + Video: desde $15,000<br>
+        🚁 Paquete Premium + Dron: desde $25,000<br>
+        💌 Invitaciones Digitales: desde $1,500<br>
+        <a href="https://wa.me/5214779203776?text=Hola!%20Quiero%20información%20sobre%20precios%20💰" target="_blank">¡Cotiza ahora!</a>`;
+    } else if (lowerMessage.includes('portafolio') || lowerMessage.includes('trabajo')) {
+        return `📸 ¡Claro! Puedes ver nuestro portafolio aquí mismo en la galería de fotos, o visitar nuestro Instagram @foro7 para ver trabajos recientes. También tenemos videos en nuestro canal de Vimeo. ¿Te gustaría ver algún tipo específico de evento?`;
+    } else {
+        return `Gracias por tu mensaje 😊 Para una atención más personalizada, te recomiendo contactarnos directamente: <a href="https://wa.me/5214779203776?text=Hola!%20Tengo%20una%20consulta%20💬" target="_blank">WhatsApp</a> o al 477-920-3776. ¡Estaremos encantados de ayudarte!`;
+    }
+}
+
+function handleChatKeyPress(event) {
+    if (event.key === 'Enter') {
+        sendMessage();
+    }
+}
+
 // Inicializar efectos adicionales
 document.addEventListener('DOMContentLoaded', function() {
-    initParallaxEffect();
+    initAdvancedParallax();
+    init3DEffects();
+    initChatBot();
 });
