@@ -340,11 +340,21 @@ if ('serviceWorker' in navigator) {
 
 // Funciones para contadores animados
 function initCounters() {
-    const counters = document.querySelectorAll('[data-target]');
+    // Solo seleccionar elementos que sean contadores numéricos, no botones de tabs
+    const counters = document.querySelectorAll('[data-target]:not(.tab-btn)');
+    console.log('Contadores encontrados (excluyendo botones):', counters.length);
     const speed = 200;
 
     const updateCount = (counter) => {
-        const target = +counter.getAttribute('data-target');
+        const targetValue = counter.getAttribute('data-target');
+        const target = +targetValue;
+        
+        // Solo procesar si data-target es un número válido
+        if (isNaN(target)) {
+            console.log('Saltando contador no numérico:', counter);
+            return;
+        }
+        
         const count = +counter.innerText;
         const inc = target / speed;
 
