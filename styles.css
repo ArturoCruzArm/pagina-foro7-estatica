@@ -16,6 +16,13 @@ body {
     background-color: #fefefe;
 }
 
+/* Espaciado general de secciones */
+section {
+    position: relative;
+    margin-bottom: 2rem;
+    clear: both;
+}
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -807,6 +814,8 @@ h3 {
 .testimonials {
     padding: 5rem 0;
     background: linear-gradient(135deg, #F8F8FF 0%, #F0F8FF 100%);
+    position: relative;
+    z-index: 1;
 }
 
 .testimonials-grid {
@@ -824,6 +833,7 @@ h3 {
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+    z-index: 1;
 }
 
 .testimonial-card::before {
@@ -837,8 +847,9 @@ h3 {
 }
 
 .testimonial-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    z-index: 2;
 }
 
 .quote-icon {
@@ -1377,7 +1388,7 @@ h3 {
 
 .process-timeline {
     position: relative;
-    z-index: 2;
+    z-index: 3;
 }
 
 .process-timeline h3 {
