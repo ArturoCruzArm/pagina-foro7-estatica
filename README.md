@@ -89,6 +89,28 @@ Este sitio está configurado para ser desplegado en **GitHub Pages**:
 - ✅ Edge
 - ✅ Dispositivos móviles iOS/Android
 
+## 📚 Documentación Completa
+
+- **[🚀 Guía de Despliegue](DEPLOYMENT_GUIDE.md)** - Cómo subir el sitio a GitHub Pages
+- **[🔧 Guía de Mantenimiento](MAINTENANCE_GUIDE.md)** - Actualizar contenido y funcionalidades
+- **[📝 Historial de Cambios](CHANGELOG.md)** - Todas las versiones y actualizaciones
+
+## 🎯 Características PWA
+
+- **📱 Instalable**: Se puede instalar como app móvil
+- **🔄 Offline**: Funciona sin conexión a internet  
+- **⚡ Rápido**: Carga instantánea con Service Worker
+- **🔔 Notificaciones**: Preparado para push notifications
+
+## 🔗 Enlaces Útiles
+
+- **Sitio Web**: [https://foro7.com.mx](https://foro7.com.mx)
+- **WhatsApp**: [477-920-3776](https://wa.me/5214779203776)
+- **Facebook**: [Foro 7 Producciones](https://www.fb.com/foro7producciones)
+- **Vimeo**: [Canal de Videos](https://vimeo.com/produccionesforo7)
+
 ---
 
 **Producciones Foro 7** - "Capturamos tu historia, fotograma a fotograma"
+
+*Sitio web profesional creado con tecnologías modernas y optimizado para resultados* ✨

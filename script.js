@@ -279,6 +279,18 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('scroll', revealSections);
 });
 
+// Registrar Service Worker para PWA
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/service-worker.js')
+            .then(function(registration) {
+                console.log('ServiceWorker registrado exitosamente: ', registration.scope);
+            }, function(err) {
+                console.log('ServiceWorker falló al registrarse: ', err);
+            });
+    });
+}
+
 // Funcionalidad adicional para mejorar UX
 document.addEventListener('DOMContentLoaded', function() {
     // Agregar indicador de carga para formulario
