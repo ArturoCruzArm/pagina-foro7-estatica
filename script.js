@@ -2,47 +2,46 @@
 let currentImageIndex = 0;
 const lightboxImages = [
     {
-        src: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=85',
+        src: 'images/gallery/boda-profesional-leon.jpg',
         title: 'Boda Profesional León',
         description: 'Capturamos cada momento especial de tu boda con la más alta calidad profesional'
     },
     {
-        src: 'https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=85',
+        src: 'images/gallery/fotografia-boda.jpg',
         title: 'Fotografía de Boda',
         description: 'Retratos únicos que reflejan la esencia de cada pareja'
     },
     {
-        src: 'https://images.unsplash.com/photo-1465495976277-4387d4b0e4a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=85',
+        src: 'images/gallery/video-4k-cinematografico.jpg',
         title: 'Video 4K Cinematográfico',
         description: 'Producción cinematográfica de alta calidad para tu evento especial'
     },
     {
-        src: 'https://images.unsplash.com/photo-1527529482837-4698179dc6ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=85',
+        src: 'images/gallery/tomas-aereas-dron.jpg',
         title: 'Tomas Aéreas con Dron',
         description: 'Perspectivas únicas y espectaculares desde el aire'
     },
     {
-        src: 'https://images.unsplash.com/photo-1594736797933-d0f06b6fde26?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=85',
+        src: 'images/gallery/quinceanera-elegante.jpg',
         title: 'Quinceañera Elegante',
         description: 'Celebraciones de XV años con estilo y distinción'
     },
     {
-        src: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=85',
+        src: 'images/gallery/ceremonia-religiosa.jpg',
         title: 'Ceremonia Religiosa',
         description: 'Momentos sagrados capturados con respeto y profesionalismo'
     }
 ];
 
-// Navegación móvil
-document.addEventListener('DOMContentLoaded', function() {
+// Función principal de inicialización
+function initializeApp() {
+    // Navegación móvil
     const navToggle = document.querySelector('.nav-toggle');
     const navMenu = document.querySelector('.nav-menu');
     
     if (navToggle && navMenu) {
         navToggle.addEventListener('click', function() {
             navMenu.classList.toggle('active');
-            
-            // Animación del menú hamburguesa
             navToggle.classList.toggle('active');
         });
 
@@ -56,18 +55,20 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Inicializar contadores animados
+    // Inicializar todos los componentes
     initCounters();
-    
-    // Generar dots para lightbox
     generateLightboxDots();
-    
-    // Inicializar calculadora de precios
     initPriceCalculator();
-    
-    // Inicializar tabs de invitaciones
     initInvitationTabs();
-});
+    initScrollAnimations();
+    initSectionReveal();
+    initUXEnhancements();
+    initAllEffects();
+    validateForm();
+}
+
+// Un solo event listener para DOMContentLoaded
+document.addEventListener('DOMContentLoaded', initializeApp);
 
 // Scroll suave para navegación
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -218,8 +219,8 @@ function animateOnScroll() {
     });
 }
 
-// Inicializar elementos para animación
-document.addEventListener('DOMContentLoaded', function() {
+// Función para inicializar animaciones de scroll
+function initScrollAnimations() {
     const elements = document.querySelectorAll('.service-card, .photo-item, .contact-info, .contact-form');
     
     elements.forEach(element => {
@@ -230,8 +231,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Ejecutar animación inmediatamente y en scroll
     animateOnScroll();
-    window.addEventListener('scroll', animateOnScroll);
-});
+    window.addEventListener('scroll', animateOnScroll, { passive: true });
+}
 
 // Lazy loading para imágenes
 if ('IntersectionObserver' in window) {
@@ -280,8 +281,6 @@ function validateForm() {
     });
 }
 
-// Inicializar validación del formulario
-document.addEventListener('DOMContentLoaded', validateForm);
 
 // Preloader simple
 window.addEventListener('load', function() {
@@ -302,8 +301,8 @@ function revealSections() {
     });
 }
 
-// Inicializar reveal de secciones
-document.addEventListener('DOMContentLoaded', function() {
+// Función para inicializar reveal de secciones
+function initSectionReveal() {
     const sections = document.querySelectorAll('section');
     
     sections.forEach(section => {
@@ -323,17 +322,17 @@ document.addEventListener('DOMContentLoaded', function() {
     document.head.appendChild(style);
     
     revealSections();
-    window.addEventListener('scroll', revealSections);
-});
+    window.addEventListener('scroll', revealSections, { passive: true });
+}
 
 // Registrar Service Worker para PWA
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', function() {
         navigator.serviceWorker.register('./service-worker.js')
             .then(function(registration) {
-                console.log('ServiceWorker registrado exitosamente: ', registration.scope);
+                // console.log('ServiceWorker registrado exitosamente: ', registration.scope);
             }, function(err) {
-                console.log('ServiceWorker falló al registrarse: ', err);
+                console.error('ServiceWorker falló al registrarse: ', err);
             });
     });
 }
@@ -342,7 +341,7 @@ if ('serviceWorker' in navigator) {
 function initCounters() {
     // Solo seleccionar elementos que sean contadores numéricos, no botones de tabs
     const counters = document.querySelectorAll('[data-target]:not(.tab-btn)');
-    console.log('Contadores encontrados (excluyendo botones):', counters.length);
+    // console.log('Contadores encontrados (excluyendo botones):', counters.length);
     const speed = 200;
 
     const updateCount = (counter) => {
@@ -351,7 +350,7 @@ function initCounters() {
         
         // Solo procesar si data-target es un número válido
         if (isNaN(target)) {
-            console.log('Saltando contador no numérico:', counter);
+            // console.log('Saltando contador no numérico:', counter);
             return;
         }
         
@@ -521,8 +520,8 @@ document.addEventListener('keydown', function(e) {
     }
 });
 
-// Funcionalidad adicional para mejorar UX
-document.addEventListener('DOMContentLoaded', function() {
+// Función para mejorar UX
+function initUXEnhancements() {
     // Agregar indicador de carga para formulario
     const submitBtn = document.querySelector('.submit-btn');
     if (submitBtn) {
@@ -555,7 +554,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-});
+}
 
 // Funciones para Invitaciones Digitales
 function initInvitationTabs() {
@@ -564,12 +563,39 @@ function initInvitationTabs() {
         const tabBtns = document.querySelectorAll('.tab-btn');
         const invitationDemos = document.querySelectorAll('.invitation-demo');
         
-        console.log('Inicializando tabs de invitaciones:', tabBtns.length, 'botones encontrados');
+        // console.log('Inicializando tabs de invitaciones:', tabBtns.length, 'botones encontrados');
+        
+        // PROTEGER CONTENIDO DE BOTONES ANTES DE CUALQUIER MANIPULACIÓN
+        const correctContents = [
+            '<i class="fas fa-heart"></i><span>Bodas</span>',
+            '<i class="fas fa-crown"></i><span>XV Años</span>',
+            '<i class="fas fa-baby"></i><span>Bautizos</span>'
+        ];
         
         tabBtns.forEach((btn, index) => {
-            // Verificar que el botón tenga contenido antes de agregar evento
-            const currentContent = btn.innerHTML;
-            console.log(`Botón ${index}:`, currentContent);
+            // Restaurar contenido correcto inmediatamente
+            // console.log(`Restaurando contenido correcto del botón ${index}: de "${btn.innerHTML}" a "${correctContents[index]}"`);
+            btn.innerHTML = correctContents[index];
+            
+            // Crear MutationObserver para prevenir cambios no deseados
+            const observer = new MutationObserver((mutations) => {
+                mutations.forEach((mutation) => {
+                    if (mutation.type === 'childList' || mutation.type === 'characterData') {
+                        // Si el contenido cambió a algo que no sea el correcto, restaurarlo
+                        if (btn.innerHTML !== correctContents[index] && (btn.innerHTML === 'NaN' || btn.innerHTML === '' || !btn.innerHTML.includes('span'))) {
+                            // console.log(`Re-restaurando contenido del botón ${index} de "${btn.innerHTML}" a "${correctContents[index]}"`);
+                            btn.innerHTML = correctContents[index];
+                        }
+                    }
+                });
+            });
+            
+            // Observar cambios en el botón
+            observer.observe(btn, {
+                childList: true,
+                subtree: true,
+                characterData: true
+            });
             
             btn.addEventListener('click', () => {
                 const target = btn.getAttribute('data-target');
@@ -588,6 +614,17 @@ function initInvitationTabs() {
                 }
             });
         });
+        
+        // Verificación final - asegurar que todos los botones tengan contenido correcto
+        setTimeout(() => {
+            tabBtns.forEach((btn, index) => {
+                if (btn.innerHTML === 'NaN' || btn.innerHTML === '' || !btn.innerHTML.includes('span')) {
+                    // console.log(`Corrección final del botón ${index}`);
+                    btn.innerHTML = correctContents[index];
+                }
+            });
+        }, 200);
+        
     }, 100); // Pequeño delay para asegurar carga completa
 }
 
@@ -706,7 +743,7 @@ function initAdvancedParallax() {
         }
     }
     
-    window.addEventListener('scroll', requestParallaxUpdate);
+    window.addEventListener('scroll', requestParallaxUpdate, { passive: true });
 }
 
 // Efectos 3D Avanzados
@@ -958,8 +995,8 @@ function generateCalendar() {
         dayElement.textContent = day;
         
         if (!isUnavailable) {
-            dayElement.addEventListener('click', () => {
-                selectDate(new Date(year, month, day));
+            dayElement.addEventListener('click', (e) => {
+                selectDate(new Date(year, month, day), e.target);
             });
         }
         
@@ -967,7 +1004,7 @@ function generateCalendar() {
     }
 }
 
-function selectDate(date) {
+function selectDate(date, element) {
     selectedDate = date;
     
     // Actualizar calendario visual
@@ -975,7 +1012,9 @@ function selectDate(date) {
         day.classList.remove('selected');
     });
     
-    event.target.classList.add('selected');
+    if (element) {
+        element.classList.add('selected');
+    }
     
     // Actualizar display de fecha seleccionada
     const options = { 
@@ -1166,19 +1205,20 @@ document.addEventListener('keydown', function(event) {
 
 // Función de debug para verificar botones
 function debugTabButtons() {
-    const tabBtns = document.querySelectorAll('.tab-btn');
-    console.log('=== DEBUG BOTONES ===');
-    tabBtns.forEach((btn, index) => {
-        console.log(`Botón ${index}:`);
-        console.log('- innerHTML:', btn.innerHTML);
-        console.log('- textContent:', btn.textContent);
-        console.log('- data-target:', btn.getAttribute('data-target'));
-        console.log('---');
-    });
+    // Debug function - disabled in production
+    // const tabBtns = document.querySelectorAll('.tab-btn');
+    // console.log('=== DEBUG BOTONES ===');
+    // tabBtns.forEach((btn, index) => {
+    //     console.log(`Botón ${index}:`);
+    //     console.log('- innerHTML:', btn.innerHTML);
+    //     console.log('- textContent:', btn.textContent);
+    //     console.log('- data-target:', btn.getAttribute('data-target'));
+    //     console.log('---');
+    // });
 }
 
-// Inicializar efectos adicionales
-document.addEventListener('DOMContentLoaded', function() {
+// Función para inicializar todos los efectos
+function initAllEffects() {
     // Debug inicial
     setTimeout(() => {
         debugTabButtons();
@@ -1187,4 +1227,4 @@ document.addEventListener('DOMContentLoaded', function() {
     initAdvancedParallax();
     init3DEffects();
     initChatBot();
-});
+}
