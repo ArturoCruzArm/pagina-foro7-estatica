@@ -323,6 +323,40 @@ h3 {
     transform: translateY(-2px);
 }
 
+/* Instagram CTA */
+.instagram-cta {
+    text-align: center;
+    margin-top: 2rem;
+    padding: 2rem;
+    background: linear-gradient(135deg, #FFF8DC 0%, #F5F5DC 100%);
+    border-radius: 15px;
+    border: 2px solid #D2691E;
+}
+
+.instagram-cta p {
+    margin-bottom: 1rem;
+    color: #666;
+}
+
+.instagram-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+    color: white;
+    padding: 1rem 2rem;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 15px rgba(240, 148, 51, 0.3);
+}
+
+.instagram-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(240, 148, 51, 0.4);
+}
+
 /* Sobre Nosotros */
 .about {
     padding: 5rem 0;
