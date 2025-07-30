@@ -622,6 +622,36 @@ h3 {
     margin-bottom: 1.5rem;
 }
 
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.form-description {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-style: italic;
+}
+
+.form-group label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    color: #8B4513;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.form-group label i {
+    color: #D2691E;
+    font-size: 1rem;
+}
+
 .form-group input,
 .form-group select,
 .form-group textarea {
@@ -663,9 +693,86 @@ h3 {
 }
 
 .map-container {
-    border-radius: 15px;
+    border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+    margin-bottom: 2rem;
+}
+
+.map-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.map-link, .appointment-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.map-link {
+    background: linear-gradient(135deg, #4285F4 0%, #0F9D58 100%);
+    color: white;
+}
+
+.map-link:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(66, 133, 244, 0.4);
+}
+
+.appointment-link {
+    background: linear-gradient(135deg, #25D366 0%, #20C056 100%);
+    color: white;
+}
+
+.appointment-link:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+}
+
+.address-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    background: linear-gradient(135deg, #FFF8DC 0%, #F5F5DC 100%);
+    padding: 2rem;
+    border-radius: 20px;
+    border: 2px solid #D2691E;
+}
+
+.address-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.address-item i {
+    color: #D2691E;
+    font-size: 1.5rem;
+    margin-top: 0.2rem;
+    flex-shrink: 0;
+}
+
+.address-item strong {
+    color: #8B4513;
+    font-size: 1.1rem;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.address-item p {
+    color: #666;
+    line-height: 1.6;
+    margin: 0;
 }
 
 /* Footer */
@@ -878,6 +985,11 @@ h3 {
         grid-template-columns: 1fr;
     }
 
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
     .footer-bottom {
         flex-direction: column;
         text-align: center;
@@ -909,6 +1021,23 @@ h3 {
     .photo-overlay span {
         font-size: 0.9rem;
     }
+
+    .address-info {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .map-actions {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .map-link, .appointment-link {
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
+    }
 }
 
 @media (max-width: 480px) {
@@ -937,6 +1066,34 @@ h3 {
         margin: 5% auto;
         padding: 1.5rem;
         width: 95%;
+    }
+
+    .form-group label {
+        font-size: 0.9rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        font-size: 0.9rem;
+        padding: 0.8rem;
+    }
+
+    .submit-btn {
+        font-size: 0.9rem;
+        padding: 0.8rem 1.5rem;
+    }
+
+    .address-info {
+        padding: 1.5rem;
+    }
+
+    .address-item {
+        gap: 0.8rem;
+    }
+
+    .address-item strong {
+        font-size: 1rem;
     }
 }
 
@@ -1065,6 +1222,20 @@ section {
         box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
     }
 }
+
+/* Mejoras adicionales de pulido */
+.contact-form h3 {
+    background: linear-gradient(135deg, #D2691E 0%, #CD853F 100%);\n    -webkit-background-clip: text;\n    -webkit-text-fill-color: transparent;\n    background-clip: text;\n    text-align: center;\n    margin-bottom: 0.5rem;\n}
+
+.form-group input::placeholder,\n.form-group select::placeholder,\n.form-group textarea::placeholder {\n    color: #999;\n    font-style: italic;\n}
+
+.form-group select {\n    background-image: url(\"data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23D2691E' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e\");\n    background-repeat: no-repeat;\n    background-position: right 1rem center;\n    background-size: 1rem;\n    padding-right: 3rem;\n    appearance: none;\n}
+
+/* Scroll to top animation */\n.hero {\n    animation: slideInDown 0.8s ease-out;\n}
+
+@keyframes slideInDown {\n    from {\n        opacity: 0;\n        transform: translateY(-50px);\n    }\n    to {\n        opacity: 1;\n        transform: translateY(0);\n    }\n}
+
+/* Loading states */\n.submit-btn.loading {\n    pointer-events: none;\n    opacity: 0.7;\n}\n\n.submit-btn.loading::after {\n    content: '';\n    position: absolute;\n    width: 16px;\n    height: 16px;\n    margin: auto;\n    border: 2px solid transparent;\n    border-top-color: #ffffff;\n    border-radius: 50%;\n    animation: spin 1s linear infinite;\n}\n\n@keyframes spin {\n    0% { transform: rotate(0deg); }\n    100% { transform: rotate(360deg); }\n}
 
 /* Print styles */
 @media print {
