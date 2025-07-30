@@ -140,7 +140,42 @@ h3 {
 .hero-description {
     font-size: 1.1rem;
     color: #666;
+    margin-bottom: 1.5rem;
+}
+
+.hero-highlights {
+    display: flex;
+    gap: 1.5rem;
     margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.highlight-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(210, 105, 30, 0.1);
+    padding: 0.8rem 1.2rem;
+    border-radius: 25px;
+    border: 2px solid #D2691E;
+    transition: all 0.3s ease;
+}
+
+.highlight-item:hover {
+    background: rgba(210, 105, 30, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(210, 105, 30, 0.3);
+}
+
+.highlight-item i {
+    color: #D2691E;
+    font-size: 1.2rem;
+}
+
+.highlight-item span {
+    color: #8B4513;
+    font-weight: 600;
+    font-size: 0.9rem;
 }
 
 .cta-button {
@@ -186,50 +221,120 @@ h3 {
 .service-card {
     background: linear-gradient(135deg, #FFF8DC 0%, #F5F5DC 100%);
     padding: 2rem;
-    border-radius: 15px;
+    border-radius: 20px;
     text-align: center;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid transparent;
 }
 
 .service-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+}
+
+.service-card.featured {
+    background: linear-gradient(135deg, #FFF8DC 0%, #F0E68C 100%);
+    border: 2px solid #D2691E;
+    box-shadow: 0 10px 30px rgba(210, 105, 30, 0.2);
+}
+
+.service-card.featured:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 50px rgba(210, 105, 30, 0.3);
+}
+
+.service-card.optional {
+    background: linear-gradient(135deg, #F5F5F5 0%, #E8E8E8 100%);
+    border: 2px dashed #999;
+    opacity: 0.8;
+}
+
+.service-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: linear-gradient(135deg, #D2691E 0%, #CD853F 100%);
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 8px rgba(210, 105, 30, 0.3);
+}
+
+.optional-badge {
+    background: linear-gradient(135deg, #666 0%, #888 100%);
+    box-shadow: 0 2px 8px rgba(102, 102, 102, 0.3);
 }
 
 .service-card i {
-    font-size: 3rem;
+    font-size: 3.5rem;
     color: #D2691E;
     margin-bottom: 1rem;
+    filter: drop-shadow(0 2px 4px rgba(210, 105, 30, 0.3));
+}
+
+.service-card.optional i {
+    color: #666;
 }
 
 .service-card h3 {
     color: #8B4513;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    font-size: 1.4rem;
 }
 
-.service-card ul {
-    list-style: none;
+.service-features {
     text-align: left;
+    margin-top: 1.5rem;
 }
 
-.service-card li {
-    padding: 0.5rem 0;
-    border-bottom: 1px solid #E5E5E5;
-    position: relative;
-    padding-left: 1.5rem;
+.feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid rgba(210, 105, 30, 0.1);
+    transition: all 0.3s ease;
 }
 
-.service-card li:before {
-    content: "✓";
-    position: absolute;
-    left: 0;
-    color: #D2691E;
-    font-weight: bold;
-}
-
-.service-card li:last-child {
+.feature-item:last-child {
     border-bottom: none;
+}
+
+.feature-item:hover {
+    background: rgba(210, 105, 30, 0.05);
+    padding-left: 0.5rem;
+    border-radius: 8px;
+}
+
+.feature-item i {
+    color: #25D366;
+    font-size: 1.2rem;
+    margin-top: 0.1rem;
+    flex-shrink: 0;
+    filter: drop-shadow(0 1px 2px rgba(37, 211, 102, 0.3));
+}
+
+.service-card.optional .feature-item i {
+    color: #666;
+}
+
+.feature-item span {
+    color: #555;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    font-weight: 500;
+}
+
+.service-card.featured .feature-item span {
+    color: #333;
+    font-weight: 600;
 }
 
 /* Portafolio */
@@ -714,6 +819,20 @@ h3 {
     .hero-image {
         order: 1;
     }
+    
+    .hero-highlights {
+        justify-content: center;
+        gap: 1rem;
+    }
+    
+    .highlight-item {
+        padding: 0.6rem 1rem;
+        font-size: 0.8rem;
+    }
+    
+    .highlight-item i {
+        font-size: 1rem;
+    }
 
     h1 {
         font-size: 2rem;
@@ -725,6 +844,30 @@ h3 {
 
     .services-grid {
         grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .service-card {
+        padding: 1.5rem;
+    }
+    
+    .service-badge {
+        font-size: 0.6rem;
+        padding: 0.2rem 0.6rem;
+        top: 10px;
+        right: 10px;
+    }
+    
+    .service-card i {
+        font-size: 2.8rem;
+    }
+    
+    .feature-item {
+        padding: 0.6rem 0;
+    }
+    
+    .feature-item span {
+        font-size: 0.9rem;
     }
 
     .about-content {
