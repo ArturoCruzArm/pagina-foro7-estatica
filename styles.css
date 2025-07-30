@@ -823,6 +823,7 @@ h3 {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
     margin: 3rem 0;
+    padding: 1rem;
 }
 
 .testimonial-card {
@@ -847,7 +848,7 @@ h3 {
 }
 
 .testimonial-card:hover {
-    transform: translateY(-5px);
+    transform: scale(1.02);
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
     z-index: 2;
 }
@@ -2081,11 +2082,12 @@ h3 {
 }
 
 /* Efectos 3D Avanzados */
-.service-card,
-.testimonial-card {
+.service-card {
     transition: transform 0.3s ease;
     transform-style: preserve-3d;
 }
+
+/* Testimonial cards have their own hover effects defined above */
 
 .service-card::before,
 .testimonial-card::before {
