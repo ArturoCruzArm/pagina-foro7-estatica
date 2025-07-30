@@ -266,6 +266,24 @@ h3 {
     height: 100%;
 }
 
+.vimeo-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #1AB7EA;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    background: rgba(26, 183, 234, 0.1);
+    transition: all 0.3s ease;
+}
+
+.vimeo-link:hover {
+    background: rgba(26, 183, 234, 0.2);
+    transform: translateY(-2px);
+}
+
 .photo-gallery {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -273,17 +291,64 @@ h3 {
     margin: 2rem 0;
 }
 
-.photo-item img {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-    border-radius: 10px;
-    transition: transform 0.3s ease;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+.photo-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.photo-item img:hover {
-    transform: scale(1.05);
+.photo-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+}
+
+.photo-item img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 15px;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.photo-item:hover img {
+    transform: scale(1.08);
+    filter: brightness(0.8);
+}
+
+.photo-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(240, 148, 51, 0.9) 0%, rgba(188, 24, 136, 0.9) 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 15px;
+    color: white;
+    text-align: center;
+}
+
+.photo-item:hover .photo-overlay {
+    opacity: 1;
+}
+
+.photo-overlay i {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.photo-overlay span {
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .social-links {
@@ -682,6 +747,24 @@ h3 {
 
     .photo-gallery {
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 0.8rem;
+    }
+    
+    .photo-item img {
+        height: 220px;
+    }
+    
+    .instagram-cta {
+        padding: 1.5rem;
+        margin-top: 1.5rem;
+    }
+    
+    .photo-overlay i {
+        font-size: 2rem;
+    }
+    
+    .photo-overlay span {
+        font-size: 0.9rem;
     }
 }
 
@@ -798,6 +881,46 @@ section {
 
 .skip-link:focus {
     top: 6px;
+}
+
+/* WhatsApp Float Button */
+.whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 25px;
+    right: 25px;
+    background: linear-gradient(135deg, #25D366 0%, #20C056 100%);
+    color: white;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 1.8rem;
+    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+    z-index: 1000;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    animation: pulse 2s infinite;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 25px rgba(37, 211, 102, 0.6);
+    background: linear-gradient(135deg, #20C056 0%, #25D366 100%);
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+    }
 }
 
 /* Print styles */
