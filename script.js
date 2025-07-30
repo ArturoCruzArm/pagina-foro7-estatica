@@ -61,6 +61,12 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Generar dots para lightbox
     generateLightboxDots();
+    
+    // Inicializar calculadora de precios
+    initPriceCalculator();
+    
+    // Inicializar tabs de invitaciones
+    initInvitationTabs();
 });
 
 // Scroll suave para navegación
@@ -539,4 +545,117 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+});
+
+// Funciones para Invitaciones Digitales
+function initInvitationTabs() {
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const invitationDemos = document.querySelectorAll('.invitation-demo');
+    
+    tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const target = btn.getAttribute('data-target');
+            
+            // Remover active de todos los tabs y demos
+            tabBtns.forEach(tab => tab.classList.remove('active'));
+            invitationDemos.forEach(demo => demo.classList.remove('active'));
+            
+            // Activar el tab clickeado
+            btn.classList.add('active');
+            
+            // Activar el demo correspondiente
+            const targetDemo = document.querySelector(`[data-type="${target}"]`);
+            if (targetDemo) {
+                targetDemo.classList.add('active');
+            }
+        });
+    });
+}
+
+function initPriceCalculator() {
+    const eventTypeSelect = document.getElementById('eventType');
+    const checkboxes = document.querySelectorAll('.checkbox-item input[type="checkbox"]');
+    const guestCountSlider = document.getElementById('guestCount');
+    const guestDisplay = document.getElementById('guestDisplay');
+    
+    // Elementos de precio
+    const basePrice = document.getElementById('basePrice');
+    const extrasPrice = document.getElementById('extrasPrice');
+    const discountPrice = document.getElementById('discountPrice');
+    const totalPrice = document.getElementById('totalPrice');
+    
+    function calculatePrice() {
+        // Precio base del evento
+        const selectedOption = eventTypeSelect.selectedOptions[0];
+        const base = parseInt(selectedOption.getAttribute('data-price'));
+        
+        // Calcular extras
+        let extras = 0;
+        checkboxes.forEach(checkbox => {
+            if (checkbox.checked) {
+                extras += parseInt(checkbox.getAttribute('data-price'));
+            }
+        });
+        
+        // Número de invitados
+        const guests = parseInt(guestCountSlider.value);
+        
+        // Descuento por volumen (más de 200 invitados = 10% descuento)
+        let discount = 0;
+        if (guests > 200) {
+            discount = (base + extras) * 0.1;
+        }
+        
+        const total = base + extras - discount;
+        
+        // Actualizar display
+        basePrice.textContent = `$${base.toLocaleString()}`;
+        extrasPrice.textContent = `$${extras.toLocaleString()}`;
+        discountPrice.textContent = discount > 0 ? `-$${discount.toLocaleString()}` : '$0';
+        totalPrice.textContent = `$${total.toLocaleString()}`;
+        
+        // Mostrar/ocultar línea de descuento
+        const discountLine = document.querySelector('.price-line.discount');
+        discountLine.style.display = discount > 0 ? 'flex' : 'none';
+    }
+    
+    // Event listeners
+    if (eventTypeSelect) {
+        eventTypeSelect.addEventListener('change', calculatePrice);
+    }
+    
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', calculatePrice);
+    });
+    
+    if (guestCountSlider && guestDisplay) {
+        guestCountSlider.addEventListener('input', () => {
+            guestDisplay.textContent = guestCountSlider.value;
+            calculatePrice();
+        });
+    }
+    
+    // Calcular precio inicial
+    calculatePrice();
+}
+
+// Parallax Effect para Invitaciones Digitales
+function initParallaxEffect() {
+    const section = document.querySelector('.digital-invitations');
+    if (!section) return;
+    
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const rate = scrolled * -0.5;
+        
+        const parallaxElements = section.querySelectorAll('.phone-frame');
+        parallaxElements.forEach(element => {
+            element.style.transform = `translateY(${rate}px)`;
+        });
+    });
+}
+
+// Inicializar efectos adicionales
+document.addEventListener('DOMContentLoaded', function() {
+    initParallaxEffect();
 });
