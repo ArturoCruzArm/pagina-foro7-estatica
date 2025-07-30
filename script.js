@@ -854,6 +854,297 @@ function handleChatKeyPress(event) {
     }
 }
 
+// Sistema de Reservas Avanzado
+let currentCalendarMonth = new Date();
+let selectedDate = null;
+let selectedTime = null;
+
+// Horarios disponibles (formato 24h)
+const availableTimeSlots = [
+    '09:00', '10:00', '11:00', '12:00', 
+    '14:00', '15:00', '16:00', '17:00', '18:00'
+];
+
+// Días no disponibles (domingos)
+const unavailableDays = [0]; // 0 = Domingo
+
+function openReservationModal() {
+    const modal = document.getElementById('reservationModal');
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+    
+    // Inicializar calendario
+    generateCalendar();
+    resetAppointmentForm();
+}
+
+function closeReservationModal() {
+    const modal = document.getElementById('reservationModal');
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+    
+    // Reset selections
+    selectedDate = null;
+    selectedTime = null;
+    updateAppointmentSummary();
+}
+
+function generateCalendar() {
+    const calendarGrid = document.getElementById('calendarGrid');
+    const monthHeader = document.getElementById('calendarMonth');
+    
+    // Limpiar calendario
+    calendarGrid.innerHTML = '';
+    
+    // Configurar mes
+    const year = currentCalendarMonth.getFullYear();
+    const month = currentCalendarMonth.getMonth();
+    
+    const monthNames = [
+        'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+        'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+    ];
+    
+    monthHeader.textContent = `${monthNames[month]} ${year}`;
+    
+    // Headers de días
+    const dayHeaders = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
+    dayHeaders.forEach(day => {
+        const dayElement = document.createElement('div');
+        dayElement.className = 'calendar-day header';
+        dayElement.textContent = day;
+        calendarGrid.appendChild(dayElement);
+    });
+    
+    // Primer día del mes y número de días
+    const firstDay = new Date(year, month, 1).getDay();
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    const today = new Date();
+    
+    // Espacios vacíos para los días anteriores
+    for (let i = 0; i < firstDay; i++) {
+        const emptyDay = document.createElement('div');
+        emptyDay.className = 'calendar-day';
+        calendarGrid.appendChild(emptyDay);
+    }
+    
+    // Días del mes
+    for (let day = 1; day <= daysInMonth; day++) {
+        const dayElement = document.createElement('div');
+        const currentDate = new Date(year, month, day);
+        const isPastDate = currentDate < today.setHours(0, 0, 0, 0);
+        const isUnavailable = unavailableDays.includes(currentDate.getDay()) || isPastDate;
+        
+        dayElement.className = `calendar-day ${isUnavailable ? 'unavailable' : 'available'}`;
+        dayElement.textContent = day;
+        
+        if (!isUnavailable) {
+            dayElement.addEventListener('click', () => {
+                selectDate(new Date(year, month, day));
+            });
+        }
+        
+        calendarGrid.appendChild(dayElement);
+    }
+}
+
+function selectDate(date) {
+    selectedDate = date;
+    
+    // Actualizar calendario visual
+    document.querySelectorAll('.calendar-day.selected').forEach(day => {
+        day.classList.remove('selected');
+    });
+    
+    event.target.classList.add('selected');
+    
+    // Actualizar display de fecha seleccionada
+    const options = { 
+        weekday: 'long', 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric' 
+    };
+    
+    document.getElementById('selectedDate').textContent = 
+        date.toLocaleDateString('es-MX', options);
+    
+    // Generar horarios disponibles
+    generateTimeSlots();
+    updateAppointmentSummary();
+}
+
+function generateTimeSlots() {
+    const timeGrid = document.getElementById('timeGrid');
+    timeGrid.innerHTML = '';
+    
+    availableTimeSlots.forEach(time => {
+        const timeElement = document.createElement('div');
+        timeElement.className = 'time-slot available';
+        timeElement.textContent = formatTime(time);
+        
+        timeElement.addEventListener('click', () => {
+            selectTime(time, timeElement);
+        });
+        
+        timeGrid.appendChild(timeElement);
+    });
+}
+
+function selectTime(time, element) {
+    selectedTime = time;
+    
+    // Actualizar visual
+    document.querySelectorAll('.time-slot.selected').forEach(slot => {
+        slot.classList.remove('selected');
+    });
+    
+    element.classList.add('selected');
+    updateAppointmentSummary();
+}
+
+function formatTime(time24) {
+    const [hours, minutes] = time24.split(':');
+    const hour12 = hours % 12 || 12;
+    const ampm = hours < 12 ? 'AM' : 'PM';
+    return `${hour12}:${minutes} ${ampm}`;
+}
+
+function changeMonth(direction) {
+    currentCalendarMonth.setMonth(currentCalendarMonth.getMonth() + direction);
+    
+    // No permitir meses anteriores al actual
+    const today = new Date();
+    if (currentCalendarMonth < new Date(today.getFullYear(), today.getMonth(), 1)) {
+        currentCalendarMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+    }
+    
+    generateCalendar();
+    
+    // Reset selections si cambia el mes
+    selectedDate = null;
+    selectedTime = null;
+    document.getElementById('selectedDate').textContent = 'Selecciona una fecha';
+    document.getElementById('timeGrid').innerHTML = '';
+    updateAppointmentSummary();
+}
+
+function updateAppointmentSummary() {
+    const summaryDate = document.getElementById('summaryDate');
+    const summaryTime = document.getElementById('summaryTime');
+    const confirmBtn = document.getElementById('confirmBtn');
+    
+    if (selectedDate) {
+        const options = { 
+            weekday: 'short', 
+            month: 'short', 
+            day: 'numeric' 
+        };
+        summaryDate.textContent = selectedDate.toLocaleDateString('es-MX', options);
+    } else {
+        summaryDate.textContent = 'No seleccionada';
+    }
+    
+    if (selectedTime) {
+        summaryTime.textContent = formatTime(selectedTime);
+    } else {
+        summaryTime.textContent = 'No seleccionada';
+    }
+    
+    // Habilitar/deshabilitar botón de confirmación
+    confirmBtn.disabled = !selectedDate || !selectedTime;
+}
+
+function resetAppointmentForm() {
+    document.getElementById('appointmentForm').reset();
+    selectedDate = null;
+    selectedTime = null;
+    document.getElementById('selectedDate').textContent = 'Selecciona una fecha';
+    document.getElementById('timeGrid').innerHTML = '';
+    updateAppointmentSummary();
+}
+
+function confirmAppointment() {
+    const form = document.getElementById('appointmentForm');
+    const formData = new FormData(form);
+    
+    // Validar campos requeridos
+    const clientName = document.getElementById('clientName').value.trim();
+    const clientPhone = document.getElementById('clientPhone').value.trim();
+    const eventType = document.getElementById('eventType').value;
+    
+    if (!clientName || !clientPhone || !eventType || !selectedDate || !selectedTime) {
+        alert('Por favor, completa todos los campos requeridos y selecciona fecha y hora.');
+        return;
+    }
+    
+    // Crear mensaje para WhatsApp
+    const dateStr = selectedDate.toLocaleDateString('es-MX', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    });
+    
+    const eventDate = document.getElementById('eventDate').value;
+    const notes = document.getElementById('notes').value;
+    
+    let whatsappMessage = `🗓️ *SOLICITUD DE CITA - FORO 7*%0A%0A`;
+    whatsappMessage += `👤 *Cliente:* ${clientName}%0A`;
+    whatsappMessage += `📱 *Teléfono:* ${clientPhone}%0A`;
+    whatsappMessage += `🎉 *Tipo de Evento:* ${getEventTypeName(eventType)}%0A%0A`;
+    whatsappMessage += `📅 *Fecha de Cita Solicitada:*%0A${dateStr} a las ${formatTime(selectedTime)}%0A%0A`;
+    
+    if (eventDate) {
+        whatsappMessage += `🎊 *Fecha del Evento:* ${eventDate}%0A%0A`;
+    }
+    
+    if (notes) {
+        whatsappMessage += `💬 *Comentarios:*%0A${notes}%0A%0A`;
+    }
+    
+    whatsappMessage += `¡Gracias por elegir Producciones Foro 7! 📸✨%0A%0A`;
+    whatsappMessage += `Enviado desde: www.foro7.com.mx`;
+    
+    // Abrir WhatsApp
+    const whatsappUrl = `https://wa.me/5214779203776?text=${whatsappMessage}`;
+    window.open(whatsappUrl, '_blank');
+    
+    // Mostrar confirmación y cerrar modal
+    alert('¡Perfecto! Te redirigiremos a WhatsApp para confirmar tu cita. Te contactaremos pronto para confirmar la disponibilidad.');
+    closeReservationModal();
+}
+
+function getEventTypeName(eventType) {
+    const eventTypes = {
+        'boda': '💒 Boda',
+        'xv': '👑 XV Años',
+        'bautizo': '👶 Bautizo',
+        'social': '🎉 Evento Social',
+        'corporativo': '🏢 Corporativo',
+        'consulta': '💬 Consulta General'
+    };
+    return eventTypes[eventType] || eventType;
+}
+
+// Cerrar modal al hacer clic fuera
+window.addEventListener('click', function(event) {
+    const modal = document.getElementById('reservationModal');
+    if (event.target === modal) {
+        closeReservationModal();
+    }
+});
+
+// Cerrar modal con tecla Escape
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        const modal = document.getElementById('reservationModal');
+        if (modal && modal.style.display === 'block') {
+            closeReservationModal();
+        }
+    }
+});
+
 // Inicializar efectos adicionales
 document.addEventListener('DOMContentLoaded', function() {
     initAdvancedParallax();
