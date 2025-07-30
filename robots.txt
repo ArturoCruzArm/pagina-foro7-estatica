@@ -1,0 +1,20 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://foro7.com.mx/sitemap.xml
+
+# Disallow certain paths
+Disallow: /.claude/
+Disallow: /*.tmp
+Disallow: /*.log
+
+# Allow social media crawlers
+User-agent: facebookexternalhit/*
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /

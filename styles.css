@@ -728,3 +728,59 @@ section {
 .submit-btn:hover::before {
     left: 100%;
 }
+
+/* Performance optimizations */
+.hero-image img,
+.photo-item img,
+.about-image img {
+    will-change: transform;
+}
+
+/* Improved accessibility */
+.nav-toggle:focus,
+.cta-button:focus,
+.submit-btn:focus {
+    outline: 3px solid #D2691E;
+    outline-offset: 2px;
+}
+
+/* Skip to content link for screen readers */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 6px;
+    background: #D2691E;
+    color: white;
+    padding: 8px;
+    text-decoration: none;
+    transition: top 0.3s;
+    z-index: 1001;
+}
+
+.skip-link:focus {
+    top: 6px;
+}
+
+/* Print styles */
+@media print {
+    .header,
+    .footer,
+    .nav-toggle,
+    .cta-button,
+    .social-btn,
+    .submit-btn {
+        display: none !important;
+    }
+    
+    body {
+        font-size: 12pt;
+        line-height: 1.4;
+        color: black;
+        background: white;
+    }
+    
+    .container {
+        max-width: none;
+        padding: 0;
+    }
+}
