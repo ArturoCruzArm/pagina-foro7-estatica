@@ -588,7 +588,7 @@
                                                 </div>
                                             </div>
                                             <div class="invitation-actions">
-                                                <button class="action-btn confirm" type="button" aria-label="Confirmar asistencia">Confirmar</button>
+                                                <button class="action-btn confirm" type="button">Confirmar</button>
                                                 <button class="action-btn gift" type="button" aria-label="Ver lista de regalos">Lista de Regalos</button>
                                             </div>
                                         </div>
@@ -621,7 +621,7 @@
                                                 </div>
                                             </div>
                                             <div class="invitation-actions">
-                                                <button class="action-btn confirm" type="button" aria-label="Confirmar asistencia al bautizo">Confirmar</button>
+                                                <button class="action-btn confirm" type="button">Confirmar</button>
                                                 <button class="action-btn photos" type="button" aria-label="Ver álbum de fotos">Álbum de Fotos</button>
                                             </div>
                                         </div>
@@ -633,15 +633,15 @@
                     
                     <div class="showcase-controls">
                         <div class="control-tabs">
-                            <button class="tab-btn active" data-target="boda" type="button" aria-label="Ver invitaciones para bodas">
+                            <button class="tab-btn active" data-target="boda" type="button">
                                 <i class="fas fa-heart" aria-hidden="true"></i>
                                 <span>Bodas</span>
                             </button>
-                            <button class="tab-btn" data-target="quinces" type="button" aria-label="Ver invitaciones para XV años">
+                            <button class="tab-btn" data-target="quinces" type="button">
                                 <i class="fas fa-crown" aria-hidden="true"></i>
                                 <span>XV Años</span>
                             </button>
-                            <button class="tab-btn" data-target="bautizo" type="button" aria-label="Ver invitaciones para bautizos">
+                            <button class="tab-btn" data-target="bautizo" type="button">
                                 <i class="fas fa-baby" aria-hidden="true"></i>
                                 <span>Bautizos</span>
                             </button>
@@ -829,7 +829,7 @@
                                 <img src="images/testimonials/maria-gonzalez.jpg" alt="María González" loading="lazy" decoding="async" width="60" height="60">
                             </div>
                             <div class="author-info">
-                                <h4>María & Carlos González</h4>
+                                <p class="author-name"><strong>María & Carlos González</strong></p>
                                 <p>Boda en Hacienda del Sol, León</p>
                                 <span class="date">Diciembre 2024</span>
                             </div>
@@ -855,7 +855,7 @@
                                 <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" alt="Roberto Hernández" loading="lazy" decoding="async" width="60" height="60">
                             </div>
                             <div class="author-info">
-                                <h4>Roberto Hernández</h4>
+                                <p class="author-name"><strong>Roberto Hernández</strong></p>
                                 <p>XV Años de Sofía, León</p>
                                 <span class="date">Noviembre 2024</span>
                             </div>
@@ -881,7 +881,7 @@
                                 <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" alt="Ana Martínez" loading="lazy" decoding="async" width="60" height="60">
                             </div>
                             <div class="author-info">
-                                <h4>Ana & Miguel Martínez</h4>
+                                <p class="author-name"><strong>Ana & Miguel Martínez</strong></p>
                                 <p>Boda en Jardín de los Remedios</p>
                                 <span class="date">Octubre 2024</span>
                             </div>
@@ -1160,7 +1160,7 @@
                                 </label>
                                 <textarea id="mensaje" name="mensaje" placeholder="Describe tu evento: tipo de celebración, número de invitados, locación, ideas especiales..." rows="4" required></textarea>
                             </div>
-                            <button type="submit" class="submit-btn" aria-label="Enviar cotización por WhatsApp">
+                            <button type="submit" class="submit-btn">
                                 <i class="fab fa-whatsapp" aria-hidden="true"></i>
                                 Enviar por WhatsApp
                             </button>
@@ -1178,7 +1178,7 @@
                             <i class="fas fa-map-marker-alt"></i>
                             Ver en Google Maps
                         </a>
-                        <button onclick="openReservationModal()" class="appointment-link" aria-label="Abrir calendario para agendar cita">
+                        <button onclick="openReservationModal()" class="appointment-link">
                             <i class="fas fa-calendar-plus" aria-hidden="true"></i>
                             Agendar Cita
                         </button>
@@ -1292,10 +1292,10 @@
                     </div>
                 </div>
                 <div class="reservation-actions">
-                    <button type="button" class="btn-cancel" onclick="closeReservationModal()" aria-label="Cancelar y cerrar ventana">
+                    <button type="button" class="btn-cancel" onclick="closeReservationModal()">
                         Cancelar
                     </button>
-                    <button type="button" class="btn-confirm" onclick="confirmAppointment()" id="confirmBtn" disabled aria-label="Confirmar cita seleccionada">
+                    <button type="button" class="btn-confirm" onclick="confirmAppointment()" id="confirmBtn" disabled>
                         <i class="fas fa-check" aria-hidden="true"></i>
                         Confirmar Cita
                     </button>

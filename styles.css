@@ -1010,10 +1010,11 @@ h3 {
     object-fit: cover;
 }
 
-.author-info h4 {
+.author-info .author-name {
     color: #8B4513;
     margin-bottom: 0.25rem;
     font-size: 1.1rem;
+    display: block;
 }
 
 .author-info p {
