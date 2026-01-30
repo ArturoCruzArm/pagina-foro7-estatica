@@ -18,7 +18,10 @@
       "Bash(for:*)",
       "Bash(do node -e \"const r=require\\(''./$f''\\); console.log\\(''Performance:'', Math.round\\(r.categories.performance.score*100\\)\\); console.log\\(''Accessibility:'', Math.round\\(r.categories.accessibility.score*100\\)\\); console.log\\(''Best Practices:'', Math.round\\(r.categories[''best-practices''].score*100\\)\\); console.log\\(''SEO:'', Math.round\\(r.categories.seo.score*100\\)\\); console.log\\(''---''\\); console.log\\(''FCP:'', r.audits[''first-contentful-paint''].displayValue\\); console.log\\(''LCP:'', r.audits[''largest-contentful-paint''].displayValue\\); console.log\\(''CLS:'', r.audits[''cumulative-layout-shift''].displayValue\\);\")",
       "Bash(done)",
-      "WebFetch(domain:invitados.org)"
+      "WebFetch(domain:invitados.org)",
+      "Bash(curl:*)",
+      "Bash(python3 -c \" import sys import re import json html = sys.stdin.read\\(\\) # Find JSON data in the report match = re.search\\(r''window\\\\.__LIGHTHOUSE_JSON__\\\\s*=\\\\s*\\({.*?}\\);'', html, re.DOTALL\\) if match: data = json.loads\\(match.group\\(1\\)\\) cats = data.get\\(''categories'', {}\\) for name in [''performance'', ''accessibility'', ''best-practices'', ''seo'']: if name in cats: score = cats[name].get\\(''score'', 0\\) print\\(f''{name}: {int\\(score * 100\\)}''\\) \")",
+      "Bash(git restore:*)"
     ],
     "deny": []
   }

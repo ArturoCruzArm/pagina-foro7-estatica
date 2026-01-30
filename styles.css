@@ -181,10 +181,15 @@ h3 {
     align-items: center;
 }
 
-.nav-logo h1 {
+.nav-logo {
+    text-decoration: none;
+}
+
+.nav-logo .logo-text {
     color: white;
     font-size: 1.8rem;
     font-weight: 600;
+    font-family: 'Playfair Display', serif;
 }
 
 .nav-menu {

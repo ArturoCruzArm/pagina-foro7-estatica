@@ -284,9 +284,9 @@
     <header class="header">
         <nav class="navbar">
             <div class="nav-container">
-                <div class="nav-logo">
-                    <h1>Producciones Foro 7</h1>
-                </div>
+                <a href="#inicio" class="nav-logo" aria-label="Ir al inicio">
+                    <span class="logo-text">Producciones Foro 7</span>
+                </a>
                 <ul class="nav-menu">
                     <li><a href="#inicio">Inicio</a></li>
                     <li><a href="#servicios">Servicios</a></li>
@@ -633,16 +633,16 @@
                     
                     <div class="showcase-controls">
                         <div class="control-tabs">
-                            <button class="tab-btn active" data-target="boda" type="button">
-                                <i class="fas fa-heart"></i>
+                            <button class="tab-btn active" data-target="boda" type="button" aria-label="Ver invitaciones para bodas">
+                                <i class="fas fa-heart" aria-hidden="true"></i>
                                 <span>Bodas</span>
                             </button>
-                            <button class="tab-btn" data-target="quinces" type="button">
-                                <i class="fas fa-crown"></i>
+                            <button class="tab-btn" data-target="quinces" type="button" aria-label="Ver invitaciones para XV años">
+                                <i class="fas fa-crown" aria-hidden="true"></i>
                                 <span>XV Años</span>
                             </button>
-                            <button class="tab-btn" data-target="bautizo" type="button">
-                                <i class="fas fa-baby"></i>
+                            <button class="tab-btn" data-target="bautizo" type="button" aria-label="Ver invitaciones para bautizos">
+                                <i class="fas fa-baby" aria-hidden="true"></i>
                                 <span>Bautizos</span>
                             </button>
                         </div>
@@ -1160,8 +1160,8 @@
                                 </label>
                                 <textarea id="mensaje" name="mensaje" placeholder="Describe tu evento: tipo de celebración, número de invitados, locación, ideas especiales..." rows="4" required></textarea>
                             </div>
-                            <button type="submit" class="submit-btn">
-                                <i class="fab fa-whatsapp"></i>
+                            <button type="submit" class="submit-btn" aria-label="Enviar cotización por WhatsApp">
+                                <i class="fab fa-whatsapp" aria-hidden="true"></i>
                                 Enviar por WhatsApp
                             </button>
                         </form>
@@ -1178,8 +1178,8 @@
                             <i class="fas fa-map-marker-alt"></i>
                             Ver en Google Maps
                         </a>
-                        <button onclick="openReservationModal()" class="appointment-link">
-                            <i class="fas fa-calendar-plus"></i>
+                        <button onclick="openReservationModal()" class="appointment-link" aria-label="Abrir calendario para agendar cita">
+                            <i class="fas fa-calendar-plus" aria-hidden="true"></i>
                             Agendar Cita
                         </button>
                     </div>
@@ -1292,11 +1292,11 @@
                     </div>
                 </div>
                 <div class="reservation-actions">
-                    <button type="button" class="btn-cancel" onclick="closeReservationModal()">
+                    <button type="button" class="btn-cancel" onclick="closeReservationModal()" aria-label="Cancelar y cerrar ventana">
                         Cancelar
                     </button>
-                    <button type="button" class="btn-confirm" onclick="confirmAppointment()" id="confirmBtn" disabled>
-                        <i class="fas fa-check"></i>
+                    <button type="button" class="btn-confirm" onclick="confirmAppointment()" id="confirmBtn" disabled aria-label="Confirmar cita seleccionada">
+                        <i class="fas fa-check" aria-hidden="true"></i>
                         Confirmar Cita
                     </button>
                 </div>
