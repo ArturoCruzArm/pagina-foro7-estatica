@@ -86,5 +86,24 @@
       "text": "text",
       "url": "url"
     }
+  },
+  "protocol_handlers": [
+    {
+      "protocol": "web+foro7",
+      "url": "/?action=%s"
+    }
+  ],
+  "file_handlers": [
+    {
+      "action": "/",
+      "accept": {
+        "image/jpeg": [".jpg", ".jpeg"],
+        "image/png": [".png"],
+        "image/webp": [".webp"]
+      }
+    }
+  ],
+  "edge_side_panel": {
+    "preferred_width": 400
   }
 }

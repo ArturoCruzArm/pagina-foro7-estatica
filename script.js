@@ -1232,8 +1232,217 @@ function initAllEffects() {
     setTimeout(() => {
         debugTabButtons();
     }, 500);
-    
+
     initAdvancedParallax();
     init3DEffects();
     initChatBot();
+}
+
+// ==========================================
+// MODERN WEB APIs
+// ==========================================
+
+// Service Worker Registration with update handling
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', async () => {
+        try {
+            const registration = await navigator.serviceWorker.register('/service-worker.js', {
+                scope: '/',
+                updateViaCache: 'none'
+            });
+
+            // Check for updates periodically
+            setInterval(() => registration.update(), 60 * 60 * 1000); // Every hour
+
+            // Handle updates
+            registration.addEventListener('updatefound', () => {
+                const newWorker = registration.installing;
+                newWorker.addEventListener('statechange', () => {
+                    if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                        // New version available
+                        console.log('[App] Nueva versión disponible');
+                    }
+                });
+            });
+
+            console.log('[SW] Service Worker registrado exitosamente');
+        } catch (error) {
+            console.log('[SW] Error al registrar Service Worker:', error);
+        }
+    });
+}
+
+// Badge API - Show notification count
+async function setBadge(count) {
+    if ('setAppBadge' in navigator) {
+        try {
+            if (count > 0) {
+                await navigator.setAppBadge(count);
+            } else {
+                await navigator.clearAppBadge();
+            }
+        } catch (error) {
+            console.log('[Badge] API no disponible');
+        }
+    }
+}
+
+// Web Share API - Native sharing
+async function shareContent(title, text, url) {
+    const shareData = {
+        title: title || 'Producciones Foro 7',
+        text: text || 'Fotografía y video profesional para bodas y eventos',
+        url: url || window.location.href
+    };
+
+    if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
+        try {
+            await navigator.share(shareData);
+            console.log('[Share] Contenido compartido exitosamente');
+        } catch (error) {
+            if (error.name !== 'AbortError') {
+                console.log('[Share] Error al compartir:', error);
+                fallbackShare(shareData);
+            }
+        }
+    } else {
+        fallbackShare(shareData);
+    }
+}
+
+function fallbackShare(data) {
+    // Fallback: Copy to clipboard
+    const shareText = `${data.title}\n${data.text}\n${data.url}`;
+    navigator.clipboard?.writeText(shareText).then(() => {
+        alert('Enlace copiado al portapapeles');
+    });
+}
+
+// Network Information API - Connection-aware loading
+function getConnectionInfo() {
+    const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    if (connection) {
+        return {
+            effectiveType: connection.effectiveType, // '4g', '3g', '2g', 'slow-2g'
+            downlink: connection.downlink, // Mbps
+            saveData: connection.saveData, // User preference
+            rtt: connection.rtt // Round-trip time in ms
+        };
+    }
+    return null;
+}
+
+// Adapt loading based on connection
+function adaptToConnection() {
+    const conn = getConnectionInfo();
+    if (conn) {
+        const html = document.documentElement;
+        if (conn.saveData || conn.effectiveType === '2g' || conn.effectiveType === 'slow-2g') {
+            html.classList.add('save-data');
+            console.log('[Network] Modo ahorro de datos activado');
+        }
+        if (conn.effectiveType === '4g' && conn.downlink > 5) {
+            html.classList.add('high-bandwidth');
+        }
+    }
+}
+
+// Initialize connection-aware features
+adaptToConnection();
+
+// Listen for connection changes
+if (navigator.connection) {
+    navigator.connection.addEventListener('change', adaptToConnection);
+}
+
+// Visibility API - Pause heavy operations when hidden
+document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+        // Page is hidden - pause animations, etc.
+        document.documentElement.classList.add('page-hidden');
+    } else {
+        // Page is visible again
+        document.documentElement.classList.remove('page-hidden');
+    }
+});
+
+// Wake Lock API - Keep screen on during video playback
+let wakeLock = null;
+
+async function requestWakeLock() {
+    if ('wakeLock' in navigator) {
+        try {
+            wakeLock = await navigator.wakeLock.request('screen');
+            console.log('[WakeLock] Pantalla activa');
+        } catch (error) {
+            console.log('[WakeLock] No disponible:', error);
+        }
+    }
+}
+
+async function releaseWakeLock() {
+    if (wakeLock) {
+        await wakeLock.release();
+        wakeLock = null;
+        console.log('[WakeLock] Liberado');
+    }
+}
+
+// Screen Orientation API - Lock to portrait for certain views
+async function lockOrientation(orientation = 'portrait-primary') {
+    if (screen.orientation && screen.orientation.lock) {
+        try {
+            await screen.orientation.lock(orientation);
+        } catch (error) {
+            // Orientation lock not supported or not in fullscreen
+        }
+    }
+}
+
+// Fullscreen API helper
+function toggleFullscreen(element) {
+    if (!document.fullscreenElement) {
+        element.requestFullscreen?.() ||
+        element.webkitRequestFullscreen?.() ||
+        element.msRequestFullscreen?.();
+    } else {
+        document.exitFullscreen?.() ||
+        document.webkitExitFullscreen?.() ||
+        document.msExitFullscreen?.();
+    }
+}
+
+// Performance Observer - Monitor Core Web Vitals
+if ('PerformanceObserver' in window) {
+    // Observe LCP
+    try {
+        const lcpObserver = new PerformanceObserver((entryList) => {
+            const entries = entryList.getEntries();
+            const lastEntry = entries[entries.length - 1];
+            console.log('[Perf] LCP:', Math.round(lastEntry.startTime), 'ms');
+        });
+        lcpObserver.observe({ type: 'largest-contentful-paint', buffered: true });
+    } catch (e) {}
+
+    // Observe CLS
+    try {
+        let clsValue = 0;
+        const clsObserver = new PerformanceObserver((entryList) => {
+            for (const entry of entryList.getEntries()) {
+                if (!entry.hadRecentInput) {
+                    clsValue += entry.value;
+                }
+            }
+        });
+        clsObserver.observe({ type: 'layout-shift', buffered: true });
+    } catch (e) {}
+
+    // Observe FID
+    try {
+        const fidObserver = new PerformanceObserver((entryList) => {
+            const firstInput = entryList.getEntries()[0];
+            console.log('[Perf] FID:', Math.round(firstInput.processingStart - firstInput.startTime), 'ms');
+        });
+        fidObserver.observe({ type: 'first-input', buffered: true });
+    } catch (e) {}
 }

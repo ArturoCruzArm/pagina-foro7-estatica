@@ -87,6 +87,10 @@ section {
     position: relative;
     margin-bottom: 2rem;
     clear: both;
+    /* CSS Containment for better rendering performance */
+    contain: layout style;
+    content-visibility: auto;
+    contain-intrinsic-size: 0 500px;
 }
 
 .container {
@@ -3418,4 +3422,150 @@ section {
     width: 100%;
     height: 100%;
     border: 0;
+}
+
+/* ===================================
+   Modern Web Features
+   =================================== */
+
+/* Save Data Mode - Reduce data usage */
+html.save-data img:not([loading="eager"]) {
+    filter: blur(5px);
+    transition: filter 0.3s;
+}
+
+html.save-data img:not([loading="eager"]):hover {
+    filter: none;
+}
+
+html.save-data .hero-background,
+html.save-data .parallax-bg {
+    background-attachment: scroll !important;
+}
+
+html.save-data video,
+html.save-data iframe {
+    display: none;
+}
+
+html.save-data .video-placeholder {
+    display: block;
+}
+
+/* Page Hidden - Pause animations when tab is inactive */
+html.page-hidden *,
+html.page-hidden *::before,
+html.page-hidden *::after {
+    animation-play-state: paused !important;
+    transition: none !important;
+}
+
+/* High Bandwidth Mode - Enhanced visuals */
+html.high-bandwidth .hero-image img {
+    image-rendering: high-quality;
+}
+
+/* Reduced Motion - Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .parallax-element {
+        transform: none !important;
+    }
+}
+
+/* Contrast Preferences */
+@media (prefers-contrast: more) {
+    :root {
+        --color-text: #000000;
+        --color-heading: #000000;
+        --color-bg: #ffffff;
+    }
+
+    .cta-button {
+        border: 2px solid currentColor;
+    }
+}
+
+/* Color Scheme Preferences */
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+        color-scheme: dark;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .header,
+    .chat-bot,
+    .chat-float-btn,
+    .whatsapp-float,
+    .nav-toggle,
+    .video-container,
+    .vimeo-container {
+        display: none !important;
+    }
+
+    body {
+        font-size: 12pt;
+        color: #000;
+        background: #fff;
+    }
+
+    a[href]::after {
+        content: " (" attr(href) ")";
+        font-size: 10pt;
+    }
+
+    section {
+        page-break-inside: avoid;
+    }
+}
+
+/* Focus Visible - Better keyboard navigation */
+:focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+    outline: none;
+}
+
+/* Selection Styling */
+::selection {
+    background-color: var(--color-primary);
+    color: white;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--color-bg-alt);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-primary);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-primary-dark);
+}
+
+/* Firefox scrollbar */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-primary) var(--color-bg-alt);
 }

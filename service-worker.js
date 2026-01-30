@@ -1,14 +1,15 @@
 // Service Worker para Producciones Foro 7
 // Version 2.0.0 - Optimized with WebP support and improved caching
 
-const CACHE_NAME = 'foro7-v2.0.0';
-const STATIC_CACHE = 'foro7-static-v2.0.0';
-const IMAGE_CACHE = 'foro7-images-v2.0.0';
+const CACHE_NAME = 'foro7-v3.0.0';
+const STATIC_CACHE = 'foro7-static-v3.0.0';
+const IMAGE_CACHE = 'foro7-images-v3.0.0';
 
 // Core files to cache immediately
 const CORE_ASSETS = [
   './',
   './index.html',
+  './offline.html',
   './styles.css',
   './script.js',
   './manifest.json'
@@ -196,7 +197,13 @@ async function handleNavigationRequest(request) {
     console.log('[SW] Navigation fetch failed, serving from cache');
     const cache = await caches.open(STATIC_CACHE);
     const cachedResponse = await cache.match('./index.html');
-    return cachedResponse || new Response('Offline', { status: 503 });
+    if (cachedResponse) return cachedResponse;
+    // Serve offline page if no cached index
+    const offlinePage = await cache.match('./offline.html');
+    return offlinePage || new Response('Offline - Por favor verifica tu conexión', {
+      status: 503,
+      headers: { 'Content-Type': 'text/html; charset=utf-8' }
+    });
   }
 }
 
