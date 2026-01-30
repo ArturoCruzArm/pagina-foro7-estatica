@@ -4,7 +4,21 @@
       "Bash(git init:*)",
       "Bash(git add:*)",
       "Bash(git push:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(tree:*)",
+      "Bash(ls:*)",
+      "Bash(find:*)",
+      "Bash(gh run list:*)",
+      "Bash(gh run view:*)",
+      "Bash(npx lighthouse:*)",
+      "WebFetch(domain:storage.googleapis.com)",
+      "Bash(gh run download:*)",
+      "Bash(node -e:*)",
+      "Bash(node:*)",
+      "Bash(for:*)",
+      "Bash(do node -e \"const r=require\\(''./$f''\\); console.log\\(''Performance:'', Math.round\\(r.categories.performance.score*100\\)\\); console.log\\(''Accessibility:'', Math.round\\(r.categories.accessibility.score*100\\)\\); console.log\\(''Best Practices:'', Math.round\\(r.categories[''best-practices''].score*100\\)\\); console.log\\(''SEO:'', Math.round\\(r.categories.seo.score*100\\)\\); console.log\\(''---''\\); console.log\\(''FCP:'', r.audits[''first-contentful-paint''].displayValue\\); console.log\\(''LCP:'', r.audits[''largest-contentful-paint''].displayValue\\); console.log\\(''CLS:'', r.audits[''cumulative-layout-shift''].displayValue\\);\")",
+      "Bash(done)",
+      "WebFetch(domain:invitados.org)"
     ],
     "deny": []
   }

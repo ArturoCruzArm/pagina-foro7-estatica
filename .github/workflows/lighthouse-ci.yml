@@ -1,0 +1,63 @@
+name: Lighthouse CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  schedule:
+    # Run Lighthouse CI weekly
+    - cron: '0 0 * * 0'
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          
+      - name: Install dependencies
+        run: npm install -g @lhci/cli@latest
+        
+      - name: Run Lighthouse CI
+        run: |
+          lhci autorun --config=./lighthouserc.json
+        continue-on-error: false
+        
+      - name: Upload Lighthouse results
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: lighthouse-results
+          path: .lighthouse/lhr-*.json
+          
+      - name: Comment PR with Lighthouse results
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const files = fs.readdirSync('.lighthouse').filter(f => f.endsWith('.json'));
+            if (files.length > 0) {
+              const lhr = JSON.parse(fs.readFileSync(`.lighthouse/${files[0]}`));
+              const comment = `
+              # 🚀 Lighthouse Results
+              - Performance: ${lhr.categories.performance.score * 100}
+              - Accessibility: ${lhr.categories.accessibility.score * 100}
+              - Best Practices: ${lhr.categories['best-practices'].score * 100}
+              - SEO: ${lhr.categories.seo.score * 100}
+              - PWA: ${lhr.categories.pwa ? lhr.categories.pwa.score * 100 : 'N/A'}
+              `;
+              github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: comment
+              });
+            }

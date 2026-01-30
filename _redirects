@@ -1,0 +1,11 @@
+# Redirects for GitHub Pages
+# Format: from to status_code
+
+# Redirect non-www to www (if needed)
+# http://foro7.com.mx/* https://www.foro7.com.mx/:splat 301!
+
+# Redirect old portfolio links (if you have them)
+# /portfolio/* /index.html 200
+
+# Security: Disable directory listing
+/ /index.html 200

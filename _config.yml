@@ -1,0 +1,49 @@
+# Jekyll Configuration for GitHub Pages
+title: Producciones Foro 7
+description: Fotografía y video profesional para bodas y eventos sociales en León, Guanajuato
+url: https://foro7.com.mx
+baseurl: ""
+
+# Build settings
+markdown: kramdown
+theme: null
+plugins: []
+
+# Performance and Security
+exclude:
+  - .github
+  - README.md
+  - CHANGELOG.md
+  - lighthouse-results
+  - node_modules
+  - package.json
+  - package-lock.json
+
+# Headers for performance
+headers:
+  - path: "/**"
+    headers:
+      - key: "Cache-Control"
+        value: "public, max-age=3600"
+      - key: "X-Content-Type-Options"
+        value: "nosniff"
+      - key: "X-Frame-Options"
+        value: "SAMEORIGIN"
+      - key: "X-XSS-Protection"
+        value: "1; mode=block"
+      - key: "Referrer-Policy"
+        value: "strict-origin-when-cross-origin"
+      - key: "Permissions-Policy"
+        value: "geolocation=(), microphone=(), camera=()"
+  - path: "/images/**"
+    headers:
+      - key: "Cache-Control"
+        value: "public, max-age=31536000, immutable"
+  - path: "/*.{css,js}"
+    headers:
+      - key: "Cache-Control"
+        value: "public, max-age=31536000, immutable"
+
+# Compression
+sass:
+  style: compressed
