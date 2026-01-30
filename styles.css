@@ -3258,3 +3258,150 @@ section {
 [data-theme="dark"] h2 {
     color: var(--color-primary-light);
 }
+
+/* ===================================
+   Web Vitals Optimizations
+   =================================== */
+
+/* Prevent CLS - Reserve space for images */
+.photo-gallery .photo-item {
+    aspect-ratio: 4 / 3;
+    contain: layout style paint;
+}
+
+.photo-gallery .photo-item img,
+.photo-gallery .photo-item picture {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Reserve space for avatars */
+.author-avatar {
+    width: 60px;
+    height: 60px;
+    flex-shrink: 0;
+    contain: layout style;
+}
+
+.author-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+/* Hero image container - prevent layout shift */
+.hero-image .image-container {
+    aspect-ratio: 3 / 2;
+    contain: layout style;
+}
+
+.hero-image .image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Invitation phone mockup - fixed dimensions */
+.demo-phone {
+    contain: layout style paint;
+}
+
+.invitation-photo {
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
+}
+
+.invitation-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* About section image */
+.about-image {
+    aspect-ratio: 3 / 2;
+    contain: layout style;
+}
+
+.about-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* Content-visibility for below-the-fold sections */
+.testimonials,
+.digital-invitations,
+.portfolio,
+.about,
+.contact {
+    content-visibility: auto;
+    contain-intrinsic-size: 0 500px;
+}
+
+/* Font display optimization */
+@font-face {
+    font-family: 'Inter';
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Playfair Display';
+    font-display: swap;
+}
+
+/* Reduce motion for accessibility and performance */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .hero-particles,
+    .floating-elements {
+        display: none;
+    }
+}
+
+/* GPU acceleration for animated elements */
+.whatsapp-float,
+.floating-icon,
+.service-card,
+.portfolio-item,
+.cta-button {
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+/* Efficient box shadows */
+.service-card:hover,
+.portfolio-item:hover {
+    box-shadow: var(--shadow-lg);
+}
+
+/* Optimize video iframes */
+.vimeo-container iframe,
+.video-container iframe {
+    aspect-ratio: 16 / 9;
+    width: 100%;
+    height: auto;
+}
+
+/* Map container optimization */
+.map-container {
+    aspect-ratio: 16 / 9;
+    contain: layout style paint;
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}

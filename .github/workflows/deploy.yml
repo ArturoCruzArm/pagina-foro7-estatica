@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: Build, Optimize & Deploy to GitHub Pages
 
 on:
   push:
@@ -16,23 +16,159 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: |
+          npm init -y
+          npm install --save-dev terser cssnano postcss-cli autoprefixer clean-css-cli html-minifier-terser sharp
+
+      - name: Create PostCSS config
+        run: |
+          cat > postcss.config.js << 'EOF'
+          module.exports = {
+            plugins: [
+              require('autoprefixer'),
+              require('cssnano')({
+                preset: ['default', {
+                  discardComments: { removeAll: true },
+                  normalizeWhitespace: true,
+                  minifyFontValues: true,
+                  minifyGradients: true
+                }]
+              })
+            ]
+          }
+          EOF
+
+      - name: Minify CSS
+        run: |
+          npx postcss styles.css -o styles.min.css
+          mv styles.min.css styles.css
+          echo "CSS minified successfully"
+
+      - name: Minify JavaScript
+        run: |
+          npx terser script.js -o script.min.js -c -m --comments false
+          mv script.min.js script.js
+          npx terser service-worker.js -o service-worker.min.js -c -m --comments false
+          mv service-worker.min.js service-worker.js
+          echo "JavaScript minified successfully"
+
+      - name: Minify HTML
+        run: |
+          npx html-minifier-terser \
+            --collapse-whitespace \
+            --remove-comments \
+            --remove-redundant-attributes \
+            --remove-script-type-attributes \
+            --remove-style-link-type-attributes \
+            --use-short-doctype \
+            --minify-css true \
+            --minify-js true \
+            -o index.min.html \
+            index.html
+          mv index.min.html index.html
+          echo "HTML minified successfully"
+
+      - name: Convert images to WebP
+        run: |
+          mkdir -p images/gallery/webp
+          for img in images/gallery/*.jpg images/gallery/*.jpeg images/gallery/*.png 2>/dev/null; do
+            if [ -f "$img" ]; then
+              filename=$(basename "$img" | sed 's/\.[^.]*$//')
+              npx sharp-cli resize 1920 --withoutEnlargement --format webp --quality 85 -i "$img" -o "images/gallery/webp/${filename}.webp" 2>/dev/null || true
+              echo "Converted $img to WebP"
+            fi
+          done
+
+          # Create responsive versions
+          for img in images/gallery/*.jpg images/gallery/*.jpeg images/gallery/*.png 2>/dev/null; do
+            if [ -f "$img" ]; then
+              filename=$(basename "$img" | sed 's/\.[^.]*$//')
+              # Small (400px)
+              npx sharp-cli resize 400 --withoutEnlargement --format webp --quality 80 -i "$img" -o "images/gallery/webp/${filename}-400w.webp" 2>/dev/null || true
+              # Medium (800px)
+              npx sharp-cli resize 800 --withoutEnlargement --format webp --quality 82 -i "$img" -o "images/gallery/webp/${filename}-800w.webp" 2>/dev/null || true
+              # Large (1200px)
+              npx sharp-cli resize 1200 --withoutEnlargement --format webp --quality 85 -i "$img" -o "images/gallery/webp/${filename}-1200w.webp" 2>/dev/null || true
+            fi
+          done
+          echo "Responsive WebP images created"
+
+      - name: Optimize original images
+        run: |
+          for img in images/gallery/*.jpg images/gallery/*.jpeg 2>/dev/null; do
+            if [ -f "$img" ]; then
+              # Resize large images to max 1920px width
+              npx sharp-cli resize 1920 --withoutEnlargement --quality 85 -i "$img" -o "${img}.optimized" 2>/dev/null || true
+              if [ -f "${img}.optimized" ]; then
+                mv "${img}.optimized" "$img"
+                echo "Optimized $img"
+              fi
+            fi
+          done
+
+      - name: Generate image size report
+        run: |
+          echo "=== Image Size Report ===" > image-report.txt
+          du -sh images/gallery/* >> image-report.txt 2>/dev/null || true
+          du -sh images/gallery/webp/* >> image-report.txt 2>/dev/null || true
+          cat image-report.txt
+
+      - name: Add cache headers file
+        run: |
+          cat > _headers << 'EOF'
+          # Cache static assets aggressively
+          /images/*
+            Cache-Control: public, max-age=31536000, immutable
+
+          /images/gallery/*
+            Cache-Control: public, max-age=31536000, immutable
+
+          /*.css
+            Cache-Control: public, max-age=31536000, immutable
+
+          /*.js
+            Cache-Control: public, max-age=31536000, immutable
+
+          # HTML should be revalidated
+          /*.html
+            Cache-Control: public, max-age=0, must-revalidate
+
+          /
+            Cache-Control: public, max-age=0, must-revalidate
+
+          # Service worker - never cache
+          /service-worker.js
+            Cache-Control: no-cache, no-store, must-revalidate
+          EOF
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+
   deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+    needs: build
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-        
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: '.'
-          
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
