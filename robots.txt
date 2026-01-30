@@ -9,8 +9,8 @@ Allow: /manifest.json
 Allow: /service-worker.js
 
 # Sitemap location
-Sitemap: https://foro7.com.mx/sitemap.xml
-Sitemap: https://foro7.com.mx/sitemap-images.xml
+Sitemap: https://invitados.org/sitemap.xml
+Sitemap: https://invitados.org/sitemap-images.xml
 
 # Crawl-delay to be respectful of server resources
 Crawl-delay: 1
