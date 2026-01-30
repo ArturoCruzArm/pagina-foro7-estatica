@@ -2,7 +2,12 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="color-scheme" content="light dark">
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Producciones Foro 7 - Fotografía y Video para Bodas en León, Gto.</title>
     <meta name="description" content="Fotografía profesional y video 4K para bodas y eventos sociales en León, Guanajuato. Capturamos tu historia, fotograma a fotograma.">
     <meta name="keywords" content="fotografía bodas León, video 4K bodas, fotógrafo León Guanajuato, eventos sociales, bodas León, Producciones Foro 7">
@@ -189,7 +194,8 @@
     <link rel="manifest" href="manifest.json">
 
     <!-- Theme color -->
-    <meta name="theme-color" content="#D2691E">
+    <meta name="theme-color" content="#D2691E" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)">
     <meta name="msapplication-TileColor" content="#D2691E">
 
     <!-- Critical CSS - Inline for above-the-fold content -->
@@ -254,6 +260,24 @@
                 || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
             document.documentElement.setAttribute('data-theme', theme);
         })();
+    </script>
+
+    <!-- Speculation Rules API - Modern Prefetching -->
+    <script type="speculationrules">
+    {
+        "prefetch": [
+            {
+                "where": { "href_matches": "/*" },
+                "eagerness": "moderate"
+            }
+        ],
+        "prerender": [
+            {
+                "where": { "selector_matches": ".nav-link" },
+                "eagerness": "moderate"
+            }
+        ]
+    }
     </script>
 </head>
 <body>
