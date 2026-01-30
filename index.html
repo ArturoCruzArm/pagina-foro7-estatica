@@ -38,6 +38,18 @@
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- AOS Animations -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Prevent FOUC for dark mode -->
+    <script>
+        (function() {
+            const theme = localStorage.getItem('theme')
+                || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
 </head>
 <body>
     <header class="header">
@@ -53,6 +65,11 @@
                     <li><a href="#nosotros">Nosotros</a></li>
                     <li><a href="#contacto">Contacto</a></li>
                 </ul>
+                <!-- Dark Mode Toggle -->
+                <button id="theme-toggle" class="theme-toggle" aria-label="Cambiar tema">
+                    <i class="fas fa-moon"></i>
+                    <i class="fas fa-sun"></i>
+                </button>
                 <div class="nav-toggle">
                     <span></span>
                     <span></span>
@@ -69,7 +86,7 @@
                 <div class="hero-overlay"></div>
             </div>
             <div class="hero-content">
-                <div class="hero-text">
+                <div class="hero-text" data-aos="fade-right">
                     <div class="hero-badge">
                         <i class="fas fa-award"></i>
                         <span>Profesionales en León, Gto.</span>
@@ -122,7 +139,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="hero-image">
+                <div class="hero-image" data-aos="fade-left" data-aos-delay="200">
                     <div class="image-container">
                         <img src="https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Boda elegante - Producciones Foro 7" loading="lazy">
                         <div class="image-overlay">
@@ -148,9 +165,9 @@
 
         <section id="servicios" class="services">
             <div class="container">
-                <h2>Nuestros Servicios</h2>
+                <h2 data-aos="fade-up">Nuestros Servicios</h2>
                 <div class="services-grid">
-                    <div class="service-card featured">
+                    <div class="service-card featured" data-aos="fade-up" data-aos-delay="100">
                         <div class="service-badge">MÁS POPULAR</div>
                         <i class="fas fa-camera"></i>
                         <h3>Fotografía Profesional</h3>
@@ -174,7 +191,7 @@
                         </div>
                     </div>
                     
-                    <div class="service-card featured">
+                    <div class="service-card featured" data-aos="fade-up" data-aos-delay="200">
                         <div class="service-badge">ESPECIALIDAD</div>
                         <i class="fas fa-video"></i>
                         <h3>Video 4K Cinematográfico</h3>
@@ -198,7 +215,7 @@
                         </div>
                     </div>
                     
-                    <div class="service-card featured">
+                    <div class="service-card featured" data-aos="fade-up" data-aos-delay="300">
                         <div class="service-badge">EXCLUSIVO</div>
                         <i class="fas fa-helicopter"></i>
                         <h3>Tomas Aéreas con Dron</h3>
@@ -664,7 +681,7 @@
 
         <section id="portafolio" class="portfolio">
             <div class="container">
-                <h2>Nuestro Portafolio</h2>
+                <h2 data-aos="fade-up">Nuestro Portafolio</h2>
                 <div class="portfolio-content">
                     <div class="video-section">
                         <h3>Videos Destacados</h3>
@@ -757,9 +774,9 @@
 
         <section id="nosotros" class="about">
             <div class="container">
-                <h2>Sobre Nosotros</h2>
+                <h2 data-aos="fade-up">Sobre Nosotros</h2>
                 <div class="about-content">
-                    <div class="about-text">
+                    <div class="about-text" data-aos="fade-right">
                         <h3>Nuestra Historia</h3>
                         <p>Producciones Foro 7 nace de la pasión por capturar los momentos más importantes de tu vida. Con años de experiencia en fotografía y videografía profesional, nos especializamos en bodas y eventos sociales en León, Guanajuato y sus alrededores.</p>
                         
@@ -776,7 +793,7 @@
                             <p><i class="fas fa-map-marker-alt"></i> Padilla 112, Chapalita, León, Gto.</p>
                         </div>
                     </div>
-                    <div class="about-image">
+                    <div class="about-image" data-aos="fade-left" data-aos-delay="200">
                         <img src="https://images.unsplash.com/photo-1556103255-4443dbae8e5a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Equipo Producciones Foro 7" loading="lazy">
                     </div>
                 </div>
@@ -785,9 +802,9 @@
 
         <section id="contacto" class="contact">
             <div class="container">
-                <h2>Contacto</h2>
+                <h2 data-aos="fade-up">Contacto</h2>
                 <div class="contact-content">
-                    <div class="contact-info">
+                    <div class="contact-info" data-aos="fade-right">
                         <h3>Información de Contacto</h3>
                         <div class="contact-item">
                             <i class="fas fa-envelope"></i>
@@ -819,7 +836,7 @@
                         </div>
                     </div>
 
-                    <div class="contact-form">
+                    <div class="contact-form" data-aos="fade-left" data-aos-delay="200">
                         <h3>💬 Cotiza Tu Evento</h3>
                         <p class="form-description">Completa el formulario y nos pondremos en contacto contigo por WhatsApp</p>
                         <form id="contactForm">
@@ -1119,6 +1136,28 @@
         <i class="fab fa-whatsapp"></i>
     </a>
 
+    <!-- AOS Animation Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-out-cubic',
+            once: true,
+            offset: 50
+        });
+
+        // Dark Mode Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        if (themeToggle) {
+            themeToggle.addEventListener('click', () => {
+                const currentTheme = document.documentElement.getAttribute('data-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                document.documentElement.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+            });
+        }
+    </script>
     <script src="script.js"></script>
 </body>
 </html>

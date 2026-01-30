@@ -1,3 +1,60 @@
+/* ===================================
+   CSS Variables - Theme System
+   =================================== */
+:root {
+    /* Primary Colors */
+    --color-primary: #D2691E;
+    --color-primary-dark: #8B4513;
+    --color-primary-light: #CD853F;
+    --color-accent: #F5DEB3;
+
+    /* Text Colors */
+    --color-text: #333333;
+    --color-text-light: #666666;
+    --color-text-muted: #888888;
+    --color-heading: #2c2c2c;
+
+    /* Background Colors */
+    --color-bg: #fefefe;
+    --color-bg-alt: #f5f5f5;
+    --color-bg-card: #ffffff;
+    --color-bg-overlay: rgba(0, 0, 0, 0.5);
+
+    /* Border Colors */
+    --color-border: #e0e0e0;
+    --color-border-light: #f0f0f0;
+
+    /* Shadows */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.2);
+
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s ease;
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+    --color-text: #e0e0e0;
+    --color-text-light: #b0b0b0;
+    --color-text-muted: #888888;
+    --color-heading: #f5f5f5;
+
+    --color-bg: #1a1a1a;
+    --color-bg-alt: #242424;
+    --color-bg-card: #2d2d2d;
+    --color-bg-overlay: rgba(0, 0, 0, 0.7);
+
+    --color-border: #404040;
+    --color-border-light: #333333;
+
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
 /* Reset y configuración base */
 * {
     margin: 0;
@@ -12,8 +69,9 @@ html {
 body {
     font-family: 'Inter', sans-serif;
     line-height: 1.6;
-    color: #333;
-    background-color: #fefefe;
+    color: var(--color-text);
+    background-color: var(--color-bg);
+    transition: background-color var(--transition-normal), color var(--transition-normal);
 }
 
 /* Espaciado general de secciones */
@@ -29,10 +87,48 @@ section {
     padding: 0 20px;
 }
 
+/* Theme Toggle Button */
+.theme-toggle {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-fast);
+    margin-right: 1rem;
+}
+
+.theme-toggle:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+.theme-toggle .fa-sun {
+    display: none;
+    color: #FFD700;
+}
+
+.theme-toggle .fa-moon {
+    display: block;
+    color: white;
+}
+
+[data-theme="dark"] .theme-toggle .fa-sun {
+    display: block;
+}
+
+[data-theme="dark"] .theme-toggle .fa-moon {
+    display: none;
+}
+
 /* Tipografía */
 h1, h2, h3, h4 {
     font-family: 'Playfair Display', serif;
-    color: #2c2c2c;
+    color: var(--color-heading);
 }
 
 h1 {
@@ -3088,16 +3184,77 @@ section {
     .submit-btn {
         display: none !important;
     }
-    
+
     body {
         font-size: 12pt;
         line-height: 1.4;
         color: black;
         background: white;
     }
-    
+
     .container {
         max-width: none;
         padding: 0;
     }
+}
+
+/* ===================================
+   Dark Mode Specific Styles
+   =================================== */
+[data-theme="dark"] .service-card,
+[data-theme="dark"] .portfolio-item,
+[data-theme="dark"] .modal-content,
+[data-theme="dark"] .testimonial-card {
+    background: var(--color-bg-card);
+    border-color: var(--color-border);
+}
+
+[data-theme="dark"] .service-card:hover {
+    background: var(--color-bg-alt);
+}
+
+[data-theme="dark"] .portfolio-overlay {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+[data-theme="dark"] .about {
+    background: var(--color-bg-alt);
+}
+
+[data-theme="dark"] .footer {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+}
+
+[data-theme="dark"] .whatsapp-float {
+    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+}
+
+[data-theme="dark"] input,
+[data-theme="dark"] textarea,
+[data-theme="dark"] select {
+    background: var(--color-bg-alt);
+    border-color: var(--color-border);
+    color: var(--color-text);
+}
+
+[data-theme="dark"] input:focus,
+[data-theme="dark"] textarea:focus,
+[data-theme="dark"] select:focus {
+    border-color: var(--color-primary);
+}
+
+[data-theme="dark"] .lightbox-info {
+    background: rgba(45, 45, 45, 0.95);
+}
+
+[data-theme="dark"] .lightbox-info h3 {
+    color: var(--color-primary-light);
+}
+
+[data-theme="dark"] .lightbox-info p {
+    color: var(--color-text-light);
+}
+
+[data-theme="dark"] h2 {
+    color: var(--color-primary-light);
 }
