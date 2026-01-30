@@ -28,21 +28,22 @@ jobs:
           node-version: '20'
 
       - name: Install build dependencies
-        run: npm install -g terser cssnano-cli html-minifier-terser
+        run: npm install -g terser clean-css-cli html-minifier-terser
 
       - name: Minify CSS
         run: |
-          npx cssnano-cli styles.css styles.min.css
+          cleancss -o styles.min.css styles.css
           mv styles.min.css styles.css
-          echo "✅ CSS minified successfully"
+          echo "✅ CSS minified: $(wc -c < styles.css) bytes"
 
       - name: Minify JavaScript
         run: |
           terser script.js -o script.min.js -c -m
           mv script.min.js script.js
+          echo "✅ JS minified: $(wc -c < script.js) bytes"
           terser service-worker.js -o service-worker.min.js -c -m
           mv service-worker.min.js service-worker.js
-          echo "✅ JavaScript minified successfully"
+          echo "✅ SW minified: $(wc -c < service-worker.js) bytes"
 
       - name: Minify HTML
         run: |
@@ -58,12 +59,15 @@ jobs:
             -o index.min.html \
             index.html
           mv index.min.html index.html
-          echo "✅ HTML minified successfully"
+          echo "✅ HTML minified: $(wc -c < index.html) bytes"
 
-      - name: Show file sizes
+      - name: Show optimized file sizes
         run: |
-          echo "=== Optimized File Sizes ==="
+          echo "=== Final Optimized File Sizes ==="
           ls -lh index.html styles.css script.js service-worker.js
+          echo ""
+          echo "=== Total size ==="
+          du -ch index.html styles.css script.js service-worker.js | grep total
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
