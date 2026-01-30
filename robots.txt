@@ -1,60 +1,9 @@
 User-agent: *
 Allow: /
-Allow: /images/
-Allow: /js/
-Allow: /css/
 
-# Explicitly allow important resources
-Allow: /manifest.json
-Allow: /service-worker.js
-
-# Sitemap location
 Sitemap: https://invitados.org/sitemap.xml
-Sitemap: https://invitados.org/sitemap-images.xml
 
-# Crawl-delay to be respectful of server resources
-Crawl-delay: 1
-
-# Disallow certain paths
+# Disallow non-public paths
 Disallow: /.github/
 Disallow: /.git/
-Disallow: /*/.tmp
-Disallow: /*.log
 Disallow: /lighthouse-results/
-Disallow: /node_modules/
-
-# Social media crawlers - explicitly allowed
-User-agent: facebookexternalhit/1.1
-Allow: /
-Crawl-delay: 0
-
-User-agent: Twitterbot
-Allow: /
-Crawl-delay: 0
-
-User-agent: LinkedInBot
-Allow: /
-Crawl-delay: 0
-
-User-agent: WhatsApp
-Allow: /
-Crawl-delay: 0
-
-User-agent: Slurp
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
-# Bad bots - block them
-User-agent: MJ12bot
-Disallow: /
-
-User-agent: SemrushBot
-Allow: /$ 
-
-User-agent: AhrefsBot
-Allow: /$
-
-User-agent: DotBot
-Disallow: /
