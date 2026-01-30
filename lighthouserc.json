@@ -1,7 +1,7 @@
 {
   "ci": {
     "collect": {
-      "url": ["https://foro7.com.mx/"],
+      "url": ["https://invitados.org/"],
       "numberOfRuns": 5,
       "settings": {
         "preset": "desktop",
