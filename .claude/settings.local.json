@@ -21,7 +21,9 @@
       "WebFetch(domain:invitados.org)",
       "Bash(curl:*)",
       "Bash(python3 -c \" import sys import re import json html = sys.stdin.read\\(\\) # Find JSON data in the report match = re.search\\(r''window\\\\.__LIGHTHOUSE_JSON__\\\\s*=\\\\s*\\({.*?}\\);'', html, re.DOTALL\\) if match: data = json.loads\\(match.group\\(1\\)\\) cats = data.get\\(''categories'', {}\\) for name in [''performance'', ''accessibility'', ''best-practices'', ''seo'']: if name in cats: score = cats[name].get\\(''score'', 0\\) print\\(f''{name}: {int\\(score * 100\\)}''\\) \")",
-      "Bash(git restore:*)"
+      "Bash(git restore:*)",
+      "Bash(while read line)",
+      "Bash(do echo \"$line\")"
     ],
     "deny": []
   }

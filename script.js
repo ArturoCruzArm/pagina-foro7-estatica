@@ -794,8 +794,8 @@ function initChatBot() {
                 <h4>Asistente Foro 7</h4>
                 <span class="status">En línea</span>
             </div>
-            <button class="chat-toggle" onclick="toggleChat()">
-                <i class="fas fa-times"></i>
+            <button class="chat-toggle" onclick="toggleChat()" aria-label="Cerrar chat">
+                <i class="fas fa-times" aria-hidden="true"></i>
             </button>
         </div>
         <div class="chat-messages" id="chatMessages">
@@ -819,8 +819,8 @@ function initChatBot() {
         </div>
         <div class="chat-input">
             <input type="text" placeholder="Escribe tu mensaje..." id="chatInput" onkeypress="handleChatKeyPress(event)">
-            <button onclick="sendMessage()" class="send-btn">
-                <i class="fas fa-paper-plane"></i>
+            <button onclick="sendMessage()" class="send-btn" aria-label="Enviar mensaje">
+                <i class="fas fa-paper-plane" aria-hidden="true"></i>
             </button>
         </div>
     `;
@@ -828,11 +828,12 @@ function initChatBot() {
     document.body.appendChild(chatBot);
     
     // Botón flotante del chat
-    const chatFloatBtn = document.createElement('div');
+    const chatFloatBtn = document.createElement('button');
     chatFloatBtn.className = 'chat-float-btn';
+    chatFloatBtn.setAttribute('aria-label', 'Abrir chat de asistencia');
     chatFloatBtn.innerHTML = `
-        <i class="fas fa-comment-alt"></i>
-        <div class="chat-notification">1</div>
+        <i class="fas fa-comment-alt" aria-hidden="true"></i>
+        <div class="chat-notification" aria-hidden="true">1</div>
     `;
     chatFloatBtn.onclick = toggleChat;
     
