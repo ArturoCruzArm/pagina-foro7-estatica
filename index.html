@@ -210,7 +210,7 @@
         .header{background:linear-gradient(135deg,#D2691E 0%,#CD853F 100%);box-shadow:0 2px 10px rgba(0,0,0,.1);position:fixed;width:100%;top:0;z-index:1000}
         .navbar{padding:1rem 0}
         .nav-container{max-width:1200px;margin:0 auto;padding:0 20px;display:flex;justify-content:space-between;align-items:center}
-        .nav-logo h1{color:#fff;font-size:1.8rem;font-weight:600}
+        .nav-logo{text-decoration:none}.nav-logo .logo-text{color:#fff;font-size:1.8rem;font-weight:600;font-family:'Playfair Display',serif}
         .nav-menu{display:flex;list-style:none;gap:2rem}
         .nav-menu a{color:#fff;text-decoration:none;font-weight:500;transition:color .3s ease}
         .nav-menu a:hover{color:#F5DEB3}
@@ -236,14 +236,15 @@
     </style>
 
     <!-- Preload critical resources -->
-    <link rel="preload" href="styles.css" as="style">
     <link rel="preload" href="script.js" as="script">
 
-    <!-- Main CSS - Load with low priority for non-critical styles -->
-    <link rel="stylesheet" href="styles.css">
+    <!-- Main CSS - Load async for non-blocking -->
+    <link rel="stylesheet" href="styles.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="styles.css"></noscript>
 
-    <!-- Google Fonts with display=swap for better performance -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Google Fonts - Load async for non-blocking -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"></noscript>
 
     <!-- Font Awesome - Load async for non-blocking -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'">
