@@ -701,7 +701,7 @@ function initAdvancedParallax() {
         { selector: '.hero-image', speed: 0.5 },
         { selector: '.phone-frame', speed: 0.3 },
         { selector: '.service-card', speed: 0.2 },
-        { selector: '.testimonial-card', speed: 0.15 },
+        // testimonial-card removido - causaba que las tarjetas se salieran de pantalla
         { selector: '.floating-icon', speed: 0.8 }
     ];
     
@@ -748,27 +748,35 @@ function initAdvancedParallax() {
 
 // Efectos 3D Avanzados
 function init3DEffects() {
-    // Efecto de mouse tracking para cards
-    const cards = document.querySelectorAll('.service-card, .testimonial-card');
-    
-    cards.forEach(card => {
+    // Efecto de mouse tracking solo para service-cards (más agresivo)
+    const serviceCards = document.querySelectorAll('.service-card');
+
+    serviceCards.forEach(card => {
         card.addEventListener('mousemove', (e) => {
             const rect = card.getBoundingClientRect();
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
-            
+
             const centerX = rect.width / 2;
             const centerY = rect.height / 2;
-            
+
             const rotateX = (y - centerY) / 10;
             const rotateY = (centerX - x) / 10;
-            
+
             card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(20px)`;
         });
-        
+
         card.addEventListener('mouseleave', () => {
             card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
         });
+    });
+
+    // Testimonial cards - solo resetear cualquier transform inline previo
+    // El efecto hover ya está manejado por CSS (scale 1.02)
+    const testimonialCards = document.querySelectorAll('.testimonial-card');
+    testimonialCards.forEach(card => {
+        // Limpiar cualquier transform inline que pueda haber quedado
+        card.style.transform = '';
     });
 }
 
