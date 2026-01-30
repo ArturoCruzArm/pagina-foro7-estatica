@@ -518,8 +518,8 @@
                                                 </div>
                                             </div>
                                             <div class="invitation-actions">
-                                                <button class="action-btn confirm">Confirmar Asistencia</button>
-                                                <button class="action-btn location">Ver Ubicación</button>
+                                                <button class="action-btn confirm" type="button" aria-label="Confirmar asistencia al evento">Confirmar Asistencia</button>
+                                                <button class="action-btn location" type="button" aria-label="Ver ubicación del evento">Ver Ubicación</button>
                                             </div>
                                         </div>
                                     </div>
@@ -551,8 +551,8 @@
                                                 </div>
                                             </div>
                                             <div class="invitation-actions">
-                                                <button class="action-btn confirm">Confirmar</button>
-                                                <button class="action-btn gift">Lista de Regalos</button>
+                                                <button class="action-btn confirm" type="button" aria-label="Confirmar asistencia">Confirmar</button>
+                                                <button class="action-btn gift" type="button" aria-label="Ver lista de regalos">Lista de Regalos</button>
                                             </div>
                                         </div>
                                     </div>
@@ -584,8 +584,8 @@
                                                 </div>
                                             </div>
                                             <div class="invitation-actions">
-                                                <button class="action-btn confirm">Confirmar</button>
-                                                <button class="action-btn photos">Álbum de Fotos</button>
+                                                <button class="action-btn confirm" type="button" aria-label="Confirmar asistencia al bautizo">Confirmar</button>
+                                                <button class="action-btn photos" type="button" aria-label="Ver álbum de fotos">Álbum de Fotos</button>
                                             </div>
                                         </div>
                                     </div>
@@ -655,8 +655,8 @@
                     <div class="calculator-container">
                         <div class="calculator-form">
                             <div class="form-group">
-                                <label>Tipo de Evento:</label>
-                                <select id="eventType">
+                                <label for="eventType">Tipo de Evento:</label>
+                                <select id="eventType" aria-label="Seleccionar tipo de evento">
                                     <option value="boda" data-price="2500">Boda ($2,500)</option>
                                     <option value="quinces" data-price="2000">XV Años ($2,000)</option>
                                     <option value="bautizo" data-price="1500">Bautizo ($1,500)</option>
@@ -664,32 +664,34 @@
                                     <option value="baby-shower" data-price="1200">Baby Shower ($1,200)</option>
                                 </select>
                             </div>
-                            
+
                             <div class="form-group">
-                                <label>Funcionalidades Extra:</label>
-                                <div class="checkbox-group">
-                                    <label class="checkbox-item">
-                                        <input type="checkbox" data-price="500">
-                                        <span>🎵 Música de Fondo (+$500)</span>
-                                    </label>
-                                    <label class="checkbox-item">
-                                        <input type="checkbox" data-price="800">
-                                        <span>📸 Galería de Fotos (+$800)</span>
-                                    </label>
-                                    <label class="checkbox-item">
-                                        <input type="checkbox" data-price="400">
-                                        <span>🎁 Lista de Regalos (+$400)</span>
-                                    </label>
-                                    <label class="checkbox-item">
-                                        <input type="checkbox" data-price="600">
-                                        <span>📊 Dashboard de RSVPs (+$600)</span>
-                                    </label>
-                                </div>
+                                <fieldset>
+                                    <legend>Funcionalidades Extra:</legend>
+                                    <div class="checkbox-group">
+                                        <label class="checkbox-item">
+                                            <input type="checkbox" id="extra-music" data-price="500" aria-label="Agregar música de fondo">
+                                            <span>🎵 Música de Fondo (+$500)</span>
+                                        </label>
+                                        <label class="checkbox-item">
+                                            <input type="checkbox" id="extra-gallery" data-price="800" aria-label="Agregar galería de fotos">
+                                            <span>📸 Galería de Fotos (+$800)</span>
+                                        </label>
+                                        <label class="checkbox-item">
+                                            <input type="checkbox" id="extra-gifts" data-price="400" aria-label="Agregar lista de regalos">
+                                            <span>🎁 Lista de Regalos (+$400)</span>
+                                        </label>
+                                        <label class="checkbox-item">
+                                            <input type="checkbox" id="extra-rsvp" data-price="600" aria-label="Agregar dashboard de RSVPs">
+                                            <span>📊 Dashboard de RSVPs (+$600)</span>
+                                        </label>
+                                    </div>
+                                </fieldset>
                             </div>
-                            
+
                             <div class="form-group">
-                                <label>Número de Invitados:</label>
-                                <input type="range" id="guestCount" min="50" max="500" value="100" step="50">
+                                <label for="guestCount">Número de Invitados:</label>
+                                <input type="range" id="guestCount" min="50" max="500" value="100" step="50" aria-label="Seleccionar número de invitados">
                                 <div class="range-display">
                                     <span id="guestDisplay">100</span> invitados
                                 </div>
@@ -883,7 +885,7 @@
                     <div class="video-section">
                         <h3>Videos Destacados</h3>
                         <div class="vimeo-container">
-                            <iframe src="https://www.youtube.com/embed/c6z6Fs1bxZ8" width="100%" height="400" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                            <iframe src="https://www.youtube.com/embed/c6z6Fs1bxZ8" width="100%" height="400" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" title="Video destacado de Producciones Foro 7 - Bodas y eventos"></iframe>
                         </div>
                         <p>🎬 <strong>Video profesional capturado por Producciones Foro 7</strong></p>
                         <p>Visita nuestro canal: <a href="https://vimeo.com/produccionesforo7" target="_blank" rel="noopener" class="vimeo-link">📺 Más Videos en Vimeo</a></p>
@@ -1212,7 +1214,7 @@
         <div class="reservation-content">
             <div class="reservation-header">
                 <h2><i class="fas fa-calendar-alt"></i> Agendar Cita</h2>
-                <button class="close-reservation" onclick="closeReservationModal()">
+                <button class="close-reservation" onclick="closeReservationModal()" aria-label="Cerrar ventana de reservación">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
@@ -1220,11 +1222,11 @@
             <div class="reservation-body">
                 <div class="calendar-section">
                     <div class="calendar-header">
-                        <button class="calendar-nav" onclick="changeMonth(-1)">
+                        <button class="calendar-nav" onclick="changeMonth(-1)" aria-label="Mes anterior">
                             <i class="fas fa-chevron-left"></i>
                         </button>
                         <h3 id="calendarMonth">Enero 2025</h3>
-                        <button class="calendar-nav" onclick="changeMonth(1)">
+                        <button class="calendar-nav" onclick="changeMonth(1)" aria-label="Mes siguiente">
                             <i class="fas fa-chevron-right"></i>
                         </button>
                     </div>
@@ -1259,8 +1261,8 @@
                             </div>
                             
                             <div class="form-group">
-                                <label for="eventType">Tipo de Evento *</label>
-                                <select id="eventType" required>
+                                <label for="appointmentEventType">Tipo de Evento *</label>
+                                <select id="appointmentEventType" required aria-label="Seleccionar tipo de evento para la cita">
                                     <option value="">Seleccionar...</option>
                                     <option value="boda">Boda</option>
                                     <option value="xv">XV Años</option>
@@ -1374,7 +1376,7 @@
             <span class="close" onclick="closeVideoModal()">&times;</span>
             <h2>Video Destacado - Producciones Foro 7</h2>
             <div class="video-container">
-                <iframe src="" width="100%" height="400" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe src="" width="100%" height="400" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="Video de Producciones Foro 7"></iframe>
             </div>
         </div>
     </div>
@@ -1383,10 +1385,10 @@
     <div id="lightboxModal" class="modal lightbox-modal">
         <div class="lightbox-content">
             <span class="close" onclick="closeLightbox()">&times;</span>
-            <button class="lightbox-nav prev" onclick="changeLightboxImage(-1)">
+            <button class="lightbox-nav prev" onclick="changeLightboxImage(-1)" aria-label="Imagen anterior">
                 <i class="fas fa-chevron-left"></i>
             </button>
-            <button class="lightbox-nav next" onclick="changeLightboxImage(1)">
+            <button class="lightbox-nav next" onclick="changeLightboxImage(1)" aria-label="Siguiente imagen">
                 <i class="fas fa-chevron-right"></i>
             </button>
             <img id="lightboxImage" src="" alt="">
