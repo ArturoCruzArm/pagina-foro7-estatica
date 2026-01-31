@@ -158,24 +158,36 @@ async function handleImageRequest(request) {
   }
 }
 
-// Handle static asset requests - cache first
+// Handle static asset requests - stale-while-revalidate
+// Returns cached content immediately, updates cache in background
 async function handleStaticRequest(request) {
   const cache = await caches.open(STATIC_CACHE);
   const cachedResponse = await cache.match(request);
 
-  if (cachedResponse) {
-    return cachedResponse;
-  }
-
-  try {
-    const networkResponse = await fetch(request);
-
+  // Fetch from network in background to update cache
+  const fetchPromise = fetch(request).then(networkResponse => {
     if (networkResponse.ok) {
       const responseToCache = networkResponse.clone();
       cache.put(request, responseToCache);
     }
-
     return networkResponse;
+  }).catch(error => {
+    console.log('[SW] Background fetch failed:', request.url);
+    return null;
+  });
+
+  // Return cached response immediately if available
+  if (cachedResponse) {
+    // Background update happens asynchronously
+    fetchPromise;
+    return cachedResponse;
+  }
+
+  // If no cache, wait for network
+  try {
+    const networkResponse = await fetchPromise;
+    if (networkResponse) return networkResponse;
+    return new Response('Asset not available', { status: 404 });
   } catch (error) {
     console.log('[SW] Static asset fetch failed:', request.url);
     return new Response('Asset not available', { status: 404 });
