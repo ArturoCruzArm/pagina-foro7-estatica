@@ -3145,22 +3145,7 @@ section {
     outline-offset: 2px;
 }
 
-/* Skip to content link for screen readers */
-.skip-link {
-    position: absolute;
-    top: -40px;
-    left: 6px;
-    background: #D2691E;
-    color: white;
-    padding: 8px;
-    text-decoration: none;
-    transition: top 0.3s;
-    z-index: 1001;
-}
-
-.skip-link:focus {
-    top: 6px;
-}
+/* Skip to content link - REMOVED DUPLICATE (see line ~88) */
 
 /* WhatsApp Float Button */
 .whatsapp-float {
