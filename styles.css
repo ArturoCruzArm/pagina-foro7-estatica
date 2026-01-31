@@ -90,7 +90,7 @@ body {
     top: -40px;
     left: 50%;
     transform: translateX(-50%);
-    background: var(--color-primary);
+    background: #5D4037;  /* Dark brown - 7.5:1 contrast with white */
     color: white;
     padding: 0.75rem 1.5rem;
     border-radius: 0 0 8px 8px;
