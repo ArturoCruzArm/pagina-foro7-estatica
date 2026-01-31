@@ -67,6 +67,44 @@ function initializeApp() {
     validateForm();
     initFAQ();
     initGalleryFilters();
+    initGA4Tracking();
+}
+
+// GA4 Event Tracking Initialization
+function initGA4Tracking() {
+    // Track WhatsApp link clicks
+    document.querySelectorAll('a[href*="wa.me"]').forEach(link => {
+        link.addEventListener('click', function() {
+            const context = this.closest('section')?.id || 'general';
+            if (typeof trackWhatsApp === 'function') trackWhatsApp(context);
+        });
+    });
+
+    // Track social media clicks
+    document.querySelectorAll('a[href*="facebook.com"], a[href*="instagram.com"], a[href*="tiktok.com"]').forEach(link => {
+        link.addEventListener('click', function() {
+            const platform = this.href.includes('facebook') ? 'facebook' :
+                           this.href.includes('instagram') ? 'instagram' : 'tiktok';
+            if (typeof trackEvent === 'function') {
+                trackEvent('social_click', { platform: platform });
+            }
+        });
+    });
+
+    // Track service card views on scroll
+    const serviceObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const serviceName = entry.target.querySelector('h3')?.textContent || 'unknown';
+                if (typeof trackServiceView === 'function') trackServiceView(serviceName);
+                serviceObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('.service-card').forEach(card => {
+        serviceObserver.observe(card);
+    });
 }
 
 // Gallery Filter
@@ -121,6 +159,10 @@ function initFAQ() {
             if (!isActive) {
                 item.classList.add('active');
                 question.setAttribute('aria-expanded', 'true');
+
+                // GA4: Track FAQ interaction
+                const questionText = question.textContent?.trim().substring(0, 50) || 'unknown';
+                if (typeof trackFAQ === 'function') trackFAQ(questionText);
             }
         });
 
@@ -506,6 +548,11 @@ function openLightbox(index) {
     img.alt = imageData.title;
     title.textContent = imageData.title;
     description.textContent = imageData.description;
+
+    // GA4: Track gallery view
+    if (typeof trackGalleryView === 'function') {
+        trackGalleryView(imageData.title, imageData.category || 'general');
+    }
 
     // Store previously focused element for accessibility
     previouslyFocusedElement = document.activeElement;

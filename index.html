@@ -35,6 +35,54 @@
         if (localStorage.getItem('analytics_consent') === 'granted') {
             acceptAnalytics();
         }
+
+        // GA4 Event Tracking Helper Functions
+        function trackEvent(eventName, params = {}) {
+            if (typeof gtag === 'function') {
+                gtag('event', eventName, params);
+            }
+        }
+
+        // Track WhatsApp clicks
+        function trackWhatsApp(context) {
+            trackEvent('whatsapp_click', {
+                'event_category': 'engagement',
+                'event_label': context || 'general'
+            });
+        }
+
+        // Track contact form submissions
+        function trackContactForm(method) {
+            trackEvent('contact_form', {
+                'event_category': 'conversion',
+                'event_label': method || 'email'
+            });
+        }
+
+        // Track gallery views
+        function trackGalleryView(imageTitle, category) {
+            trackEvent('gallery_view', {
+                'event_category': 'engagement',
+                'image_title': imageTitle,
+                'gallery_category': category
+            });
+        }
+
+        // Track FAQ interactions
+        function trackFAQ(question) {
+            trackEvent('faq_click', {
+                'event_category': 'engagement',
+                'question': question
+            });
+        }
+
+        // Track service interest
+        function trackServiceView(serviceName) {
+            trackEvent('service_view', {
+                'event_category': 'interest',
+                'service_name': serviceName
+            });
+        }
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="color-scheme" content="light dark">
