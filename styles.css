@@ -4007,3 +4007,117 @@ html.high-bandwidth .hero-image img {
     scrollbar-width: thin;
     scrollbar-color: var(--color-primary) var(--color-bg-alt);
 }
+
+/* ===================================
+   Print Stylesheet
+   =================================== */
+@media print {
+    /* Hide non-essential elements */
+    .header,
+    .nav-toggle,
+    .theme-toggle,
+    .lang-selector,
+    .whatsapp-float,
+    .cookie-consent,
+    .back-to-top,
+    .hero-particles,
+    .lightbox-modal,
+    .modal,
+    .share-menu,
+    footer .social-links,
+    .filter-buttons,
+    video,
+    iframe {
+        display: none !important;
+    }
+
+    /* Reset backgrounds and colors for printing */
+    body {
+        background: white !important;
+        color: black !important;
+        font-size: 12pt;
+        line-height: 1.5;
+    }
+
+    /* Remove shadows and gradients */
+    * {
+        box-shadow: none !important;
+        text-shadow: none !important;
+        background: transparent !important;
+    }
+
+    /* Ensure text is black */
+    h1, h2, h3, h4, h5, h6,
+    p, li, span, a {
+        color: black !important;
+    }
+
+    /* Show URLs for links */
+    a[href^="http"]:after {
+        content: " (" attr(href) ")";
+        font-size: 0.8em;
+        color: #666;
+    }
+
+    /* Don't show URLs for internal links */
+    a[href^="#"]:after,
+    a[href^="javascript"]:after,
+    a[href^="mailto"]:after,
+    a[href^="tel"]:after {
+        content: "";
+    }
+
+    /* Page breaks */
+    section {
+        page-break-inside: avoid;
+    }
+
+    h1, h2, h3 {
+        page-break-after: avoid;
+    }
+
+    img {
+        max-width: 100% !important;
+        page-break-inside: avoid;
+    }
+
+    /* Contact info visibility */
+    .contact-info {
+        display: block !important;
+    }
+
+    /* Hero section for print */
+    .hero {
+        min-height: auto !important;
+        padding: 2rem 0 !important;
+    }
+
+    .hero-content {
+        position: static !important;
+    }
+
+    /* Gallery grid for print */
+    .photo-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .photo-item {
+        break-inside: avoid;
+    }
+
+    /* Services for print */
+    .services-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    /* FAQ for print - show all answers */
+    .faq-answer {
+        display: block !important;
+        max-height: none !important;
+        opacity: 1 !important;
+    }
+}
