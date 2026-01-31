@@ -107,8 +107,8 @@ test.describe('Gallery', () => {
     const firstImage = page.locator('.photo-item').first();
     await firstImage.click();
 
-    const lightbox = page.locator('#lightbox');
-    await expect(lightbox).toHaveCSS('display', 'flex');
+    const lightbox = page.locator('#lightboxModal');
+    await expect(lightbox).toHaveCSS('display', 'block');
   });
 });
 
