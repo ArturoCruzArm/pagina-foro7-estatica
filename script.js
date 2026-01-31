@@ -611,6 +611,93 @@ function trapFocus(e) {
     }
 }
 
+// Web Share API - Share current lightbox image
+async function shareImage() {
+    const imageData = lightboxImages[currentImageIndex];
+    const shareData = {
+        title: imageData.title,
+        text: `${imageData.title} - ${imageData.description}\n\nVer más en Producciones Foro 7`,
+        url: window.location.origin + '/#portafolio'
+    };
+
+    // Check if Web Share API is supported
+    if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
+        try {
+            await navigator.share(shareData);
+            // Track share event
+            if (typeof trackEvent === 'function') {
+                trackEvent('share', {
+                    method: 'web_share_api',
+                    content_type: 'image',
+                    item_id: imageData.title
+                });
+            }
+        } catch (err) {
+            // User cancelled or error occurred
+            if (err.name !== 'AbortError') {
+                console.log('Error sharing:', err);
+                fallbackShare(shareData);
+            }
+        }
+    } else {
+        // Fallback for browsers without Web Share API
+        fallbackShare(shareData);
+    }
+}
+
+// Fallback share options
+function fallbackShare(shareData) {
+    const shareUrl = encodeURIComponent(shareData.url);
+    const shareText = encodeURIComponent(shareData.text);
+
+    // Create a simple share menu
+    const shareMenu = document.createElement('div');
+    shareMenu.className = 'share-menu';
+    shareMenu.innerHTML = `
+        <div class="share-menu-content">
+            <h4>Compartir en:</h4>
+            <a href="https://wa.me/?text=${shareText}%20${shareUrl}" target="_blank" rel="noopener" class="share-option whatsapp">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=${shareUrl}" target="_blank" rel="noopener" class="share-option facebook">
+                <i class="fab fa-facebook"></i> Facebook
+            </a>
+            <a href="https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}" target="_blank" rel="noopener" class="share-option twitter">
+                <i class="fab fa-twitter"></i> Twitter
+            </a>
+            <button onclick="copyToClipboard('${shareData.url}')" class="share-option copy">
+                <i class="fas fa-copy"></i> Copiar enlace
+            </button>
+            <button onclick="this.parentElement.parentElement.remove()" class="share-close">Cerrar</button>
+        </div>
+    `;
+
+    document.body.appendChild(shareMenu);
+
+    // Close on outside click
+    shareMenu.addEventListener('click', (e) => {
+        if (e.target === shareMenu) shareMenu.remove();
+    });
+}
+
+// Copy to clipboard function
+function copyToClipboard(text) {
+    navigator.clipboard.writeText(text).then(() => {
+        alert('¡Enlace copiado!');
+        document.querySelector('.share-menu')?.remove();
+    }).catch(() => {
+        // Fallback for older browsers
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        alert('¡Enlace copiado!');
+        document.querySelector('.share-menu')?.remove();
+    });
+}
+
 function changeLightboxImage(direction) {
     currentImageIndex += direction;
     
