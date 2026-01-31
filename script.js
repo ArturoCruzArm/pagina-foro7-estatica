@@ -65,6 +65,73 @@ function initializeApp() {
     initUXEnhancements();
     initAllEffects();
     validateForm();
+    initFAQ();
+    initGalleryFilters();
+}
+
+// Gallery Filter
+function initGalleryFilters() {
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const galleryItems = document.querySelectorAll('.photo-item');
+
+    if (!filterBtns.length) return;
+
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Update active button
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const filter = btn.dataset.filter;
+
+            // Filter gallery items
+            galleryItems.forEach(item => {
+                const category = item.dataset.category;
+
+                if (filter === 'all' || category === filter) {
+                    item.classList.remove('hidden', 'fade-out');
+                } else {
+                    item.classList.add('fade-out');
+                    setTimeout(() => {
+                        item.classList.add('hidden');
+                    }, 300);
+                }
+            });
+        });
+    });
+}
+
+// FAQ Accordion
+function initFAQ() {
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+
+        question.addEventListener('click', () => {
+            const isActive = item.classList.contains('active');
+
+            // Close all other items
+            faqItems.forEach(otherItem => {
+                otherItem.classList.remove('active');
+                otherItem.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+            });
+
+            // Toggle current item
+            if (!isActive) {
+                item.classList.add('active');
+                question.setAttribute('aria-expanded', 'true');
+            }
+        });
+
+        // Keyboard accessibility
+        question.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                question.click();
+            }
+        });
+    });
 }
 
 // Un solo event listener para DOMContentLoaded
@@ -281,6 +348,47 @@ function validateForm() {
     });
 }
 
+// Send form data to WhatsApp
+function sendToWhatsApp() {
+    const form = document.getElementById('contactForm');
+    const nombre = form.querySelector('#nombre').value.trim();
+    const telefono = form.querySelector('#telefono').value.trim();
+    const email = form.querySelector('#email').value.trim();
+    const fechaEvento = form.querySelector('#fecha-evento').value;
+    const servicio = form.querySelector('#servicio').value;
+    const mensaje = form.querySelector('#mensaje').value.trim();
+
+    // Validate required fields
+    if (!nombre || !email || !mensaje) {
+        alert('Por favor, completa los campos obligatorios: Nombre, Email y Mensaje.');
+        return;
+    }
+
+    // Build WhatsApp message
+    let whatsappMsg = `🎉 *NUEVA COTIZACIÓN - FORO 7*%0A%0A`;
+    whatsappMsg += `👤 *Nombre:* ${nombre}%0A`;
+    if (telefono) whatsappMsg += `📱 *Teléfono:* ${telefono}%0A`;
+    whatsappMsg += `📧 *Email:* ${email}%0A`;
+    if (fechaEvento) whatsappMsg += `📅 *Fecha del evento:* ${fechaEvento}%0A`;
+    if (servicio) whatsappMsg += `📸 *Servicio:* ${getServiceName(servicio)}%0A`;
+    whatsappMsg += `%0A💬 *Mensaje:*%0A${encodeURIComponent(mensaje)}%0A%0A`;
+    whatsappMsg += `_Enviado desde invitados.org_`;
+
+    // Open WhatsApp
+    window.open(`https://wa.me/524779203776?text=${whatsappMsg}`, '_blank');
+}
+
+function getServiceName(value) {
+    const services = {
+        'fotografia': '📸 Solo Fotografía',
+        'video': '🎬 Solo Video 4K',
+        'completo': '✨ Fotografía + Video',
+        'premium': '🚁 Paquete Premium + Dron',
+        'dron': '🚁 Solo Tomas con Dron',
+        'invitaciones': '🎨 Invitaciones Personalizadas'
+    };
+    return services[value] || value;
+}
 
 // Preloader simple
 window.addEventListener('load', function() {

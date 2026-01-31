@@ -28,7 +28,26 @@ jobs:
           node-version: '20'
 
       - name: Install build dependencies
-        run: npm install -g terser clean-css-cli html-minifier-terser
+        run: |
+          npm install -g terser clean-css-cli html-minifier-terser
+          sudo apt-get update && sudo apt-get install -y webp
+
+      - name: Convert images to WebP
+        run: |
+          echo "Converting images to WebP format..."
+          find images -name "*.jpg" -o -name "*.jpeg" -o -name "*.png" 2>/dev/null | while read img; do
+            if [ -f "$img" ]; then
+              webp_file="${img%.*}.webp"
+              if [ ! -f "$webp_file" ]; then
+                cwebp -q 80 "$img" -o "$webp_file" 2>/dev/null && echo "✅ Converted: $img"
+              fi
+            fi
+          done
+          # Convert og-image
+          if [ -f "og-image.jpg" ] && [ ! -f "og-image.webp" ]; then
+            cwebp -q 85 og-image.jpg -o og-image.webp && echo "✅ Converted: og-image.jpg"
+          fi
+          echo "WebP conversion complete!"
 
       - name: Minify CSS
         run: |
@@ -47,6 +66,7 @@ jobs:
 
       - name: Minify HTML
         run: |
+          # Minify main index.html
           html-minifier-terser \
             --collapse-whitespace \
             --remove-comments \
@@ -59,7 +79,21 @@ jobs:
             -o index.min.html \
             index.html
           mv index.min.html index.html
-          echo "✅ HTML minified: $(wc -c < index.html) bytes"
+          echo "✅ index.html minified: $(wc -c < index.html) bytes"
+
+          # Minify offline.html
+          if [ -f "offline.html" ]; then
+            html-minifier-terser --collapse-whitespace --remove-comments --minify-css true --minify-js true -o offline.min.html offline.html
+            mv offline.min.html offline.html
+            echo "✅ offline.html minified"
+          fi
+
+          # Minify English version
+          if [ -f "en/index.html" ]; then
+            html-minifier-terser --collapse-whitespace --remove-comments --minify-css true --minify-js true -o en/index.min.html en/index.html
+            mv en/index.min.html en/index.html
+            echo "✅ en/index.html minified"
+          fi
 
       - name: Show optimized file sizes
         run: |

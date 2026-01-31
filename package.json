@@ -1,0 +1,23 @@
+{
+  "name": "invitados-org",
+  "version": "1.0.0",
+  "description": "Producciones Foro 7 - Fotografía y Video para Bodas",
+  "scripts": {
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "test:headed": "playwright test --headed",
+    "test:report": "playwright show-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.41.0"
+  },
+  "keywords": [
+    "photography",
+    "weddings",
+    "video",
+    "leon",
+    "guanajuato"
+  ],
+  "author": "Producciones Foro 7",
+  "license": "MIT"
+}

@@ -2,6 +2,40 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+
+    <!-- Google Analytics 4 with Consent Mode -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        // Initialize dataLayer
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+
+        // Default consent mode - respects user privacy
+        gtag('consent', 'default', {
+            'analytics_storage': 'denied',
+            'ad_storage': 'denied',
+            'wait_for_update': 500
+        });
+
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX', {
+            'anonymize_ip': true,
+            'cookie_flags': 'SameSite=None;Secure'
+        });
+
+        // Function to update consent (call when user accepts cookies)
+        function acceptAnalytics() {
+            gtag('consent', 'update', {
+                'analytics_storage': 'granted'
+            });
+            localStorage.setItem('analytics_consent', 'granted');
+        }
+
+        // Check if user previously consented
+        if (localStorage.getItem('analytics_consent') === 'granted') {
+            acceptAnalytics();
+        }
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="color-scheme" content="light dark">
     <meta name="format-detection" content="telephone=yes">
@@ -185,6 +219,62 @@
         ]
     }
     </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "¿Con cuánta anticipación debo reservar?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Recomendamos reservar con al menos 3-6 meses de anticipación para bodas y eventos grandes. Para XV años y otros eventos sociales, 2-3 meses es ideal."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "¿Qué incluyen sus paquetes de boda?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Nuestros paquetes incluyen cobertura completa del evento, edición profesional de fotos, video cinematográfico en 4K, álbum digital, y entrega en USB personalizado. Los paquetes premium incluyen tomas aéreas con dron."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "¿Cuánto tiempo tardan en entregar las fotos y videos?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "El tiempo de entrega estándar es de 4-6 semanas para el material completo editado. Ofrecemos un adelanto de fotos selectas a las 48-72 horas del evento."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "¿Viajan a otras ciudades?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Sí, cubrimos eventos en todo Guanajuato y estados vecinos como Jalisco, Aguascalientes, Querétaro y San Luis Potosí."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "¿Cómo funcionan las invitaciones digitales?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Nuestras invitaciones digitales son páginas web personalizadas con galería de fotos, cuenta regresiva, mapa de ubicación, confirmación de asistencia y mesa de regalos."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "¿Cuáles son las formas de pago?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Aceptamos efectivo, transferencia bancaria, tarjetas de crédito/débito y pagos a meses sin intereses. Manejamos 50% de anticipo y 50% antes del evento."
+                }
+            }
+        ]
+    }
+    </script>
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiByeD0iMTYiIGZpbGw9IiNEMjY5MUUiLz4KPHN2ZyB4PSIxMCIgeT0iMTAiIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cGF0aCBkPSJNMTIgMTJjMi4yMSAwIDQtMS43OSA0LTRzLTEuNzktNC00LTQtNCAxLjc5LTQgNCAxLjc5IDQgNCA0em0wIDJjLTIuNjcgMC04IDEuMzQtOCA0djJoMTZ2LTJjMC0yLjY2LTUuMzMtNC04LTR6IiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4KPC9zdmc+">
@@ -307,6 +397,15 @@
                     <li><a href="#nosotros">Nosotros</a></li>
                     <li><a href="#contacto">Contacto</a></li>
                 </ul>
+                <!-- Language Selector -->
+                <div class="lang-selector">
+                    <button class="lang-btn active" data-lang="es" aria-label="Español">
+                        <span>ES</span>
+                    </button>
+                    <button class="lang-btn" data-lang="en" aria-label="English" onclick="window.location.href='/en/'">
+                        <span>EN</span>
+                    </button>
+                </div>
                 <!-- Dark Mode Toggle -->
                 <button id="theme-toggle" class="theme-toggle" aria-label="Cambiar tema">
                     <i class="fas fa-moon"></i>
@@ -943,8 +1042,18 @@
                     
                     <div class="gallery-section">
                         <h3>Galería de Fotos</h3>
+
+                        <!-- Gallery Filters -->
+                        <div class="gallery-filters" data-aos="fade-up">
+                            <button class="filter-btn active" data-filter="all">Todos</button>
+                            <button class="filter-btn" data-filter="bodas">Bodas</button>
+                            <button class="filter-btn" data-filter="xv">XV Años</button>
+                            <button class="filter-btn" data-filter="video">Video 4K</button>
+                            <button class="filter-btn" data-filter="dron">Dron</button>
+                        </div>
+
                         <div class="photo-gallery">
-                            <div class="photo-item" onclick="openLightbox(0)">
+                            <div class="photo-item" data-category="bodas" onclick="openLightbox(0)">
                                 <img src="images/gallery/boda-profesional-leon.jpg"
                                      alt="Boda Profesional León - Producciones Foro 7"
                                      loading="lazy"
@@ -957,7 +1066,7 @@
                                 </div>
                                 <div class="photo-category">Bodas</div>
                             </div>
-                            <div class="photo-item" onclick="openLightbox(1)">
+                            <div class="photo-item" data-category="bodas" onclick="openLightbox(1)">
                                 <img src="images/gallery/fotografia-boda.jpg"
                                      alt="Fotografía de Boda León, Guanajuato"
                                      loading="lazy"
@@ -968,9 +1077,9 @@
                                     <i class="fas fa-search-plus"></i>
                                     <span>Ver Imagen</span>
                                 </div>
-                                <div class="photo-category">Fotografía</div>
+                                <div class="photo-category">Bodas</div>
                             </div>
-                            <div class="photo-item" onclick="openLightbox(2)">
+                            <div class="photo-item" data-category="video" onclick="openLightbox(2)">
                                 <img src="images/gallery/video-4k-cinematografico.jpg"
                                      alt="Ceremonia Especial - Video 4K"
                                      loading="lazy"
@@ -983,7 +1092,7 @@
                                 </div>
                                 <div class="photo-category">Video 4K</div>
                             </div>
-                            <div class="photo-item" onclick="openLightbox(3)">
+                            <div class="photo-item" data-category="dron" onclick="openLightbox(3)">
                                 <img src="images/gallery/tomas-aereas-dron.jpg"
                                      alt="Tomas Aéreas con Dron"
                                      loading="lazy"
@@ -996,7 +1105,7 @@
                                 </div>
                                 <div class="photo-category">Dron</div>
                             </div>
-                            <div class="photo-item" onclick="openLightbox(4)">
+                            <div class="photo-item" data-category="xv" onclick="openLightbox(4)">
                                 <img src="images/gallery/quinceanera-elegante.jpg"
                                      alt="Quinceañera Elegante"
                                      loading="lazy"
@@ -1009,7 +1118,7 @@
                                 </div>
                                 <div class="photo-category">XV Años</div>
                             </div>
-                            <div class="photo-item" onclick="openLightbox(5)">
+                            <div class="photo-item" data-category="bodas" onclick="openLightbox(5)">
                                 <img src="images/gallery/ceremonia-religiosa.jpg"
                                      alt="Ceremonia Religiosa"
                                      loading="lazy"
@@ -1079,6 +1188,76 @@
             </div>
         </section>
 
+        <!-- FAQ Section -->
+        <section id="faq" class="faq-section">
+            <div class="container">
+                <h2 data-aos="fade-up">Preguntas Frecuentes</h2>
+                <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Resolvemos tus dudas más comunes</p>
+
+                <div class="faq-container" data-aos="fade-up" data-aos-delay="200">
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>¿Con cuánta anticipación debo reservar?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Recomendamos reservar con al menos 3-6 meses de anticipación para bodas y eventos grandes. Para XV años y otros eventos sociales, 2-3 meses es ideal. Sin embargo, siempre puedes consultarnos por disponibilidad de último momento.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>¿Qué incluyen sus paquetes de boda?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Nuestros paquetes incluyen cobertura completa del evento (preparativos, ceremonia y recepción), edición profesional de fotos, video cinematográfico en 4K, álbum digital, y entrega en USB personalizado. Los paquetes premium incluyen tomas aéreas con dron y mismo día edit.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>¿Cuánto tiempo tardan en entregar las fotos y videos?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>El tiempo de entrega estándar es de 4-6 semanas para el material completo editado. Ofrecemos un adelanto de fotos selectas a las 48-72 horas del evento y el video highlight en 2 semanas.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>¿Viajan a otras ciudades?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>¡Sí! Cubrimos eventos en todo Guanajuato y estados vecinos como Jalisco, Aguascalientes, Querétaro y San Luis Potosí. Para destinos más lejanos, contáctanos para una cotización personalizada que incluya viáticos.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>¿Cómo funcionan las invitaciones digitales?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Nuestras invitaciones digitales son páginas web personalizadas con tu información, galería de fotos, cuenta regresiva, mapa de ubicación, confirmación de asistencia y opción de mesa de regalos. Se comparten fácilmente por WhatsApp y redes sociales.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>¿Cuáles son las formas de pago?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Aceptamos efectivo, transferencia bancaria, tarjetas de crédito/débito y pagos a meses sin intereses. Manejamos un esquema de 50% de anticipo para reservar la fecha y 50% una semana antes del evento.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section id="contacto" class="contact">
             <div class="container">
                 <h2 data-aos="fade-up">Contacto</h2>
@@ -1118,7 +1297,14 @@
                     <div class="contact-form" data-aos="fade-left" data-aos-delay="200">
                         <h3>💬 Cotiza Tu Evento</h3>
                         <p class="form-description">Completa el formulario y nos pondremos en contacto contigo por WhatsApp</p>
-                        <form id="contactForm">
+                        <form id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                            <!-- Honeypot field for spam protection -->
+                            <input type="text" name="_gotcha" style="display:none">
+                            <!-- Redirect after submission -->
+                            <input type="hidden" name="_next" value="https://invitados.org/#gracias">
+                            <!-- Email subject -->
+                            <input type="hidden" name="_subject" value="Nueva cotización desde invitados.org">
+
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="nombre">
@@ -1173,10 +1359,16 @@
                                 </label>
                                 <textarea id="mensaje" name="mensaje" placeholder="Describe tu evento: tipo de celebración, número de invitados, locación, ideas especiales..." rows="4" required></textarea>
                             </div>
-                            <button type="submit" class="submit-btn">
-                                <i class="fab fa-whatsapp" aria-hidden="true"></i>
-                                Enviar por WhatsApp
-                            </button>
+                            <div class="form-buttons">
+                                <button type="button" class="submit-btn whatsapp-btn" onclick="sendToWhatsApp()">
+                                    <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                                    Enviar por WhatsApp
+                                </button>
+                                <button type="submit" class="submit-btn email-btn">
+                                    <i class="fas fa-envelope" aria-hidden="true"></i>
+                                    Enviar por Email
+                                </button>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -1449,5 +1641,39 @@
     </script>
     <!-- Main script - defer for non-blocking load -->
     <script src="script.js" defer></script>
+
+    <!-- Cookie Consent Banner -->
+    <div id="cookieConsent" class="cookie-consent" role="dialog" aria-labelledby="cookieTitle" aria-describedby="cookieDesc">
+        <div class="cookie-content">
+            <p id="cookieDesc">
+                <strong id="cookieTitle">🍪 Cookies</strong><br>
+                Usamos cookies para mejorar tu experiencia y analizar el tráfico del sitio.
+                <a href="#privacidad">Más información</a>
+            </p>
+            <div class="cookie-buttons">
+                <button onclick="declineCookies()" class="cookie-btn decline">Rechazar</button>
+                <button onclick="acceptCookies()" class="cookie-btn accept">Aceptar</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Cookie consent management
+        function acceptCookies() {
+            if (typeof acceptAnalytics === 'function') acceptAnalytics();
+            localStorage.setItem('cookie_consent', 'accepted');
+            hideCookieBanner();
+        }
+        function declineCookies() {
+            localStorage.setItem('cookie_consent', 'declined');
+            hideCookieBanner();
+        }
+        function hideCookieBanner() {
+            document.getElementById('cookieConsent').classList.add('hidden');
+        }
+        // Show banner if no consent decision made
+        if (!localStorage.getItem('cookie_consent')) {
+            document.getElementById('cookieConsent').classList.add('visible');
+        }
+    </script>
 </body>
 </html>
