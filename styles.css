@@ -3602,12 +3602,12 @@ section {
 }
 
 .cookie-btn.accept {
-    background: var(--color-primary);
+    background: #1a6b35;
     color: white;
 }
 
 .cookie-btn.accept:hover {
-    background: var(--color-primary-dark);
+    background: #145529;
 }
 
 @media (max-width: 600px) {
