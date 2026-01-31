@@ -3756,6 +3756,41 @@ section {
 }
 
 /* ===================================
+   Connection-Aware Loading
+   =================================== */
+/* Slow connection or Save Data mode */
+body.connection-slow,
+body.save-data {
+    /* Reduce visual complexity */
+    --shadow-sm: none;
+    --shadow-md: none;
+    --shadow-lg: none;
+}
+
+body.connection-slow .hero-particles,
+body.save-data .hero-particles,
+body.connection-slow .floating-elements,
+body.save-data .floating-elements {
+    display: none;
+}
+
+body.connection-slow img,
+body.save-data img {
+    filter: none;
+    transition: none;
+}
+
+body.connection-slow iframe,
+body.save-data iframe {
+    background: var(--color-bg-alt);
+}
+
+/* Fast connection - enable enhanced features */
+body.connection-fast .photo-item:hover img {
+    transform: scale(1.05);
+}
+
+/* ===================================
    FAQ Section
    =================================== */
 .faq-section {

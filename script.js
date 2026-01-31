@@ -68,6 +68,64 @@ function initializeApp() {
     initFAQ();
     initGalleryFilters();
     initGA4Tracking();
+    initConnectionAwareLoading();
+}
+
+// Connection-aware loading - optimize based on connection speed
+function initConnectionAwareLoading() {
+    // Check Network Information API support
+    const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+
+    if (connection) {
+        // Adjust loading strategy based on connection
+        updateLoadingStrategy(connection);
+
+        // Listen for connection changes
+        connection.addEventListener('change', () => {
+            updateLoadingStrategy(connection);
+        });
+    }
+}
+
+function updateLoadingStrategy(connection) {
+    const effectiveType = connection.effectiveType; // 'slow-2g', '2g', '3g', '4g'
+    const saveData = connection.saveData; // User preference for reduced data
+    const body = document.body;
+
+    // Remove previous connection classes
+    body.classList.remove('connection-slow', 'connection-fast', 'save-data');
+
+    if (saveData) {
+        body.classList.add('save-data');
+        disableNonEssentialMedia();
+        console.log('[Connection] Save Data mode enabled');
+    } else if (effectiveType === 'slow-2g' || effectiveType === '2g') {
+        body.classList.add('connection-slow');
+        disableNonEssentialMedia();
+        console.log('[Connection] Slow connection detected:', effectiveType);
+    } else if (effectiveType === '4g') {
+        body.classList.add('connection-fast');
+        console.log('[Connection] Fast connection detected');
+    }
+}
+
+function disableNonEssentialMedia() {
+    // Defer loading of non-essential images
+    document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+        if (!img.dataset.src && img.src) {
+            img.dataset.src = img.src;
+            img.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 1"%3E%3C/svg%3E';
+        }
+    });
+
+    // Disable autoplay videos
+    document.querySelectorAll('video[autoplay]').forEach(video => {
+        video.pause();
+        video.removeAttribute('autoplay');
+    });
+
+    // Reduce animation intensity
+    document.documentElement.style.setProperty('--animation-duration', '0.1s');
 }
 
 // GA4 Event Tracking Initialization
