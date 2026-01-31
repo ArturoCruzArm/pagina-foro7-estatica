@@ -375,11 +375,11 @@
     </style>
 
     <!-- Preload critical resources -->
+    <link rel="preload" href="styles.css" as="style">
     <link rel="preload" href="script.js" as="script">
 
-    <!-- Main CSS - Load async (critical CSS is inlined above) -->
-    <link rel="stylesheet" href="styles.css" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="styles.css"></noscript>
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="styles.css">
 
     <!-- Google Fonts - async loading for better performance -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
@@ -1727,9 +1727,11 @@
         function hideCookieBanner() {
             document.getElementById('cookieConsent').classList.add('hidden');
         }
-        // Show banner if no consent decision made
+        // Show banner if no consent decision made (delayed to avoid LCP impact)
         if (!localStorage.getItem('cookie_consent')) {
-            document.getElementById('cookieConsent').classList.add('visible');
+            setTimeout(function() {
+                document.getElementById('cookieConsent').classList.add('visible');
+            }, 2000);
         }
     </script>
 </body>
