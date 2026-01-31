@@ -2,11 +2,13 @@
    CSS Variables - Theme System
    =================================== */
 :root {
-    /* Primary Colors */
+    /* Primary Colors - Brand */
     --color-primary: #D2691E;
     --color-primary-dark: #8B4513;
     --color-primary-light: #CD853F;
     --color-accent: #F5DEB3;
+    /* Accessible text color (4.5:1 contrast on white) */
+    --color-link: #9A5010;
 
     /* Text Colors */
     --color-text: #333333;
@@ -252,7 +254,7 @@ h3 {
 
 .lang-btn.active {
     background: white;
-    color: var(--color-primary);
+    color: var(--color-link);
 }
 
 @media (max-width: 768px) {
@@ -807,9 +809,9 @@ h3 {
 
 .filter-btn {
     padding: 0.6rem 1.5rem;
-    border: 2px solid var(--color-primary);
+    border: 2px solid var(--color-link);
     background: transparent;
-    color: var(--color-primary);
+    color: var(--color-link);
     border-radius: 25px;
     font-weight: 500;
     cursor: pointer;
@@ -3571,7 +3573,7 @@ section {
 }
 
 .cookie-content a {
-    color: #6B4513;
+    color: var(--color-link);
     text-decoration: underline;
     font-weight: 600;
 }
