@@ -2713,17 +2713,26 @@ h3 {
 
 .close {
     color: #aaa;
-    float: right;
     font-size: 28px;
     font-weight: bold;
     cursor: pointer;
     position: absolute;
     right: 1rem;
     top: 1rem;
+    background: transparent;
+    border: none;
+    padding: 0.5rem;
+    line-height: 1;
+    z-index: 10;
 }
 
 .close:hover {
     color: #000;
+}
+
+.close:focus {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
 }
 
 .modal-content h2 {

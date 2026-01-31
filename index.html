@@ -1586,9 +1586,9 @@
     </div>
 
     <!-- Modal Lightbox -->
-    <div id="lightboxModal" class="modal lightbox-modal">
+    <div id="lightboxModal" class="modal lightbox-modal" role="dialog" aria-modal="true" aria-label="Visor de imágenes">
         <div class="lightbox-content">
-            <span class="close" onclick="closeLightbox()">&times;</span>
+            <button class="close" onclick="closeLightbox()" aria-label="Cerrar visor">&times;</button>
             <button class="lightbox-nav prev" onclick="changeLightboxImage(-1)" aria-label="Imagen anterior">
                 <i class="fas fa-chevron-left"></i>
             </button>

@@ -492,22 +492,34 @@ function initCounters() {
 }
 
 // Funciones del Lightbox
+let previouslyFocusedElement = null;
+
 function openLightbox(index) {
     currentImageIndex = index;
     const modal = document.getElementById('lightboxModal');
     const img = document.getElementById('lightboxImage');
     const title = document.getElementById('lightboxTitle');
     const description = document.getElementById('lightboxDescription');
-    
+
     const imageData = lightboxImages[currentImageIndex];
     img.src = imageData.src;
     img.alt = imageData.title;
     title.textContent = imageData.title;
     description.textContent = imageData.description;
-    
+
+    // Store previously focused element for accessibility
+    previouslyFocusedElement = document.activeElement;
+
     modal.style.display = 'block';
     document.body.style.overflow = 'hidden';
-    
+
+    // Set focus to close button for accessibility
+    const closeBtn = modal.querySelector('.close');
+    if (closeBtn) closeBtn.focus();
+
+    // Enable focus trap
+    modal.addEventListener('keydown', trapFocus);
+
     updateLightboxDots();
 }
 
@@ -515,6 +527,41 @@ function closeLightbox() {
     const modal = document.getElementById('lightboxModal');
     modal.style.display = 'none';
     document.body.style.overflow = 'auto';
+
+    // Remove focus trap
+    modal.removeEventListener('keydown', trapFocus);
+
+    // Return focus to previously focused element
+    if (previouslyFocusedElement) {
+        previouslyFocusedElement.focus();
+        previouslyFocusedElement = null;
+    }
+}
+
+// Focus trap for modal accessibility
+function trapFocus(e) {
+    if (e.key !== 'Tab') return;
+
+    const modal = document.getElementById('lightboxModal');
+    const focusableElements = modal.querySelectorAll(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    );
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+
+    if (e.shiftKey) {
+        // Shift + Tab: go to last element if at first
+        if (document.activeElement === firstElement) {
+            e.preventDefault();
+            lastElement.focus();
+        }
+    } else {
+        // Tab: go to first element if at last
+        if (document.activeElement === lastElement) {
+            e.preventDefault();
+            firstElement.focus();
+        }
+    }
 }
 
 function changeLightboxImage(direction) {
