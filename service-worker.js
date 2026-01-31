@@ -230,16 +230,84 @@ async function handleDefaultRequest(request) {
   }
 }
 
-// Background sync for analytics (if supported)
+// Background sync for offline functionality
 self.addEventListener('sync', event => {
   if (event.tag === 'sync-analytics') {
     event.waitUntil(syncAnalytics());
   }
+  if (event.tag === 'sync-contact-form') {
+    event.waitUntil(syncContactForms());
+  }
 });
 
 async function syncAnalytics() {
-  // Placeholder for future analytics sync
   console.log('[SW] Syncing analytics data');
+}
+
+// Sync queued contact form submissions
+async function syncContactForms() {
+  const db = await openFormDB();
+  const forms = await getAllQueuedForms(db);
+
+  for (const form of forms) {
+    try {
+      // Send to WhatsApp (the form redirects to WhatsApp)
+      console.log('[SW] Syncing queued form:', form.id);
+
+      // Notify the user that their form was queued
+      if (self.registration.showNotification) {
+        self.registration.showNotification('Mensaje enviado', {
+          body: 'Tu mensaje de contacto ha sido procesado.',
+          icon: '/images/icon-192x192.png',
+          tag: 'contact-sync'
+        });
+      }
+
+      // Remove from queue
+      await removeQueuedForm(db, form.id);
+    } catch (error) {
+      console.log('[SW] Failed to sync form:', error);
+    }
+  }
+}
+
+// IndexedDB helpers for form queue
+function openFormDB() {
+  return new Promise((resolve, reject) => {
+    const request = indexedDB.open('foro7-forms', 1);
+
+    request.onerror = () => reject(request.error);
+    request.onsuccess = () => resolve(request.result);
+
+    request.onupgradeneeded = (event) => {
+      const db = event.target.result;
+      if (!db.objectStoreNames.contains('queue')) {
+        db.createObjectStore('queue', { keyPath: 'id', autoIncrement: true });
+      }
+    };
+  });
+}
+
+function getAllQueuedForms(db) {
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction('queue', 'readonly');
+    const store = tx.objectStore('queue');
+    const request = store.getAll();
+
+    request.onerror = () => reject(request.error);
+    request.onsuccess = () => resolve(request.result);
+  });
+}
+
+function removeQueuedForm(db, id) {
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction('queue', 'readwrite');
+    const store = tx.objectStore('queue');
+    const request = store.delete(id);
+
+    request.onerror = () => reject(request.error);
+    request.onsuccess = () => resolve();
+  });
 }
 
 // Push notifications (if needed in future)

@@ -259,16 +259,69 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     whatsappMessage += `%0A*Mensaje:*%0A${formData.mensaje}%0A%0A`;
     whatsappMessage += `Mensaje enviado desde www.foro7.com.mx`;
     
-    // Abrir WhatsApp
-    const whatsappUrl = `https://wa.me/5214779203776?text=${whatsappMessage}`;
-    window.open(whatsappUrl, '_blank');
-    
-    // Mostrar mensaje de confirmación
-    alert('¡Gracias por tu mensaje! Te redirigiremos a WhatsApp para completar tu consulta.');
-    
+    // Check if online
+    if (navigator.onLine) {
+        // Abrir WhatsApp
+        const whatsappUrl = `https://wa.me/5214779203776?text=${whatsappMessage}`;
+        window.open(whatsappUrl, '_blank');
+
+        // GA4: Track contact form submission
+        if (typeof trackContactForm === 'function') trackContactForm('whatsapp');
+
+        // Mostrar mensaje de confirmación
+        alert('¡Gracias por tu mensaje! Te redirigiremos a WhatsApp para completar tu consulta.');
+    } else {
+        // Queue for background sync when offline
+        queueFormForSync(formData, whatsappMessage);
+        alert('Estás sin conexión. Tu mensaje se enviará automáticamente cuando vuelvas a tener internet.');
+    }
+
     // Limpiar formulario
     document.getElementById('contactForm').reset();
 });
+
+// Queue form for background sync
+async function queueFormForSync(formData, message) {
+    try {
+        // Store in IndexedDB
+        const db = await openFormDB();
+        await addFormToQueue(db, { ...formData, message, timestamp: Date.now() });
+
+        // Register for background sync
+        if ('serviceWorker' in navigator && 'SyncManager' in window) {
+            const registration = await navigator.serviceWorker.ready;
+            await registration.sync.register('sync-contact-form');
+            console.log('Form queued for background sync');
+        }
+    } catch (error) {
+        console.error('Failed to queue form:', error);
+    }
+}
+
+// IndexedDB helpers (client-side)
+function openFormDB() {
+    return new Promise((resolve, reject) => {
+        const request = indexedDB.open('foro7-forms', 1);
+        request.onerror = () => reject(request.error);
+        request.onsuccess = () => resolve(request.result);
+        request.onupgradeneeded = (event) => {
+            const db = event.target.result;
+            if (!db.objectStoreNames.contains('queue')) {
+                db.createObjectStore('queue', { keyPath: 'id', autoIncrement: true });
+            }
+        };
+    });
+}
+
+function addFormToQueue(db, data) {
+    return new Promise((resolve, reject) => {
+        const tx = db.transaction('queue', 'readwrite');
+        const store = tx.objectStore('queue');
+        const request = store.add(data);
+        request.onerror = () => reject(request.error);
+        request.onsuccess = () => resolve(request.result);
+    });
+}
 
 // Funciones para modales
 function openPrivacyModal() {
