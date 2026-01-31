@@ -3571,7 +3571,9 @@ section {
 }
 
 .cookie-content a {
-    color: var(--color-primary);
+    color: #6B4513;
+    text-decoration: underline;
+    font-weight: 600;
 }
 
 .cookie-buttons {
