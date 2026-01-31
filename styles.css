@@ -254,7 +254,7 @@ h3 {
 
 .lang-btn.active {
     background: white;
-    color: var(--color-link);
+    color: #9A5010;
 }
 
 @media (max-width: 768px) {
