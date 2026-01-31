@@ -237,3 +237,38 @@ test.describe('Automated Accessibility (axe-core)', () => {
     expect(criticalViolations).toHaveLength(0);
   });
 });
+
+test.describe('Visual Regression', () => {
+  test('hero section should match snapshot', async ({ page }) => {
+    await page.goto('/');
+    await page.waitForLoadState('networkidle');
+
+    // Wait for animations to complete
+    await page.waitForTimeout(1000);
+
+    const hero = page.locator('.hero');
+    await expect(hero).toHaveScreenshot('hero-section.png', {
+      maxDiffPixelRatio: 0.1, // Allow 10% difference for minor rendering variations
+    });
+  });
+
+  test('navigation should match snapshot', async ({ page }) => {
+    await page.goto('/');
+    await page.waitForLoadState('networkidle');
+
+    const nav = page.locator('.navbar');
+    await expect(nav).toHaveScreenshot('navigation.png', {
+      maxDiffPixelRatio: 0.1,
+    });
+  });
+
+  test('footer should match snapshot', async ({ page }) => {
+    await page.goto('/');
+    await page.waitForLoadState('networkidle');
+
+    const footer = page.locator('footer');
+    await expect(footer).toHaveScreenshot('footer.png', {
+      maxDiffPixelRatio: 0.1,
+    });
+  });
+});
