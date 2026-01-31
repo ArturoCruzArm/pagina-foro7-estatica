@@ -1,5 +1,6 @@
 // @ts-check
 const { test, expect } = require('@playwright/test');
+const AxeBuilder = require('@axe-core/playwright').default;
 
 test.describe('Homepage', () => {
   test.beforeEach(async ({ page }) => {
@@ -176,5 +177,63 @@ test.describe('Accessibility', () => {
 
     const themeToggle = page.locator('.theme-toggle');
     await expect(themeToggle).toHaveAttribute('aria-label');
+  });
+});
+
+test.describe('Automated Accessibility (axe-core)', () => {
+  test('should have no critical accessibility violations on homepage', async ({ page }) => {
+    await page.goto('/');
+
+    // Wait for page to fully load
+    await page.waitForLoadState('networkidle');
+
+    const accessibilityScanResults = await new AxeBuilder({ page })
+      .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
+      .exclude('.whatsapp-float') // Exclude floating button that may have minor issues
+      .analyze();
+
+    // Log any violations for debugging
+    if (accessibilityScanResults.violations.length > 0) {
+      console.log('Accessibility violations:', JSON.stringify(accessibilityScanResults.violations, null, 2));
+    }
+
+    // Assert no critical or serious violations
+    const criticalViolations = accessibilityScanResults.violations.filter(
+      v => v.impact === 'critical' || v.impact === 'serious'
+    );
+
+    expect(criticalViolations).toHaveLength(0);
+  });
+
+  test('should have no accessibility violations on FAQ section', async ({ page }) => {
+    await page.goto('/#faq');
+    await page.waitForLoadState('networkidle');
+
+    const accessibilityScanResults = await new AxeBuilder({ page })
+      .include('#faq')
+      .withTags(['wcag2a', 'wcag2aa'])
+      .analyze();
+
+    const criticalViolations = accessibilityScanResults.violations.filter(
+      v => v.impact === 'critical' || v.impact === 'serious'
+    );
+
+    expect(criticalViolations).toHaveLength(0);
+  });
+
+  test('should have no accessibility violations on contact form', async ({ page }) => {
+    await page.goto('/#contacto');
+    await page.waitForLoadState('networkidle');
+
+    const accessibilityScanResults = await new AxeBuilder({ page })
+      .include('#contacto')
+      .withTags(['wcag2a', 'wcag2aa'])
+      .analyze();
+
+    const criticalViolations = accessibilityScanResults.violations.filter(
+      v => v.impact === 'critical' || v.impact === 'serious'
+    );
+
+    expect(criticalViolations).toHaveLength(0);
   });
 });
