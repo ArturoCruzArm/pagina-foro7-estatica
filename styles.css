@@ -4320,3 +4320,128 @@ html.high-bandwidth .hero-image img {
     background: var(--color-primary);
     color: white;
 }
+
+/* ===================================
+   Container Queries - Modern CSS
+   =================================== */
+@supports (container-type: inline-size) {
+    .services-grid,
+    .photo-gallery {
+        container-type: inline-size;
+    }
+
+    @container (max-width: 400px) {
+        .service-card h3 {
+            font-size: 1rem;
+        }
+        .service-card p {
+            font-size: 0.85rem;
+        }
+    }
+}
+
+/* ===================================
+   Scroll-Driven Animations (Chrome 115+)
+   =================================== */
+@supports (animation-timeline: scroll()) {
+    .section-title {
+        animation: fade-in-up linear;
+        animation-timeline: view();
+        animation-range: entry 0% entry 100%;
+    }
+
+    @keyframes fade-in-up {
+        from { opacity: 0; transform: translateY(50px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+}
+
+/* ===================================
+   :has() Selector - Modern CSS
+   =================================== */
+@supports selector(:has(*)) {
+    .contact-form:has(:invalid:not(:placeholder-shown)) {
+        border-color: #e74c3c;
+    }
+
+    .header:has(.nav-menu.active) {
+        background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%);
+    }
+}
+
+/* ===================================
+   Content Visibility - Performance
+   =================================== */
+.lazy-section {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 500px;
+}
+
+/* ===================================
+   Low Memory Optimizations
+   =================================== */
+.low-memory .hero-background::before {
+    animation: none !important;
+}
+
+.low-memory img {
+    content-visibility: auto;
+}
+
+/* ===================================
+   Custom Scrollbar
+   =================================== */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--color-bg-alt);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-primary);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-primary-dark);
+}
+
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-primary) var(--color-bg-alt);
+}
+
+/* ===================================
+   PWA Mode Styles
+   =================================== */
+.pwa-mode .header {
+    padding-top: env(safe-area-inset-top);
+}
+
+.pwa-mode .footer {
+    padding-bottom: env(safe-area-inset-bottom);
+}
+
+.pwa-mode .install-prompt {
+    display: none !important;
+}
+
+/* ===================================
+   Form Accent Color
+   =================================== */
+input, select, textarea {
+    accent-color: var(--color-primary);
+}
+
+/* ===================================
+   Text Wrap Balance (Chrome 114+)
+   =================================== */
+h1, h2, h3 {
+    text-wrap: balance;
+}
+
+p.lead, .hero-description {
+    text-wrap: pretty;
+}

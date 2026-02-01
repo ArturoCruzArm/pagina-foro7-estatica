@@ -2128,3 +2128,236 @@ document.addEventListener('keydown', (e) => {
         window.open('https://wa.me/524779203776', '_blank');
     }
 });
+
+// ==========================================
+// SCROLL RESTORATION API
+// ==========================================
+if ('scrollRestoration' in history) {
+    // Manual scroll restoration for better control
+    history.scrollRestoration = 'manual';
+
+    // Save scroll position before unload
+    window.addEventListener('beforeunload', () => {
+        sessionStorage.setItem('scrollPosition', window.scrollY.toString());
+    });
+
+    // Restore scroll position on load
+    window.addEventListener('load', () => {
+        const savedPosition = sessionStorage.getItem('scrollPosition');
+        if (savedPosition && !window.location.hash) {
+            setTimeout(() => {
+                window.scrollTo(0, parseInt(savedPosition));
+            }, 100);
+        }
+    });
+}
+
+// ==========================================
+// MEMORY PRESSURE DETECTION
+// ==========================================
+if ('deviceMemory' in navigator) {
+    const memory = navigator.deviceMemory; // GB
+    if (memory && memory < 4) {
+        document.documentElement.classList.add('low-memory');
+        console.log('[Device] Low memory device:', memory, 'GB');
+    }
+}
+
+// ==========================================
+// IDLE DETECTION API - Prefetch when idle
+// ==========================================
+async function prefetchWhenIdle() {
+    if ('requestIdleCallback' in window) {
+        requestIdleCallback(() => {
+            // Prefetch important resources when browser is idle
+            const links = [
+                'images/gallery/fotografia-boda.jpg',
+                'images/gallery/video-4k-cinematografico.jpg'
+            ];
+            links.forEach(href => {
+                const link = document.createElement('link');
+                link.rel = 'prefetch';
+                link.href = href;
+                link.as = 'image';
+                document.head.appendChild(link);
+            });
+        }, { timeout: 5000 });
+    }
+}
+prefetchWhenIdle();
+
+// ==========================================
+// ERROR BOUNDARY - Global error handling
+// ==========================================
+window.addEventListener('error', (event) => {
+    // Log errors to analytics
+    if (typeof gtag === 'function') {
+        gtag('event', 'exception', {
+            description: event.message,
+            fatal: false
+        });
+    }
+    console.error('[Error]', event.message, event.filename, event.lineno);
+});
+
+window.addEventListener('unhandledrejection', (event) => {
+    if (typeof gtag === 'function') {
+        gtag('event', 'exception', {
+            description: 'Unhandled Promise: ' + event.reason,
+            fatal: false
+        });
+    }
+    console.error('[Promise Error]', event.reason);
+});
+
+// ==========================================
+// NAVIGATION TIMING - Track user journey
+// ==========================================
+let pageEnterTime = Date.now();
+
+window.addEventListener('beforeunload', () => {
+    const timeOnPage = Math.round((Date.now() - pageEnterTime) / 1000);
+
+    // Use sendBeacon for reliable analytics on unload
+    if (navigator.sendBeacon && typeof gtag === 'function') {
+        const data = JSON.stringify({
+            event: 'time_on_page',
+            value: timeOnPage
+        });
+        navigator.sendBeacon('/analytics', data); // Won't work on static but pattern is correct
+    }
+});
+
+// ==========================================
+// BACK/FORWARD CACHE (bfcache) SUPPORT
+// ==========================================
+window.addEventListener('pageshow', (event) => {
+    if (event.persisted) {
+        // Page was restored from bfcache
+        console.log('[bfcache] Page restored from cache');
+        // Re-initialize any necessary state
+        pageEnterTime = Date.now();
+    }
+});
+
+window.addEventListener('pagehide', (event) => {
+    if (event.persisted) {
+        console.log('[bfcache] Page entering cache');
+    }
+});
+
+// ==========================================
+// PREFERS COLOR SCHEME LISTENER
+// ==========================================
+const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+function handleColorSchemeChange(e) {
+    // Only auto-switch if user hasn't manually set theme
+    if (!localStorage.getItem('theme')) {
+        document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+    }
+}
+
+darkModeMediaQuery.addEventListener('change', handleColorSchemeChange);
+
+// ==========================================
+// COPY PROTECTION FOR GALLERY IMAGES
+// ==========================================
+document.querySelectorAll('.photo-item img, .gallery img').forEach(img => {
+    img.addEventListener('contextmenu', (e) => {
+        e.preventDefault();
+        // Show friendly message
+        const toast = document.createElement('div');
+        toast.textContent = 'Imagenes protegidas. Contactanos para licencias.';
+        toast.style.cssText = `
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            z-index: 10000;
+            animation: fadeInOut 3s ease;
+        `;
+        document.body.appendChild(toast);
+        setTimeout(() => toast.remove(), 3000);
+    });
+
+    // Prevent drag
+    img.addEventListener('dragstart', (e) => e.preventDefault());
+});
+
+// Add animation keyframes for toast
+const toastStyle = document.createElement('style');
+toastStyle.textContent = `
+    @keyframes fadeInOut {
+        0% { opacity: 0; transform: translateX(-50%) translateY(20px); }
+        15% { opacity: 1; transform: translateX(-50%) translateY(0); }
+        85% { opacity: 1; transform: translateX(-50%) translateY(0); }
+        100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+    }
+`;
+document.head.appendChild(toastStyle);
+
+// ==========================================
+// EASTER EGG - Konami Code
+// ==========================================
+const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+let konamiIndex = 0;
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === konamiCode[konamiIndex]) {
+        konamiIndex++;
+        if (konamiIndex === konamiCode.length) {
+            konamiIndex = 0;
+            activateEasterEgg();
+        }
+    } else {
+        konamiIndex = 0;
+    }
+});
+
+function activateEasterEgg() {
+    document.body.style.transition = 'filter 0.5s';
+    document.body.style.filter = 'hue-rotate(180deg)';
+
+    const confetti = ['📷', '🎬', '💒', '✨', '🎉', '💐', '🥂', '💍'];
+    for (let i = 0; i < 50; i++) {
+        setTimeout(() => {
+            const span = document.createElement('span');
+            span.textContent = confetti[Math.floor(Math.random() * confetti.length)];
+            span.style.cssText = `
+                position: fixed;
+                top: -50px;
+                left: ${Math.random() * 100}vw;
+                font-size: ${20 + Math.random() * 30}px;
+                z-index: 10001;
+                pointer-events: none;
+                animation: fall ${3 + Math.random() * 2}s linear forwards;
+            `;
+            document.body.appendChild(span);
+            setTimeout(() => span.remove(), 5000);
+        }, i * 50);
+    }
+
+    setTimeout(() => {
+        document.body.style.filter = 'none';
+    }, 5000);
+}
+
+// Add fall animation
+const fallStyle = document.createElement('style');
+fallStyle.textContent = `
+    @keyframes fall {
+        to {
+            transform: translateY(110vh) rotate(${Math.random() * 360}deg);
+        }
+    }
+`;
+document.head.appendChild(fallStyle);
+
+console.log('%c📷 Producciones Foro 7', 'font-size: 24px; font-weight: bold; color: #D2691E;');
+console.log('%cCapturamos tu historia, fotograma a fotograma', 'font-size: 14px; color: #8B4513;');
+console.log('%c🎮 Psst... prueba el codigo Konami ;)', 'font-size: 10px; color: #999;');
