@@ -1937,3 +1937,194 @@ window.addEventListener('load', () => {
         }
     }, 0);
 });
+
+// ==========================================
+// PWA INSTALL PROMPT
+// ==========================================
+let deferredPrompt;
+let installPromptShown = false;
+
+window.addEventListener('beforeinstallprompt', (e) => {
+    // Prevent the mini-infobar from appearing
+    e.preventDefault();
+    deferredPrompt = e;
+
+    // Don't show if already installed or dismissed recently
+    if (localStorage.getItem('pwa-install-dismissed')) {
+        const dismissedTime = parseInt(localStorage.getItem('pwa-install-dismissed'));
+        if (Date.now() - dismissedTime < 7 * 24 * 60 * 60 * 1000) return; // 7 days
+    }
+
+    // Show custom install prompt after user engagement
+    setTimeout(() => {
+        if (!installPromptShown) showInstallPrompt();
+    }, 30000); // 30 seconds delay
+});
+
+function showInstallPrompt() {
+    if (installPromptShown || !deferredPrompt) return;
+    installPromptShown = true;
+
+    const prompt = document.createElement('div');
+    prompt.className = 'install-prompt';
+    prompt.innerHTML = `
+        <div class="install-prompt-content">
+            <div class="install-prompt-icon">📷</div>
+            <div class="install-prompt-text">
+                <h4>Instala Foro 7</h4>
+                <p>Accede rapido desde tu pantalla de inicio</p>
+            </div>
+        </div>
+        <div class="install-prompt-actions">
+            <button class="install-btn primary" onclick="installApp()">Instalar</button>
+            <button class="install-btn secondary" onclick="dismissInstall()">Ahora no</button>
+        </div>
+    `;
+    document.body.appendChild(prompt);
+
+    // Animate in
+    requestAnimationFrame(() => {
+        prompt.classList.add('show');
+    });
+
+    // Track prompt shown
+    if (typeof gtag === 'function') {
+        gtag('event', 'pwa_install_prompt_shown', { event_category: 'PWA' });
+    }
+}
+
+async function installApp() {
+    if (!deferredPrompt) return;
+
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+
+    // Track result
+    if (typeof gtag === 'function') {
+        gtag('event', 'pwa_install_' + outcome, { event_category: 'PWA' });
+    }
+
+    deferredPrompt = null;
+    hideInstallPrompt();
+}
+
+function dismissInstall() {
+    localStorage.setItem('pwa-install-dismissed', Date.now().toString());
+    hideInstallPrompt();
+
+    if (typeof gtag === 'function') {
+        gtag('event', 'pwa_install_dismissed', { event_category: 'PWA' });
+    }
+}
+
+function hideInstallPrompt() {
+    const prompt = document.querySelector('.install-prompt');
+    if (prompt) {
+        prompt.classList.remove('show');
+        setTimeout(() => prompt.remove(), 300);
+    }
+}
+
+// Detect if app is installed
+window.addEventListener('appinstalled', () => {
+    deferredPrompt = null;
+    hideInstallPrompt();
+
+    if (typeof gtag === 'function') {
+        gtag('event', 'pwa_installed', { event_category: 'PWA' });
+    }
+});
+
+// Check if running as PWA
+function isPWA() {
+    return window.matchMedia('(display-mode: standalone)').matches ||
+           window.navigator.standalone === true ||
+           document.referrer.includes('android-app://');
+}
+
+if (isPWA()) {
+    document.documentElement.classList.add('pwa-mode');
+}
+
+// ==========================================
+// STORAGE PERSISTENCE API
+// ==========================================
+async function requestPersistentStorage() {
+    if (navigator.storage && navigator.storage.persist) {
+        const isPersisted = await navigator.storage.persisted();
+        if (!isPersisted) {
+            const result = await navigator.storage.persist();
+            console.log('[Storage] Persistence:', result ? 'granted' : 'denied');
+        }
+    }
+}
+requestPersistentStorage();
+
+// ==========================================
+// CONTACT PICKER API (if supported)
+// ==========================================
+async function pickContact() {
+    if ('contacts' in navigator && 'ContactsManager' in window) {
+        try {
+            const props = ['name', 'tel'];
+            const opts = { multiple: false };
+            const contacts = await navigator.contacts.select(props, opts);
+            if (contacts.length > 0) {
+                const contact = contacts[0];
+                if (contact.name) document.getElementById('nombre').value = contact.name[0];
+                if (contact.tel) document.getElementById('telefono').value = contact.tel[0];
+            }
+        } catch (err) {
+            console.log('[Contacts] Picker cancelled or not supported');
+        }
+    }
+}
+
+// ==========================================
+// REDUCED MOTION DETECTION
+// ==========================================
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+function handleReducedMotion() {
+    if (prefersReducedMotion.matches) {
+        document.documentElement.classList.add('reduced-motion');
+        // Disable AOS animations
+        if (typeof AOS !== 'undefined') {
+            AOS.init({ disable: true });
+        }
+    } else {
+        document.documentElement.classList.remove('reduced-motion');
+    }
+}
+
+prefersReducedMotion.addEventListener('change', handleReducedMotion);
+handleReducedMotion();
+
+// ==========================================
+// KEYBOARD SHORTCUTS
+// ==========================================
+document.addEventListener('keydown', (e) => {
+    // Only if no input is focused
+    if (['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) return;
+
+    // Alt + H = Home
+    if (e.altKey && e.key === 'h') {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    // Alt + C = Contact
+    if (e.altKey && e.key === 'c') {
+        e.preventDefault();
+        document.getElementById('contacto')?.scrollIntoView({ behavior: 'smooth' });
+    }
+    // Alt + G = Gallery
+    if (e.altKey && e.key === 'g') {
+        e.preventDefault();
+        document.getElementById('portafolio')?.scrollIntoView({ behavior: 'smooth' });
+    }
+    // Alt + W = WhatsApp
+    if (e.altKey && e.key === 'w') {
+        e.preventDefault();
+        window.open('https://wa.me/524779203776', '_blank');
+    }
+});
