@@ -1812,14 +1812,45 @@ function toggleFullscreen(element) {
     }
 }
 
-// Performance Observer - Monitor Core Web Vitals
+// Performance Observer - Monitor Core Web Vitals and send to GA4
 if ('PerformanceObserver' in window) {
+    // Send metric to GA4
+    function sendWebVital(name, value, rating) {
+        if (typeof gtag === 'function') {
+            gtag('event', name, {
+                event_category: 'Web Vitals',
+                event_label: rating,
+                value: Math.round(name === 'CLS' ? value * 1000 : value),
+                non_interaction: true
+            });
+        }
+    }
+
+    // Get rating for metrics
+    function getLCPRating(value) {
+        return value <= 2500 ? 'good' : value <= 4000 ? 'needs-improvement' : 'poor';
+    }
+    function getFIDRating(value) {
+        return value <= 100 ? 'good' : value <= 300 ? 'needs-improvement' : 'poor';
+    }
+    function getCLSRating(value) {
+        return value <= 0.1 ? 'good' : value <= 0.25 ? 'needs-improvement' : 'poor';
+    }
+    function getINPRating(value) {
+        return value <= 200 ? 'good' : value <= 500 ? 'needs-improvement' : 'poor';
+    }
+    function getTTFBRating(value) {
+        return value <= 800 ? 'good' : value <= 1800 ? 'needs-improvement' : 'poor';
+    }
+
     // Observe LCP
     try {
         const lcpObserver = new PerformanceObserver((entryList) => {
             const entries = entryList.getEntries();
             const lastEntry = entries[entries.length - 1];
-            console.log('[Perf] LCP:', Math.round(lastEntry.startTime), 'ms');
+            const value = lastEntry.startTime;
+            console.log('[Perf] LCP:', Math.round(value), 'ms');
+            sendWebVital('LCP', value, getLCPRating(value));
         });
         lcpObserver.observe({ type: 'largest-contentful-paint', buffered: true });
     } catch (e) {}
@@ -1827,22 +1858,82 @@ if ('PerformanceObserver' in window) {
     // Observe CLS
     try {
         let clsValue = 0;
+        let clsEntries = [];
         const clsObserver = new PerformanceObserver((entryList) => {
             for (const entry of entryList.getEntries()) {
                 if (!entry.hadRecentInput) {
                     clsValue += entry.value;
+                    clsEntries.push(entry);
                 }
             }
         });
         clsObserver.observe({ type: 'layout-shift', buffered: true });
+
+        // Report CLS on page hide
+        addEventListener('visibilitychange', () => {
+            if (document.visibilityState === 'hidden' && clsValue > 0) {
+                console.log('[Perf] CLS:', clsValue.toFixed(4));
+                sendWebVital('CLS', clsValue, getCLSRating(clsValue));
+            }
+        }, { once: true });
     } catch (e) {}
 
     // Observe FID
     try {
         const fidObserver = new PerformanceObserver((entryList) => {
             const firstInput = entryList.getEntries()[0];
-            console.log('[Perf] FID:', Math.round(firstInput.processingStart - firstInput.startTime), 'ms');
+            const value = firstInput.processingStart - firstInput.startTime;
+            console.log('[Perf] FID:', Math.round(value), 'ms');
+            sendWebVital('FID', value, getFIDRating(value));
         });
         fidObserver.observe({ type: 'first-input', buffered: true });
     } catch (e) {}
+
+    // Observe INP (Interaction to Next Paint) - newer metric
+    try {
+        let maxINP = 0;
+        const inpObserver = new PerformanceObserver((entryList) => {
+            for (const entry of entryList.getEntries()) {
+                if (entry.interactionId) {
+                    const duration = entry.duration;
+                    if (duration > maxINP) {
+                        maxINP = duration;
+                    }
+                }
+            }
+        });
+        inpObserver.observe({ type: 'event', buffered: true, durationThreshold: 16 });
+
+        // Report INP on page hide
+        addEventListener('visibilitychange', () => {
+            if (document.visibilityState === 'hidden' && maxINP > 0) {
+                console.log('[Perf] INP:', Math.round(maxINP), 'ms');
+                sendWebVital('INP', maxINP, getINPRating(maxINP));
+            }
+        }, { once: true });
+    } catch (e) {}
+
+    // Observe TTFB (Time to First Byte)
+    try {
+        const navEntry = performance.getEntriesByType('navigation')[0];
+        if (navEntry) {
+            const ttfb = navEntry.responseStart - navEntry.requestStart;
+            console.log('[Perf] TTFB:', Math.round(ttfb), 'ms');
+            sendWebVital('TTFB', ttfb, getTTFBRating(ttfb));
+        }
+    } catch (e) {}
 }
+
+// Report page load time
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        const navEntry = performance.getEntriesByType('navigation')[0];
+        if (navEntry && typeof gtag === 'function') {
+            gtag('event', 'page_load_time', {
+                event_category: 'Performance',
+                value: Math.round(navEntry.loadEventEnd - navEntry.startTime),
+                non_interaction: true
+            });
+        }
+    }, 0);
+});

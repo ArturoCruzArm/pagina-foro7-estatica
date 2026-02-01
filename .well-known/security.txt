@@ -1,0 +1,12 @@
+# Security Policy for Producciones Foro 7
+# https://securitytxt.org/
+
+Contact: mailto:foro7.producciones@hotmail.com
+Contact: https://wa.me/524779203776
+Expires: 2027-01-31T23:59:00.000Z
+Preferred-Languages: es, en
+Canonical: https://invitados.org/.well-known/security.txt
+Policy: https://invitados.org/#privacidad
+
+# This is a static photography business website
+# No user accounts or sensitive data processing

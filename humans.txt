@@ -1,0 +1,21 @@
+/* TEAM */
+Company: Producciones Foro 7
+Location: Leon, Guanajuato, Mexico
+Contact: foro7.producciones [at] hotmail.com
+WhatsApp: +52 477 920 3776
+
+/* SITE */
+Last update: 2026-01-31
+Language: Spanish / English
+Doctype: HTML5
+Standards: W3C, WCAG 2.1 AA
+Technologies: HTML5, CSS3, JavaScript ES6+
+Frameworks: None (Vanilla)
+Performance: Core Web Vitals Optimized
+PWA: Yes (Service Worker, Manifest)
+
+/* THANKS */
+Icons: Font Awesome
+Fonts: Google Fonts (Playfair Display, Inter)
+Animations: AOS (Animate On Scroll)
+Analytics: Google Analytics 4
