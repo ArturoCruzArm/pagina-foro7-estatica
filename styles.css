@@ -192,7 +192,7 @@ h3 {
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     position: fixed;
     width: 100%;
-    top: 36px;
+    top: 0;
     z-index: 1000;
 }
 
@@ -289,7 +289,7 @@ h3 {
 
 /* Sección Hero */
 .hero {
-    margin-top: 116px;
+    margin-top: 80px;
     padding: 4rem 0;
     background: linear-gradient(135deg, #FFF8DC 0%, #F5DEB3 100%);
     position: relative;
@@ -2750,7 +2750,7 @@ h3 {
     .nav-menu {
         position: fixed;
         left: -100%;
-        top: 106px;
+        top: 70px;
         flex-direction: column;
         background-color: #D2691E;
         width: 100%;
@@ -3097,7 +3097,7 @@ h3 {
 
 /* Scroll suave para navegación */
 section {
-    scroll-margin-top: 116px;
+    scroll-margin-top: 80px;
 }
 
 /* Estados de hover mejorados */
