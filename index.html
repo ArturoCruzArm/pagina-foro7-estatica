@@ -346,7 +346,7 @@
         body{font-family:'Inter',sans-serif;line-height:1.6;color:var(--color-text);background-color:var(--color-bg)}
         .skip-link{position:absolute;top:-40px;left:50%;transform:translateX(-50%);background:#5D4037;color:#fff;padding:.75rem 1.5rem;border-radius:0 0 8px 8px;text-decoration:none;font-weight:600;z-index:10000}.skip-link:focus{top:0}
         h1,h2,h3,h4{font-family:'Playfair Display',serif;color:var(--color-heading)}
-        .header{background:linear-gradient(135deg,#D2691E 0%,#CD853F 100%);box-shadow:0 2px 10px rgba(0,0,0,.1);position:fixed;width:100%;top:0;z-index:1000}
+        .header{background:linear-gradient(135deg,#D2691E 0%,#CD853F 100%);box-shadow:0 2px 10px rgba(0,0,0,.1);position:fixed;width:100%;top:36px;z-index:1000}
         .navbar{padding:1rem 0}
         .nav-container{max-width:1200px;margin:0 auto;padding:0 20px;display:flex;justify-content:space-between;align-items:center}
         .nav-logo{text-decoration:none}.nav-logo .logo-text{color:#fff;font-size:1.8rem;font-weight:600;font-family:'Playfair Display',serif}
@@ -360,7 +360,7 @@
         .theme-toggle .fa-moon{display:block;color:#fff}
         [data-theme="dark"] .theme-toggle .fa-sun{display:block}
         [data-theme="dark"] .theme-toggle .fa-moon{display:none}
-        .hero{min-height:100vh;display:flex;align-items:center;padding-top:80px;position:relative;overflow:hidden}
+        .hero{min-height:100vh;display:flex;align-items:center;padding-top:116px;position:relative;overflow:hidden}
         .hero-background{position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,rgba(139,69,19,.9) 0%,rgba(210,105,30,.8) 50%,rgba(205,133,63,.7) 100%);z-index:1}
         .hero-content{max-width:1200px;margin:0 auto;padding:40px 20px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;z-index:2}
         .hero-text h1{font-size:3rem;margin-bottom:1rem;color:#fff}
@@ -435,6 +435,20 @@
     </script>
 </head>
 <body>
+    <!-- Foro 7 Sites Top Navigation Bar -->
+    <style>
+        .foro7-topbar{position:fixed;top:0;left:0;width:100%;height:36px;background:#050508;border-bottom:1px solid rgba(212,175,55,0.15);display:flex;align-items:center;justify-content:center;z-index:1100;gap:8px}
+        .foro7-topbar a{font-family:monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.5);text-decoration:none;padding:4px 14px;border-radius:4px;transition:color .2s ease,background .2s ease}
+        .foro7-topbar a:hover{color:#d4af37}
+        .foro7-topbar a.foro7-topbar-active{background:rgba(212,175,55,0.15);color:#d4af37}
+        @media(max-width:768px){.foro7-topbar a{font-size:9px;letter-spacing:1px}}
+    </style>
+    <nav class="foro7-topbar" aria-label="Sitios Foro 7">
+        <a href="https://invitados.org" class="foro7-topbar-active">Inicio</a>
+        <a href="https://foro7.invitados.org">Paquetes &amp; Eventos</a>
+        <a href="https://studio.invitados.org">Productos 3D</a>
+    </nav>
+
     <!-- Skip Link for Accessibility -->
     <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
 
