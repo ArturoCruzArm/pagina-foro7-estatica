@@ -1875,5 +1875,164 @@
             }, 2000);
         }
     </script>
+
+<!-- ══ CHATBOT FORO 7 ══════════════════════════════════════════ -->
+<style>
+#f7cb-btn{position:fixed;bottom:90px;left:24px;z-index:9998;width:54px;height:54px;border-radius:50%;background:linear-gradient(135deg,#b8860b,#d4af37);border:none;cursor:pointer;box-shadow:0 4px 18px rgba(212,175,55,0.5);display:flex;align-items:center;justify-content:center;font-size:22px;transition:transform .2s;}
+#f7cb-btn:hover{transform:scale(1.1);}
+#f7cb-win{position:fixed;bottom:154px;left:24px;z-index:9999;width:340px;max-height:520px;border-radius:16px;background:#1a1a2e;border:1px solid rgba(212,175,55,0.3);box-shadow:0 8px 40px rgba(0,0,0,0.6);display:none;flex-direction:column;overflow:hidden;font-family:'Segoe UI',sans-serif;}
+#f7cb-win.open{display:flex;}
+#f7cb-head{background:linear-gradient(135deg,#12122a,#1e1e3a);padding:14px 16px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(212,175,55,0.2);}
+#f7cb-head img{width:32px;height:32px;object-fit:contain;filter:drop-shadow(0 0 6px rgba(212,175,55,0.5));}
+#f7cb-hn{color:#d4af37;font-weight:700;font-size:14px;}
+#f7cb-hs{color:rgba(255,255,255,0.5);font-size:11px;}
+#f7cb-x{margin-left:auto;background:none;border:none;color:rgba(255,255,255,0.5);font-size:20px;cursor:pointer;line-height:1;padding:0;}
+#f7cb-msgs{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px;}
+#f7cb-msgs::-webkit-scrollbar{width:4px;}
+#f7cb-msgs::-webkit-scrollbar-thumb{background:rgba(212,175,55,0.3);border-radius:2px;}
+.cb-bot,.cb-usr{max-width:88%;padding:10px 13px;border-radius:12px;font-size:13px;line-height:1.5;word-break:break-word;}
+.cb-bot{background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.9);align-self:flex-start;border-bottom-left-radius:3px;}
+.cb-usr{background:linear-gradient(135deg,#b8860b,#d4af37);color:#1a1a2e;align-self:flex-end;font-weight:600;border-bottom-right-radius:3px;}
+.cb-dot{display:inline-block;width:6px;height:6px;margin:0 2px;background:#d4af37;border-radius:50%;animation:cb-bounce .9s infinite;}
+.cb-dot:nth-child(2){animation-delay:.15s;}
+.cb-dot:nth-child(3){animation-delay:.3s;}
+@keyframes cb-bounce{0%,80%,100%{transform:translateY(0)}40%{transform:translateY(-6px)}}
+#f7cb-qr{padding:0 12px 10px;display:flex;flex-wrap:wrap;gap:6px;}
+.cb-qr{background:rgba(212,175,55,0.12);border:1px solid rgba(212,175,55,0.35);color:#d4af37;padding:5px 11px;border-radius:20px;font-size:12px;cursor:pointer;transition:background .2s;}
+.cb-qr:hover{background:rgba(212,175,55,0.25);}
+#f7cb-form{display:flex;padding:10px 12px;border-top:1px solid rgba(212,175,55,0.15);gap:8px;}
+#f7cb-inp{flex:1;background:rgba(255,255,255,0.07);border:1px solid rgba(212,175,55,0.25);border-radius:20px;padding:8px 14px;color:#fff;font-size:13px;outline:none;}
+#f7cb-inp::placeholder{color:rgba(255,255,255,0.35);}
+#f7cb-send{background:#d4af37;border:none;border-radius:50%;width:34px;height:34px;cursor:pointer;font-size:14px;color:#1a1a2e;display:flex;align-items:center;justify-content:center;transition:transform .15s;}
+#f7cb-send:hover{transform:scale(1.1);}
+</style>
+<button id="f7cb-btn" onclick="f7T()" aria-label="Abrir chat">💬</button>
+<div id="f7cb-win">
+  <div id="f7cb-head">
+    <img src="logo.png" alt="Foro 7 Producciones">
+    <div><div id="f7cb-hn">Asistente Foro 7</div><div id="f7cb-hs">🟢 En línea</div></div>
+    <button id="f7cb-x" onclick="f7T()">×</button>
+  </div>
+  <div id="f7cb-msgs"></div>
+  <div id="f7cb-qr"></div>
+  <form id="f7cb-form" onsubmit="return false;">
+    <input id="f7cb-inp" placeholder="Escribe tu pregunta..." autocomplete="off">
+    <button id="f7cb-send" type="submit">➤</button>
+  </form>
+</div>
+<script>
+(function(){
+const WA='https://wa.me/5214779203776';
+const KB=[
+  {kw:['hola','buenos','buenas','saludos','hey','hi'],
+   res:'¡Hola! 👋 Soy el asistente de <strong>Foro 7 Producciones</strong>. Hacemos invitaciones digitales únicas para tu evento especial.\n\n¿En qué te puedo ayudar?',
+   qr:['Ver precios','Bodas','XV Años','¿Qué incluye?','Contacto']},
+  {kw:['precio','precios','costo','costos','cuanto','cuánto','tarifa','tarifas','cobran','vale'],
+   res:'💰 <strong>Precios de Invitaciones Digitales:</strong>\n\n• Boda — $3,500 MXN\n• XV Años — $2,800 MXN\n• Bautizo — $2,000 MXN\n• Graduación — $2,500 MXN\n• Baby Shower — $1,800 MXN\n\n🎵 Extras opcionales:\n• Música de fondo +$500\n• Galería de fotos +$800\n• Lista de regalos +$400\n• Dashboard RSVP +$600',
+   qr:['Boda','XV Años','¿Qué incluye?','Cotizar ahora']},
+  {kw:['boda','novios','matrimonio','casamiento','wedding'],
+   res:'💍 <strong>Invitación Digital para Boda — $3,500 MXN</strong>\n\nIncluye:\n✓ Diseño personalizado animado\n✓ Contador de cuenta regresiva\n✓ Mapa interactivo de la sede\n✓ Confirmación de asistencia (RSVP)\n✓ Galería de fotos de la pareja\n✓ Información de hospedaje\n✓ Música de fondo opcional\n✓ Acceso desde cualquier dispositivo',
+   qr:['Agregar galería +$800','Agregar RSVP +$600','Cotizar mi boda','Ver más servicios']},
+  {kw:['quince','quinces','xv','xvaños','15','años','cumpleaños'],
+   res:'👑 <strong>Invitación Digital XV Años — $2,800 MXN</strong>\n\nIncluye:\n✓ Diseño elegante personalizado\n✓ Cuenta regresiva al gran día\n✓ Mapa de la fiesta\n✓ RSVP / Confirmación\n✓ Galería de fotos\n✓ Información de la festejada\n✓ Tema y colores a elegir',
+   qr:['Agregar música +$500','Agregar lista de regalos +$400','Cotizar mis XV']},
+  {kw:['bautizo','bautisar','bautismo','primera','comunion'],
+   res:'✝️ <strong>Invitación Digital Bautizo — $2,000 MXN</strong>\n\nIncluye:\n✓ Diseño religioso personalizado\n✓ Datos del evento\n✓ Confirmación de asistencia\n✓ Mapa interactivo\n✓ Foto del bebé\n✓ Personalizable con colores',
+   qr:['Cotizar bautizo','Ver extras opcionales','Contacto']},
+  {kw:['graduacion','graduación','graduado','escuela','universitaria','egreso'],
+   res:'🎓 <strong>Invitación Digital Graduación — $2,500 MXN</strong>\n\nIncluye:\n✓ Diseño académico moderno\n✓ Información del evento\n✓ RSVP\n✓ Galería de fotos\n✓ Mapa de la sede',
+   qr:['Cotizar graduación','Agregar música +$500','Contacto']},
+  {kw:['baby','shower','bebe','bebé','nena','neno','embarazo','recibimiento'],
+   res:'🍼 <strong>Invitación Digital Baby Shower — $1,800 MXN</strong>\n\nIncluye:\n✓ Diseño tierno personalizado\n✓ Tema y colores a elegir\n✓ Datos del evento\n✓ Lista de regalos opcional\n✓ RSVP\n✓ Mapa interactivo',
+   qr:['Agregar lista de regalos +$400','Cotizar baby shower','Contacto']},
+  {kw:['extra','extras','adicional','adicionales','musica','música','galeria','galería','rsvp','regalo','regalos'],
+   res:'🎁 <strong>Extras Opcionales para tu Invitación:</strong>\n\n• 🎵 Música de fondo — +$500 MXN\n• 📸 Galería de fotos — +$800 MXN\n• 🎁 Lista de regalos — +$400 MXN\n• ✅ Dashboard RSVP — +$600 MXN\n\nPuedes combinar todos los que quieras.',
+   qr:['Ver precios base','Cotizar con extras','Contacto']},
+  {kw:['incluye','incluyen','que trae','que tiene','caracteristicas','funciones'],
+   res:'📋 <strong>¿Qué incluyen nuestras invitaciones digitales?</strong>\n\n✓ Diseño personalizado y animado\n✓ Acceso desde smartphone, tablet y PC\n✓ Cuenta regresiva al evento\n✓ Mapa interactivo de la sede\n✓ RSVP / Confirmación de asistencia\n✓ Enlace único y compartible\n✓ Soporte durante el evento\n✓ Sin descargas ni apps requeridas',
+   qr:['Ver precios','Bodas','XV Años','Cotizar ahora']},
+  {kw:['drone','dron','aereo','aéreo','aire','vuelo'],
+   res:'🚁 <strong>Servicio de Dron 4K — +$1,500 MXN</strong>\n\nCaptura cinematográfica aérea para tu evento:\n✓ Videos 4K desde el aire\n✓ Perspectivas únicas e impresionantes\n✓ Piloto certificado\n✓ Tomas de la venue y el evento\n\nAgrega este servicio a tu paquete de fotografía/video.',
+   qr:['Ver fotografía y video','Cotizar con dron','Contacto']},
+  {kw:['pyme','empresa','empresas','negocio','negocios','comercial','presencia','digital','pagina web'],
+   res:'🏢 <strong>Paquete Presencia Digital para PyMEs — desde $3,500 MXN/mes</strong>\n\n✓ Sitio web profesional\n✓ Invitaciones digitales de eventos\n✓ Sesión de fotografía comercial\n✓ Gestión de redes sociales\n✓ Actualizaciones mensuales\n✓ Soporte técnico incluido\n\nIdeal para pequeñas y medianas empresas en León, Gto.',
+   qr:['Cotizar para mi empresa','Contacto','Ver más servicios']},
+  {kw:['referido','referidos','recomendar','recomendacion','descuento','amigo'],
+   res:'🤝 <strong>Programa de Referidos Foro 7</strong>\n\n👉 ¿Tienes un amigo buscando invitaciones o fotografía?\n\n🎁 <strong>Tu beneficio:</strong> $500 MXN de crédito por cada referido que contrate.\n\n🎁 <strong>Su beneficio:</strong> 20% de descuento en su primer pedido.\n\nSin límite de referidos. ¡Mientras más recomiendas, más ganas!',
+   qr:['Quiero referir a alguien','Cotizar para mí','Contacto']},
+  {kw:['contacto','contactar','hablar','whatsapp','llamar','telefono','teléfono','asesor','cotizar','cotizacion'],
+   res:'📲 <strong>¡Con gusto te atendemos!</strong>\n\nEscríbenos por WhatsApp y un asesor te responderá de inmediato:\n\n📞 +52 477 920 3776\n📧 foro7.producciones@hotmail.com\n📍 Padilla 112, Cumbres de Arbide, León, Gto.\n\n<a href="'+WA+'" target="_blank" style="color:#d4af37;">👉 Abrir WhatsApp ahora</a>',
+   qr:[]},
+  {kw:['ubicacion','ubicación','donde','dónde','direccion','dirección','leon','gto','guanajuato'],
+   res:'📍 <strong>Estamos en León, Guanajuato</strong>\n\nPadilla 112, Cumbres de Arbide\nLeón, Gto., México\n\n🌐 También atendemos de forma remota a todo México.\n\n📞 +52 477 920 3776',
+   qr:['Contacto por WhatsApp','Ver precios','Servicios']},
+  {kw:['experiencia','anos','años','tiempo','trayectoria','clientes','reseñas','reseñas'],
+   res:'⭐ <strong>Foro 7 Producciones</strong>\n\nSomos especialistas en invitaciones digitales y fotografía para eventos en León, Gto. Hemos creado cientos de invitaciones para bodas, XV años, bautizos y más.\n\n✓ Diseños únicos y personalizados\n✓ Entrega rápida\n✓ Soporte incluido\n✓ Clientes satisfechos en todo México',
+   qr:['Ver precios','Nuestros servicios','Contacto']},
+  {kw:['disponible','disponibilidad','fecha','cuando','agenda','agendar','reservar'],
+   res:'📅 <strong>Disponibilidad</strong>\n\nPara verificar disponibilidad para tu fecha específica, contáctanos directamente por WhatsApp. Trabajamos bodas, XV años, bautizos y más eventos.\n\n📞 +52 477 920 3776',
+   qr:['Abrir WhatsApp','Ver precios','Contacto']},
+  {kw:['foto','fotos','fotografia','fotografía','video','videos','cinematografico','cinematográfico'],
+   res:'📸 <strong>También ofrecemos Fotografía y Video</strong>\n\nVisita <a href="https://foro7.invitados.org" style="color:#d4af37;" target="_blank">foro7.invitados.org</a> para ver nuestros paquetes completos de fotografía y video para bodas, XV años y más eventos.',
+   qr:['Ver precios de invitaciones','Contacto']}
+];
+const FB={res:'No encontré una respuesta exacta, pero puedo conectarte con un asesor que resolverá todas tus dudas. 😊',qr:['Ver precios','¿Qué incluye?','Contacto por WhatsApp']};
+
+function nm(s){return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9\s]/g,' ');}
+function match(txt){let best=null,top=0;const t=nm(txt);KB.forEach(i=>{let sc=0;i.kw.forEach(k=>{if(t.includes(nm(k)))sc+=k.length;});if(sc>top){top=sc;best=i;}});return top>0?best:null;}
+function userMsg(t){const d=document.createElement('div');d.className='cb-usr';d.textContent=t;document.getElementById('f7cb-msgs').appendChild(d);d.scrollIntoView({block:'end'});}
+function bot(intent){
+  const msgs=document.getElementById('f7cb-msgs');
+  const qrEl=document.getElementById('f7cb-qr');
+  qrEl.innerHTML='';
+  const typing=document.createElement('div');
+  typing.className='cb-bot';
+  typing.innerHTML='<span class="cb-dot"></span><span class="cb-dot"></span><span class="cb-dot"></span>';
+  msgs.appendChild(typing);
+  typing.scrollIntoView({block:'end'});
+  setTimeout(()=>{
+    typing.remove();
+    const d=document.createElement('div');
+    d.className='cb-bot';
+    d.innerHTML=intent.res.replace(/\n/g,'<br>');
+    msgs.appendChild(d);
+    d.scrollIntoView({block:'end'});
+    (intent.qr||[]).forEach(q=>{
+      const btn=document.createElement('button');
+      btn.className='cb-qr';btn.textContent=q;
+      btn.onclick=()=>qrClick(q);qrEl.appendChild(btn);
+    });
+  },700);
+}
+function qrClick(q){
+  document.getElementById('f7cb-qr').innerHTML='';
+  userMsg(q);
+  const waTriggers=['cotizar','whatsapp','asesor','abrir whatsapp'];
+  if(waTriggers.some(t=>nm(q).includes(nm(t)))){window.open(WA,'_blank');return;}
+  const intent=match(q);bot(intent||FB);
+}
+function send(){
+  const inp=document.getElementById('f7cb-inp');
+  const txt=inp.value.trim();
+  if(!txt)return;
+  inp.value='';
+  document.getElementById('f7cb-qr').innerHTML='';
+  userMsg(txt);
+  const waTriggers=['cotizar','whatsapp','asesor','verificar'];
+  if(waTriggers.some(t=>nm(txt).includes(nm(t)))){window.open(WA,'_blank');return;}
+  const intent=match(txt);bot(intent||FB);
+}
+function f7T(){
+  const w=document.getElementById('f7cb-win');
+  const open=w.classList.toggle('open');
+  if(open&&!document.getElementById('f7cb-msgs').children.length){
+    bot({res:'¡Hola! 👋 Soy el asistente de <strong>Foro 7 Producciones</strong>.\n\n¿Para qué evento necesitas tu invitación digital? 🎉',qr:['Boda','XV Años','Bautizo','Graduación','Baby Shower','Ver precios']});
+  }
+}
+document.getElementById('f7cb-form').addEventListener('submit',send);
+document.getElementById('f7cb-send').addEventListener('click',send);
+})();
+</script>
+<!-- ══ FIN CHATBOT ══════════════════════════════════════════════ -->
 </body>
 </html>
