@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio Digital & Redes Sociales | Foro 7 Producciones</title>
+    <meta name="description" content="Síguenos en Instagram, TikTok, YouTube y Facebook. Portafolio de bodas, XV años, eventos y corporativo en León, Guanajuato.">
+    <meta property="og:url" content="https://invitados.org/redes.html">
+    <link rel="canonical" href="https://invitados.org/redes.html">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <style>
+        /* redes-specific */
+        .redes-hero{min-height:58vh;display:flex;align-items:center;padding:120px 0 80px;position:relative;overflow:hidden;}
+        .redes-hero-overlay{position:absolute;inset:0;background:radial-gradient(ellipse at top left,rgba(212,175,55,0.08) 0%,transparent 60%);pointer-events:none;}
+        .redes-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 20px;border-radius:30px;font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;margin-bottom:24px;background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.3);color:#b8860b;}
+        .redes-hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,6vw,4rem);font-weight:700;color:var(--color-heading,#1a1a1a);margin-bottom:20px;line-height:1.15;}
+        .redes-hero h1 em{color:#d4af37;font-style:italic;}
+        .redes-hero p{color:var(--color-text,#555);font-size:1.05rem;max-width:540px;margin-bottom:36px;}
+        .r-stats{display:flex;gap:48px;margin-top:48px;padding-top:36px;border-top:1px solid rgba(0,0,0,0.08);flex-wrap:wrap;}
+        .r-stat .val{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;color:#d4af37;}
+        .r-stat .lbl{font-size:12px;color:var(--color-text-muted,#999);letter-spacing:1px;margin-top:4px;}
+        .sec-redes{padding:100px 0;}
+        .redes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:56px;}
+        .red-card{background:var(--color-surface,#f9f9f9);border:1px solid rgba(0,0,0,0.07);border-radius:16px;padding:28px 22px;display:flex;flex-direction:column;gap:12px;text-decoration:none;transition:all 0.3s;}
+        .red-card:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(0,0,0,0.09);}
+        .p-icon-w{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff;}
+        .p-name{font-family:'Playfair Display',serif;font-size:1.25rem;color:var(--color-heading,#1a1a1a);font-weight:600;}
+        .p-handle{font-size:11px;color:var(--color-text-muted,#999);letter-spacing:1px;}
+        .p-desc{font-size:0.86rem;color:var(--color-text,#666);line-height:1.6;flex:1;}
+        .p-cta{font-size:11px;font-weight:600;letter-spacing:1px;padding:9px 18px;border-radius:8px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all 0.2s;color:#fff;}
+        .ci .p-icon-w{background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);}
+        .ci:hover{border-color:rgba(225,48,108,0.25);box-shadow:0 20px 50px rgba(225,48,108,0.08);}
+        .ci .p-cta{background:linear-gradient(135deg,#f09433,#dc2743,#bc1888);}
+        .ctt .p-icon-w{background:#010101;color:#00f2ea;font-size:13px;font-weight:900;}
+        .ctt .p-cta{background:#010101;border:1px solid #00f2ea;color:#00f2ea;}
+        .cfb .p-icon-w,.cfb .p-cta{background:#1877f2;}
+        .cfb:hover{border-color:rgba(24,119,242,0.25);}
+        .cyt .p-icon-w,.cyt .p-cta{background:#ff0000;}
+        .cyt:hover{border-color:rgba(255,0,0,0.25);}
+        .cvm .p-icon-w,.cvm .p-cta{background:#1ab7ea;}
+        .cgm .p-icon-w{background:#fff;border:1px solid #e0e0e0;color:#4285f4;}
+        .cgm .p-cta{background:#4285f4;}
+        .cgm:hover{border-color:rgba(66,133,244,0.25);}
+        .cwa .p-icon-w,.cwa .p-cta{background:#25d366;}
+        .cwa:hover{border-color:rgba(37,211,102,0.25);box-shadow:0 20px 50px rgba(37,211,102,0.08);}
+        .sec-port-r{padding:100px 0;background:var(--color-surface,#f9f9f9);}
+        .port-r-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:56px;}
+        .port-r-card{background:var(--color-bg,#fff);border:1px solid rgba(0,0,0,0.07);border-radius:16px;padding:32px 26px;display:flex;align-items:center;gap:22px;text-decoration:none;transition:all 0.3s;}
+        .port-r-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,0.07);border-color:rgba(212,175,55,0.3);}
+        .pr-icon{width:60px;height:60px;background:rgba(212,175,55,0.1);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0;}
+        .port-r-card h3{font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--color-heading,#1a1a1a);margin-bottom:6px;}
+        .port-r-card p{font-size:0.86rem;color:var(--color-text,#666);}
+        .pr-arrow{margin-left:auto;color:#d4af37;font-size:20px;flex-shrink:0;}
+        @media(max-width:1024px){.redes-grid{grid-template-columns:repeat(2,1fr);}}
+        @media(max-width:768px){.redes-grid,.port-r-grid{grid-template-columns:1fr;}.redes-hero{padding:100px 0 60px;}}
+    </style>
+</head>
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <img src="logo.png" alt="Foro 7 Producciones" style="height:52px;width:auto;display:block;">
+            </a>
+            <ul class="nav-menu">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="bodas.html">&#x1F48D; Bodas</a></li>
+                    <li><a href="xv-anos.html">&#x1F451; XV A&ntilde;os</a></li>
+                    <li><a href="eventos.html">&#x1F942; Eventos</a></li>
+                    <li><a href="empresas.html">&#x1F4F8; Empresas</a></li>
+                    <li><a href="corporativo.html">&#x1F4BC; Corporativo</a></li>
+                    <li><a href="redes.html">&#x1F4F1; Redes</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="theme-toggle" aria-label="Cambiar tema"><i class="fas fa-moon"></i></button>
+                <div class="nav-toggle" id="nav-toggle"><span></span><span></span><span></span></div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="redes-hero" id="inicio">
+        <div class="redes-hero-overlay"></div>
+        <div class="container">
+            <div class="redes-hero-content" data-aos="fade-up">
+                <div class="redes-badge"><i class="fas fa-share-alt"></i> Portafolio Digital</div>
+                <h1>Encuéntranos <em>en Redes</em></h1>
+                <p>Más de 15 años de fotografía y video en León, Guanajuato. Síguenos en Instagram, TikTok y YouTube para ver nuestro trabajo.</p>
+                <div style="display:flex;gap:16px;flex-wrap:wrap;">
+                    <a href="https://www.instagram.com/foro7/" target="_blank" rel="noopener" class="cta-button primary" style="text-decoration:none;"><i class="fab fa-instagram"></i> Instagram</a>
+                    <a href="https://wa.me/5214779203776?text=Hola,%20vi%20su%20portafolio%20en%20redes%20y%20me%20interesa%20cotizar" target="_blank" rel="noopener" class="cta-button secondary" style="text-decoration:none;"><i class="fab fa-whatsapp"></i> Cotizar</a>
+                </div>
+                <div class="r-stats">
+                    <div class="r-stat"><div class="val">15+</div><div class="lbl">Años de experiencia</div></div>
+                    <div class="r-stat"><div class="val">500+</div><div class="lbl">Eventos fotografiados</div></div>
+                    <div class="r-stat"><div class="val">7</div><div class="lbl">Plataformas activas</div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Redes -->
+    <section class="sec-redes" id="redes">
+        <div class="container">
+            <div data-aos="fade-up">
+                <span class="badge">Enc&uacute;entranos</span>
+                <h2 style="font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3rem);color:var(--color-heading,#1a1a1a);margin:16px 0 12px;">Nuestras <span style="color:#d4af37;">Redes Sociales</span></h2>
+                <p style="color:var(--color-text,#666);font-size:1rem;max-width:560px;">S&iacute;guenos para ver trabajo reciente, inspiraci&oacute;n y behind the scenes.</p>
+            </div>
+            <div class="redes-grid">
+                <a href="https://www.instagram.com/foro7/" target="_blank" rel="noopener" class="red-card ci" data-aos="fade-up" data-aos-delay="50">
+                    <div class="p-icon-w"><i class="fab fa-instagram"></i></div>
+                    <div class="p-name">Instagram</div><div class="p-handle">@foro7</div>
+                    <p class="p-desc">Fotos y reels de bodas, XV a&ntilde;os y eventos. Portafolio visual m&aacute;s actualizado.</p>
+                    <span class="p-cta"><i class="fab fa-instagram"></i> Seguir</span>
+                </a>
+                <a href="https://www.tiktok.com/@foro7" target="_blank" rel="noopener" class="red-card ctt" data-aos="fade-up" data-aos-delay="100">
+                    <div class="p-icon-w">TK</div>
+                    <div class="p-name">TikTok</div><div class="p-handle">@foro7</div>
+                    <p class="p-desc">Behind the scenes y transformaciones antes/despu&eacute;s de nuestros proyectos.</p>
+                    <span class="p-cta">Ver en TikTok</span>
+                </a>
+                <a href="https://www.facebook.com/Foro7Prod/" target="_blank" rel="noopener" class="red-card cfb" data-aos="fade-up" data-aos-delay="150">
+                    <div class="p-icon-w"><i class="fab fa-facebook-f"></i></div>
+                    <div class="p-name">Facebook</div><div class="p-handle">Foro7Prod</div>
+                    <p class="p-desc">&Aacute;lbumes completos, rese&ntilde;as y promociones especiales para familias de Le&oacute;n.</p>
+                    <span class="p-cta"><i class="fab fa-facebook-f"></i> Seguir</span>
+                </a>
+                <a href="https://www.youtube.com/@Foro7" target="_blank" rel="noopener" class="red-card cyt" data-aos="fade-up" data-aos-delay="200">
+                    <div class="p-icon-w"><i class="fab fa-youtube"></i></div>
+                    <div class="p-name">YouTube</div><div class="p-handle">@Foro7</div>
+                    <p class="p-desc">Videos completos de bodas y XV a&ntilde;os, trailers y showreels en 4K.</p>
+                    <span class="p-cta"><i class="fab fa-youtube"></i> Ver Canal</span>
+                </a>
+                <a href="https://vimeo.com/produccionesforo7" target="_blank" rel="noopener" class="red-card cvm" data-aos="fade-up" data-aos-delay="250">
+                    <div class="p-icon-w"><i class="fab fa-vimeo-v"></i></div>
+                    <div class="p-name">Vimeo</div><div class="p-handle">produccionesforo7</div>
+                    <p class="p-desc">Portafolio cinematogr&aacute;fico premium en alta calidad sin compresi&oacute;n.</p>
+                    <span class="p-cta"><i class="fab fa-vimeo-v"></i> Ver</span>
+                </a>
+                <a href="https://www.google.com/maps/search/Foro+7+Producciones+Le%C3%B3n+Guanajuato" target="_blank" rel="noopener" class="red-card cgm" data-aos="fade-up" data-aos-delay="300">
+                    <div class="p-icon-w"><i class="fab fa-google"></i></div>
+                    <div class="p-name">Google Business</div><div class="p-handle">Foro 7 Producciones</div>
+                    <p class="p-desc">Rese&ntilde;as verificadas en Google Maps. D&eacute;janos tu opini&oacute;n.</p>
+                    <span class="p-cta"><i class="fab fa-google"></i> Ver en Google</span>
+                </a>
+                <a href="https://wa.me/5214779203776?text=Hola,%20vi%20su%20portafolio%20y%20me%20gustar%C3%ADa%20cotizar" target="_blank" rel="noopener" class="red-card cwa" data-aos="fade-up" data-aos-delay="350">
+                    <div class="p-icon-w"><i class="fab fa-whatsapp"></i></div>
+                    <div class="p-name">WhatsApp</div><div class="p-handle">477-920-3776</div>
+                    <p class="p-desc">Cont&aacute;ctanos directamente. Respuesta &lt;24 hrs, lunes a s&aacute;bado.</p>
+                    <span class="p-cta"><i class="fab fa-whatsapp"></i> Mensaje</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portafolio -->
+    <section class="sec-port-r" id="portafolio">
+        <div class="container">
+            <div data-aos="fade-up">
+                <span class="badge">Portafolio</span>
+                <h2 style="font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3rem);color:var(--color-heading,#1a1a1a);margin:16px 0 12px;">Explora Nuestro <span style="color:#d4af37;">Trabajo</span></h2>
+                <p style="color:var(--color-text,#666);font-size:1rem;max-width:560px;">Descubre nuestra colecci&oacute;n de proyectos por categor&iacute;a.</p>
+            </div>
+            <div class="port-r-grid">
+                <a href="bodas.html" class="port-r-card" data-aos="fade-up" data-aos-delay="50"><div class="pr-icon">💍</div><div><h3>Bodas</h3><p>Fotograf&iacute;a y video con drone 4K. Cobertura completa del d&iacute;a.</p></div><i class="fas fa-arrow-right pr-arrow"></i></a>
+                <a href="xv-anos.html" class="port-r-card" data-aos="fade-up" data-aos-delay="100"><div class="pr-icon">👑</div><div><h3>XV A&ntilde;os</h3><p>Sesiones editoriales con m&uacute;ltiples locaciones y propuestas.</p></div><i class="fas fa-arrow-right pr-arrow"></i></a>
+                <a href="eventos.html" class="port-r-card" data-aos="fade-up" data-aos-delay="150"><div class="pr-icon">🥂</div><div><h3>Eventos Sociales</h3><p>Bautizos, graduaciones, aniversarios. Cobertura discreta.</p></div><i class="fas fa-arrow-right pr-arrow"></i></a>
+                <a href="corporativo.html" class="port-r-card" data-aos="fade-up" data-aos-delay="200"><div class="pr-icon">💼</div><div><h3>Corporativo &amp; Empresas</h3><p>Foto de producto, video institucional y contenido para PyMEs.</p></div><i class="fas fa-arrow-right pr-arrow"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section style="padding:100px 0;text-align:center;" id="contacto">
+        <div class="container">
+            <div style="max-width:600px;margin:0 auto;background:var(--color-surface,#f9f9f9);border:1px solid rgba(212,175,55,0.2);border-radius:20px;padding:60px 40px;" data-aos="zoom-in">
+                <span class="badge">Listo para Empezar</span>
+                <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);color:var(--color-heading,#1a1a1a);margin:16px 0 16px;">&iquest;Listo para tu <span style="color:#d4af37;">Pr&oacute;ximo Proyecto?</span></h2>
+                <p style="color:var(--color-text,#666);margin-bottom:40px;">S&iacute;guenos en redes, revisa el portafolio y cuando est&eacute;s listo, cont&aacute;ctanos.</p>
+                <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+                    <a href="https://wa.me/5214779203776?text=Hola,%20vi%20su%20portafolio%20en%20redes%20y%20me%20interesa%20cotizar" target="_blank" rel="noopener" class="cta-button primary" style="text-decoration:none;"><i class="fab fa-whatsapp"></i> Cotizar por WhatsApp</a>
+                    <a href="index.html" class="cta-button secondary" style="text-decoration:none;"><i class="fas fa-home"></i> Inicio</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Foro 7 Producciones</h3>
+                    <p>Fotografía y video profesional para bodas, XV años, eventos y empresas en León, Guanajuato.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contacto R&aacute;pido</h4>
+                    <p><i class="fas fa-phone"></i> 477-920-3776</p>
+                    <p><i class="fas fa-envelope"></i> foro7.producciones@hotmail.com</p>
+                </div>
+                <div class="footer-section">
+                    <h4>P&aacute;ginas</h4>
+                    <ul style="list-style:none;padding:0;margin:0;">
+                        <li style="margin-bottom:6px;"><a href="index.html" style="color:var(--text-muted,#aaa);text-decoration:none;">Inicio</a></li>
+                        <li style="margin-bottom:6px;"><a href="bodas.html" style="color:var(--text-muted,#aaa);text-decoration:none;">&#x1F48D; Bodas</a></li>
+                        <li style="margin-bottom:6px;"><a href="xv-anos.html" style="color:var(--text-muted,#aaa);text-decoration:none;">&#x1F451; XV A&ntilde;os</a></li>
+                        <li style="margin-bottom:6px;"><a href="eventos.html" style="color:var(--text-muted,#aaa);text-decoration:none;">&#x1F942; Eventos</a></li>
+                        <li style="margin-bottom:6px;"><a href="empresas.html" style="color:var(--text-muted,#aaa);text-decoration:none;">&#x1F4F8; Empresas</a></li>
+                        <li style="margin-bottom:6px;"><a href="corporativo.html" style="color:var(--text-muted,#aaa);text-decoration:none;">&#x1F4BC; Corporativo</a></li>
+                        <li style="margin-bottom:6px;"><a href="redes.html" style="color:#d4af37;text-decoration:none;">&#x1F4F1; Redes</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>S&iacute;guenos</h4>
+                    <div class="footer-social">
+                        <a href="https://www.instagram.com/foro7/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/Foro7Prod/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.youtube.com/@Foro7" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://vimeo.com/produccionesforo7" target="_blank" rel="noopener" aria-label="Vimeo"><i class="fab fa-vimeo-v"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Foro 7 Producciones. Le&oacute;n, Guanajuato, M&eacute;xico.</p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/5214779203776?text=Hola,%20me%20interesa%20cotizar" class="whatsapp-float" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="script.js"></script>
+    <script>AOS.init({duration:800,once:true,offset:80});</script>
+</body>
+</html>
