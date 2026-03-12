@@ -1,4 +1,4 @@
-// Variables globales para lightbox
+﻿// Variables globales para lightbox
 let currentImageIndex = 0;
 const lightboxImages = [
     {
@@ -1067,7 +1067,7 @@ function initPriceCalculator() {
         // Actualizar display
         basePrice.textContent = `$${base.toLocaleString()}`;
         extrasPrice.textContent = `$${extras.toLocaleString()}`;
-        discountPrice.textContent = discount > 0 ? `-$${discount.toLocaleString()}` : '$0';
+        discountPrice.textContent = discount > 0 ? `-$${discount.toLocaleString()}` : '';
         totalPrice.textContent = `$${total.toLocaleString()}`;
         
         // Mostrar/ocultar línea de descuento
@@ -1296,15 +1296,15 @@ function getBotResponse(message) {
     const lowerMessage = message.toLowerCase();
     
     if (lowerMessage.includes('boda') || lowerMessage.includes('matrimonio')) {
-        return `¡Perfecto! 💒 Nuestros paquetes de boda incluyen fotografía HD, video 4K y tomas con dron desde $15,000. ¿Te gustaría que te contactemos por WhatsApp para una cotización personalizada? <a href="https://wa.me/5214779203776?text=Hola!%20Me%20interesa%20un%20paquete%20de%20boda%20💒" target="_blank">¡Contactar ahora!</a>`;
+        return `¡Perfecto! 💒 Nuestros paquetes de boda incluyen fotografía HD, video 4K y tomas con dron . ¿Te gustaría que te contactemos por WhatsApp para una cotización personalizada? <a href="https://wa.me/5214779203776?text=Hola!%20Me%20interesa%20un%20paquete%20de%20boda%20💒" target="_blank">¡Contactar ahora!</a>`;
     } else if (lowerMessage.includes('invitacion') || lowerMessage.includes('digital')) {
-        return `¡Excelente elección! 💌 Nuestras invitaciones digitales web son desde $3,500 e incluyen diseño personalizado, RSVP digital y más. Puedes usar nuestra calculadora arriba para ver el precio exacto. ¿Qué tipo de evento es?`;
+        return `¡Excelente elección! 💌 Nuestras invitaciones digitales web son  e incluyen diseño personalizado, RSVP digital y más. Puedes usar nuestra calculadora arriba para ver el precio exacto. ¿Qué tipo de evento es?`;
     } else if (lowerMessage.includes('precio') || lowerMessage.includes('costo')) {
         return `💰 Nuestros precios varían según el servicio:<br>
-        📸 Solo Fotografía: desde $8,000<br>
-        🎬 Foto + Video: desde $15,000<br>
-        🚁 Paquete Premium + Dron: desde $25,000<br>
-        💌 Invitaciones Digitales: desde $3,500<br>
+        📸 Solo Fotografía: <br>
+        🎬 Foto + Video: <br>
+        🚁 Paquete Premium + Dron: <br>
+        💌 Invitaciones Digitales: <br>
         <a href="https://wa.me/5214779203776?text=Hola!%20Quiero%20información%20sobre%20precios%20💰" target="_blank">¡Cotiza ahora!</a>`;
     } else if (lowerMessage.includes('portafolio') || lowerMessage.includes('trabajo')) {
         return `📸 ¡Claro! Puedes ver nuestro portafolio aquí mismo en la galería de fotos, o visitar nuestro Instagram @foro7 para ver trabajos recientes. También tenemos videos en nuestro canal de Vimeo. ¿Te gustaría ver algún tipo específico de evento?`;
