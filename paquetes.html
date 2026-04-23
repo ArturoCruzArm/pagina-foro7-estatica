@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paquetes de Fotografía y Video - Foro 7 Producciones</title>
+    <meta name="description" content="Paquetes de fotografía y video profesional para bodas, XV años y eventos en León, Guanajuato. Desde $6,500 hasta $17,000 MXN.">
+    <link rel="canonical" href="https://invitados.org/paquetes">
+    <meta property="og:title" content="Paquetes - Foro 7 Producciones">
+    <meta property="og:description" content="Fotografía y video profesional para tu evento. Paquetes desde $6,500 MXN con foto, video y dron.">
+    <meta property="og:url" content="https://invitados.org/paquetes">
+    <meta property="og:type" content="website">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .paquetes-hero {
+            background: linear-gradient(135deg, var(--color-primary-dark), var(--color-primary));
+            color: #fff;
+            text-align: center;
+            padding: 140px 20px 60px;
+        }
+        .paquetes-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 0.5rem;
+        }
+        .paquetes-hero p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .paquetes-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px 60px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+        }
+        .paquete-card {
+            background: var(--color-bg-card);
+            border: 2px solid var(--color-border);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+            display: flex;
+            flex-direction: column;
+        }
+        .paquete-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+        .paquete-card.destacado {
+            border-color: var(--color-primary);
+            position: relative;
+        }
+        .paquete-card.destacado::before {
+            content: 'Recomendado';
+            position: absolute;
+            top: 16px;
+            right: -30px;
+            background: var(--color-primary);
+            color: #fff;
+            padding: 4px 40px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            transform: rotate(45deg);
+            z-index: 1;
+        }
+        .paquete-header {
+            padding: 28px 24px 16px;
+            text-align: center;
+            border-bottom: 1px solid var(--color-border-light);
+        }
+        .paquete-badge {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 6px;
+            vertical-align: middle;
+        }
+        .paquete-nombre {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: var(--color-heading);
+            margin: 0 0 4px;
+        }
+        .paquete-subtitulo {
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+            margin: 0 0 12px;
+        }
+        .paquete-precio {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--color-primary);
+        }
+        .paquete-precio span {
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: var(--color-text-muted);
+        }
+        .paquete-body {
+            padding: 20px 24px;
+            flex: 1;
+        }
+        .paquete-body ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .paquete-body li {
+            padding: 8px 0;
+            border-bottom: 1px solid var(--color-border-light);
+            font-size: 0.9rem;
+            color: var(--color-text);
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            line-height: 1.4;
+        }
+        .paquete-body li:last-child {
+            border-bottom: none;
+        }
+        .paquete-body li i {
+            color: var(--color-primary);
+            margin-top: 3px;
+            flex-shrink: 0;
+        }
+        .paquete-footer {
+            padding: 16px 24px 24px;
+            text-align: center;
+        }
+        .btn-cotizar {
+            display: inline-block;
+            width: 100%;
+            padding: 14px 24px;
+            background: var(--color-primary);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: background var(--transition-fast);
+            border: none;
+            cursor: pointer;
+        }
+        .btn-cotizar:hover {
+            background: var(--color-primary-dark);
+        }
+        .extras-section {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px 60px;
+            text-align: center;
+        }
+        .extras-section h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--color-heading);
+            margin-bottom: 1rem;
+        }
+        .extras-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 20px;
+        }
+        .extra-item {
+            background: var(--color-bg-alt);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        .extra-item i {
+            font-size: 1.5rem;
+            color: var(--color-primary);
+            margin-bottom: 8px;
+            display: block;
+        }
+        .extra-item strong {
+            display: block;
+            color: var(--color-heading);
+            margin-bottom: 4px;
+        }
+        .extra-item span {
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+        }
+        .cta-final {
+            background: var(--color-bg-alt);
+            text-align: center;
+            padding: 50px 20px;
+        }
+        .cta-final h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--color-heading);
+            margin-bottom: 0.5rem;
+        }
+        .cta-final p {
+            color: var(--color-text-light);
+            margin-bottom: 1.5rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .cta-final .btn-cotizar {
+            width: auto;
+            padding: 16px 40px;
+            font-size: 1.1rem;
+        }
+        @media (max-width: 768px) {
+            .paquetes-grid {
+                grid-template-columns: 1fr;
+                padding: 24px 16px 40px;
+            }
+        }
+    </style>
+    <script>
+        (function() {
+            const theme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <a href="index.html" class="nav-logo">
+                    <img src="logo.png" alt="Foro 7 Producciones" style="height:52px;width:auto;display:block;">
+                </a>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="bodas.html">&#x1F48D; Bodas</a></li>
+                    <li><a href="xv-anos.html">&#x1F451; XV A&ntilde;os</a></li>
+                    <li><a href="eventos.html">&#x1F389; Eventos</a></li>
+                    <li><a href="empresas.html">&#x1F3E2; Empresas</a></li>
+                    <li><a href="corporativo.html">&#x1F4BC; Corporativo</a></li>
+                    <li><a href="redes.html">&#x1F4F1; Redes</a></li>
+                    <li><a href="paquetes.html" class="active">Paquetes</a></li>
+                    <li><a href="index.html#contacto">Contacto</a></li>
+                </ul>
+                <button id="theme-toggle" class="theme-toggle" aria-label="Cambiar tema">
+                    <i class="fas fa-moon"></i>
+                    <i class="fas fa-sun"></i>
+                </button>
+                <div class="nav-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="paquetes-hero">
+        <h1>Paquetes de Fotograf&iacute;a y Video</h1>
+        <p>Elige el paquete ideal para tu evento. Todos incluyen fotograf&iacute;a profesional, video y tomas con dron.</p>
+    </section>
+
+    <div class="paquetes-grid">
+
+        <!-- BASICO -->
+        <div class="paquete-card">
+            <div class="paquete-header">
+                <span class="paquete-badge" style="background:#4CAF50;"></span>
+                <h2 class="paquete-nombre">B&aacute;sico</h2>
+                <p class="paquete-subtitulo">Cobertura esencial para momentos importantes</p>
+                <div class="paquete-precio">$6,500 <span>MXN</span></div>
+            </div>
+            <div class="paquete-body">
+                <ul>
+                    <li><i class="fas fa-clock"></i> Cobertura de evento: 6 horas continuas</li>
+                    <li><i class="fas fa-camera"></i> 1 sesi&oacute;n fotogr&aacute;fica (previa o el mismo d&iacute;a)</li>
+                    <li><i class="fas fa-images"></i> 80 fotograf&iacute;as digitales editadas en alta resoluci&oacute;n</li>
+                    <li><i class="fas fa-print"></i> 40 fotograf&iacute;as impresas tama&ntilde;o 5x7 pulgadas</li>
+                    <li><i class="fas fa-video"></i> 1 video completo del evento (90&ndash;120 min, Full HD)</li>
+                    <li><i class="fas fa-helicopter"></i> Tomas con dron durante el evento</li>
+                    <li><i class="fas fa-usb-drive"></i> Entrega en USB personalizada</li>
+                    <li><i class="fas fa-expand"></i> 1 foto ampliada 11x14 pulgadas</li>
+                    <li><i class="fas fa-box"></i> Caja para fotograf&iacute;as</li>
+                </ul>
+            </div>
+            <div class="paquete-footer">
+                <a href="https://wa.me/5214779203776?text=Hola%2C%20me%20interesa%20el%20paquete%20B%C3%A1sico%20de%20%246%2C500" class="btn-cotizar" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Cotizar por WhatsApp</a>
+            </div>
+        </div>
+
+        <!-- CLASICO -->
+        <div class="paquete-card">
+            <div class="paquete-header">
+                <span class="paquete-badge" style="background:#2196F3;"></span>
+                <h2 class="paquete-nombre">Cl&aacute;sico</h2>
+                <p class="paquete-subtitulo">Cobertura completa con mayor contenido</p>
+                <div class="paquete-precio">$9,000 <span>MXN</span></div>
+            </div>
+            <div class="paquete-body">
+                <ul>
+                    <li><i class="fas fa-clock"></i> Cobertura: 8 horas (sesi&oacute;n, ceremonia y fiesta)</li>
+                    <li><i class="fas fa-camera"></i> 1 sesi&oacute;n fotogr&aacute;fica previa</li>
+                    <li><i class="fas fa-images"></i> 150 fotograf&iacute;as digitales editadas</li>
+                    <li><i class="fas fa-print"></i> 80 fotograf&iacute;as impresas 5x7 pulgadas</li>
+                    <li><i class="fas fa-video"></i> 1 video editado (60&ndash;90 min, Full HD)</li>
+                    <li><i class="fas fa-film"></i> 1 videoclip resumen (2&ndash;4 min)</li>
+                    <li><i class="fas fa-helicopter"></i> Tomas con dron</li>
+                    <li><i class="fas fa-usb-drive"></i> Entrega en USB personalizada</li>
+                    <li><i class="fas fa-expand"></i> 1 foto ampliada 50x60 cm con marco</li>
+                    <li><i class="fas fa-box"></i> Caja para fotograf&iacute;as</li>
+                </ul>
+            </div>
+            <div class="paquete-footer">
+                <a href="https://wa.me/5214779203776?text=Hola%2C%20me%20interesa%20el%20paquete%20Cl%C3%A1sico%20de%20%249%2C000" class="btn-cotizar" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Cotizar por WhatsApp</a>
+            </div>
+        </div>
+
+        <!-- PLUS -->
+        <div class="paquete-card destacado">
+            <div class="paquete-header">
+                <span class="paquete-badge" style="background:#9C27B0;"></span>
+                <h2 class="paquete-nombre">Plus</h2>
+                <p class="paquete-subtitulo">M&aacute;s producci&oacute;n y mejor calidad visual</p>
+                <div class="paquete-precio">$11,500 <span>MXN</span></div>
+            </div>
+            <div class="paquete-body">
+                <ul>
+                    <li><i class="fas fa-clock"></i> Cobertura: 10 horas</li>
+                    <li><i class="fas fa-camera"></i> 1 sesi&oacute;n previa + cobertura completa</li>
+                    <li><i class="fas fa-images"></i> 220 fotograf&iacute;as digitales editadas</li>
+                    <li><i class="fas fa-print"></i> 100 fotograf&iacute;as impresas 5x7 pulgadas</li>
+                    <li><i class="fas fa-video"></i> 1 video estilo cinematogr&aacute;fico (45&ndash;70 min)</li>
+                    <li><i class="fas fa-film"></i> 1 videoclip highlight (3&ndash;5 min)</li>
+                    <li><i class="fas fa-helicopter"></i> Tomas con dron integradas en video</li>
+                    <li><i class="fas fa-usb-drive"></i> Entrega en USB + galer&iacute;a digital online</li>
+                    <li><i class="fas fa-expand"></i> 1 foto ampliada 60x80 cm</li>
+                    <li><i class="fas fa-box"></i> Caja r&iacute;gida personalizada</li>
+                </ul>
+            </div>
+            <div class="paquete-footer">
+                <a href="https://wa.me/5214779203776?text=Hola%2C%20me%20interesa%20el%20paquete%20Plus%20de%20%2411%2C500" class="btn-cotizar" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Cotizar por WhatsApp</a>
+            </div>
+        </div>
+
+        <!-- PREMIUM -->
+        <div class="paquete-card">
+            <div class="paquete-header">
+                <span class="paquete-badge" style="background:#FFC107;"></span>
+                <h2 class="paquete-nombre">Premium</h2>
+                <p class="paquete-subtitulo">Experiencia completa con presentaci&oacute;n profesional</p>
+                <div class="paquete-precio">$14,000 <span>MXN</span></div>
+            </div>
+            <div class="paquete-body">
+                <ul>
+                    <li><i class="fas fa-clock"></i> Cobertura: hasta 12 horas</li>
+                    <li><i class="fas fa-camera"></i> Sesi&oacute;n previa (locaci&oacute;n a elegir) + evento completo</li>
+                    <li><i class="fas fa-images"></i> 300 fotograf&iacute;as digitales editadas</li>
+                    <li><i class="fas fa-print"></i> 120 fotograf&iacute;as impresas 5x7 pulgadas</li>
+                    <li><i class="fas fa-book"></i> Fotolibro premium 30x30 cm (40 p&aacute;ginas)</li>
+                    <li><i class="fas fa-video"></i> Video cinematogr&aacute;fico (30&ndash;50 min)</li>
+                    <li><i class="fas fa-video"></i> Video completo del evento</li>
+                    <li><i class="fas fa-film"></i> Trailer / highlight (1&ndash;3 min)</li>
+                    <li><i class="fas fa-helicopter"></i> Tomas con dron</li>
+                    <li><i class="fas fa-usb-drive"></i> USB + galer&iacute;a online privada</li>
+                    <li><i class="fas fa-expand"></i> 1 foto ampliada 60x80 cm</li>
+                    <li><i class="fas fa-gift"></i> Caja de presentaci&oacute;n premium</li>
+                </ul>
+            </div>
+            <div class="paquete-footer">
+                <a href="https://wa.me/5214779203776?text=Hola%2C%20me%20interesa%20el%20paquete%20Premium%20de%20%2414%2C000" class="btn-cotizar" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Cotizar por WhatsApp</a>
+            </div>
+        </div>
+
+        <!-- MASTER -->
+        <div class="paquete-card">
+            <div class="paquete-header">
+                <span class="paquete-badge" style="background:#F44336;"></span>
+                <h2 class="paquete-nombre">Master Cinem&aacute;tico</h2>
+                <p class="paquete-subtitulo">Producci&oacute;n de alto nivel tipo pel&iacute;cula</p>
+                <div class="paquete-precio">$17,000 <span>MXN</span></div>
+            </div>
+            <div class="paquete-body">
+                <ul>
+                    <li><i class="fas fa-clock"></i> Cobertura completa sin l&iacute;mite de horas</li>
+                    <li><i class="fas fa-camera"></i> Sesi&oacute;n previa profesional + sesi&oacute;n d&iacute;a del evento</li>
+                    <li><i class="fas fa-images"></i> 400 fotograf&iacute;as digitales editadas</li>
+                    <li><i class="fas fa-print"></i> 150 fotograf&iacute;as impresas 5x7 pulgadas</li>
+                    <li><i class="fas fa-book"></i> Fotolibro de lujo 30x60 cm (50 p&aacute;ginas)</li>
+                    <li><i class="fas fa-video"></i> Video cinematogr&aacute;fico principal (15&ndash;25 min)</li>
+                    <li><i class="fas fa-video"></i> Video completo del evento</li>
+                    <li><i class="fas fa-film"></i> Trailer cinematogr&aacute;fico (1&ndash;2 min)</li>
+                    <li><i class="fas fa-tv"></i> Videoclip para proyecci&oacute;n en el evento</li>
+                    <li><i class="fas fa-helicopter"></i> Dron uso completo durante el evento</li>
+                    <li><i class="fas fa-usb-drive"></i> USB premium + galer&iacute;a online + respaldo</li>
+                    <li><i class="fas fa-expand"></i> 2 fotos ampliadas 60x80 cm</li>
+                    <li><i class="fas fa-gem"></i> Caja de madera premium personalizada</li>
+                </ul>
+            </div>
+            <div class="paquete-footer">
+                <a href="https://wa.me/5214779203776?text=Hola%2C%20me%20interesa%20el%20paquete%20Master%20Cinem%C3%A1tico%20de%20%2417%2C000" class="btn-cotizar" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Cotizar por WhatsApp</a>
+            </div>
+        </div>
+
+    </div>
+
+    <section class="extras-section">
+        <h2>Todos los paquetes incluyen</h2>
+        <div class="extras-grid">
+            <div class="extra-item">
+                <i class="fas fa-helicopter"></i>
+                <strong>Tomas con Dron</strong>
+                <span>Tomas a&eacute;reas de tu evento</span>
+            </div>
+            <div class="extra-item">
+                <i class="fas fa-magic"></i>
+                <strong>Edici&oacute;n Profesional</strong>
+                <span>Color, retoque y correcci&oacute;n</span>
+            </div>
+            <div class="extra-item">
+                <i class="fas fa-usb-drive"></i>
+                <strong>Entrega Digital</strong>
+                <span>USB personalizada con tu material</span>
+            </div>
+            <div class="extra-item">
+                <i class="fas fa-heart"></i>
+                <strong>Atenci&oacute;n Personal</strong>
+                <span>Asesor&iacute;a antes y durante tu evento</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-final">
+        <h2>&iquest;No encuentras lo que buscas?</h2>
+        <p>Podemos armar un paquete personalizado para tu evento. Cont&aacute;ctanos y pl&aacute;ticanos tu idea.</p>
+        <a href="https://wa.me/5214779203776?text=Hola%2C%20quiero%20un%20paquete%20personalizado" class="btn-cotizar" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Paquete Personalizado</a>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Foro 7 Producciones</h3>
+                    <p>Fotograf&iacute;a y video profesional para bodas y eventos sociales en Le&oacute;n, Guanajuato.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contacto R&aacute;pido</h4>
+                    <p><i class="fas fa-phone"></i> 477-920-3776</p>
+                    <p><i class="fas fa-envelope"></i> foro7.producciones@hotmail.com</p>
+                </div>
+                <div class="footer-section">
+                    <h4>S&iacute;guenos</h4>
+                    <div class="footer-social">
+                        <a href="https://www.instagram.com/foro7/" target="_blank" rel="noopener" aria-label="Instagram @foro7"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/Foro7Prod" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.youtube.com/@Foro7" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://wa.me/5214779203776" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Foro 7 Producciones. Todos los derechos reservados.</p>
+                <div class="footer-links">
+                    <a href="privacidad.html">Aviso de Privacidad</a>
+                    <span>|</span>
+                    <a href="terminos.html">T&eacute;rminos</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Theme toggle
+        const toggle = document.getElementById('theme-toggle');
+        if (toggle) {
+            toggle.addEventListener('click', () => {
+                const current = document.documentElement.getAttribute('data-theme');
+                const next = current === 'dark' ? 'light' : 'dark';
+                document.documentElement.setAttribute('data-theme', next);
+                localStorage.setItem('theme', next);
+            });
+        }
+        // Mobile nav toggle
+        const navToggle = document.querySelector('.nav-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+        if (navToggle && navMenu) {
+            navToggle.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                navToggle.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+</html>
