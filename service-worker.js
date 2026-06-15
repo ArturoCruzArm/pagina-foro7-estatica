@@ -1,9 +1,9 @@
 ﻿// Service Worker para Producciones Foro 7
-// Version 2.0.0 - Optimized with WebP support and improved caching
+// Version 3.2.0 - Optimized with WebP support and improved caching
 
-const CACHE_NAME = 'foro7-v3.0.0';
-const STATIC_CACHE = 'foro7-static-v3.0.0';
-const IMAGE_CACHE = 'foro7-images-v3.0.0';
+const CACHE_NAME = 'foro7-v3.2.0';
+const STATIC_CACHE = 'foro7-static-v3.2.0';
+const IMAGE_CACHE = 'foro7-images-v3.2.0';
 
 // Core files to cache immediately
 const CORE_ASSETS = [

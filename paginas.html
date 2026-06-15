@@ -116,6 +116,46 @@
             font-weight: 700;
             margin-bottom: 12px;
         }
+        .sample-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 18px;
+        }
+        .sample-card {
+            background: var(--color-bg-card);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .sample-kicker {
+            color: var(--color-primary);
+            font-size: .78rem;
+            font-weight: 700;
+            letter-spacing: 1.6px;
+            text-transform: uppercase;
+        }
+        .sample-card h3 {
+            color: var(--color-heading);
+            margin: 0;
+        }
+        .sample-card p {
+            color: var(--color-text);
+            line-height: 1.6;
+            margin: 0;
+            flex: 1;
+        }
+        .sample-link {
+            color: var(--color-primary);
+            font-weight: 700;
+            text-decoration: none;
+        }
+        .sample-link:hover {
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
         .pages-cta {
             background: var(--color-bg-alt);
             text-align: center;
@@ -148,7 +188,32 @@
         <p>Una p&aacute;gina personalizada para que tus invitados tengan toda la informaci&oacute;n del evento y para que t&uacute; puedas organizar fotos, video, RSVP y detalles importantes en un solo lugar.</p>
         <div class="pages-actions">
             <a href="https://wa.me/5214779203776?text=Hola%2C%20quiero%20una%20pagina%20web%20para%20mi%20evento" class="cta-button primary" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> Cotizar p&aacute;gina</a>
-            <a href="paquetes.html" class="cta-button secondary"><i class="fas fa-box-open"></i> Ver paquetes</a>
+            <a href="#muestras" class="cta-button secondary"><i class="fas fa-eye"></i> Ver ejemplos</a>
+        </div>
+    </section>
+
+    <section class="pages-section" id="muestras">
+        <h2>Muestras que puedes revisar</h2>
+        <p>Antes de escribirnos, puedes ver demos y portafolio dentro del mismo sitio. As&iacute; el servicio de p&aacute;ginas no se queda en promesa.</p>
+        <div class="sample-grid">
+            <article class="sample-card">
+                <div class="sample-kicker">Demo web</div>
+                <h3>Invitaci&oacute;n para evento</h3>
+                <p>Vista tipo m&oacute;vil con RSVP, ubicaci&oacute;n, galer&iacute;a y detalles para invitados.</p>
+                <a href="index.html#invitaciones" class="sample-link">Ver demo de invitaci&oacute;n &rarr;</a>
+            </article>
+            <article class="sample-card">
+                <div class="sample-kicker">Foto y video</div>
+                <h3>Paquetes conectados</h3>
+                <p>Revisa precios base y qu&eacute; se puede sumar a una p&aacute;gina web de boda, XV a&ntilde;os o evento social.</p>
+                <a href="paquetes.html" class="sample-link">Ver paquetes &rarr;</a>
+            </article>
+            <article class="sample-card">
+                <div class="sample-kicker">Portafolio</div>
+                <h3>Trabajo reciente</h3>
+                <p>Enlaces a categor&iacute;as y redes donde el cliente puede validar estilo, experiencia y resultados.</p>
+                <a href="redes.html#portafolio" class="sample-link">Ver portafolio &rarr;</a>
+            </article>
         </div>
     </section>
 

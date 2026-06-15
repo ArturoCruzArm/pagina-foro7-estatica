@@ -546,6 +546,7 @@ function getServiceName(value) {
     return services[value] || value;
 }
 
+
 // Preloader simple
 window.addEventListener('load', function() {
     document.body.classList.add('loaded');
@@ -1298,24 +1299,25 @@ function addMessage(content, type) {
 
 function getBotResponse(message) {
     const lowerMessage = message.toLowerCase();
-    
+
     if (lowerMessage.includes('boda') || lowerMessage.includes('matrimonio')) {
-        return `¡Perfecto! 💒 Nuestros paquetes de boda incluyen fotografía HD, video 4K y tomas con dron . ¿Te gustaría que te contactemos por WhatsApp para una cotización personalizada? <a href="https://wa.me/5214779203776?text=Hola!%20Me%20interesa%20un%20paquete%20de%20boda%20💒" target="_blank" rel="noopener noreferrer">¡Contactar ahora!</a>`;
+        return `&iexcl;Perfecto! Nuestros paquetes de boda van desde $6,500 MXN e incluyen fotograf&iacute;a profesional, video y tomas con dron seg&uacute;n el paquete. <a href="https://wa.me/5214779203776?text=Hola!%20Me%20interesa%20un%20paquete%20de%20boda" target="_blank" rel="noopener noreferrer">&iexcl;Contactar ahora!</a>`;
     } else if (lowerMessage.includes('invitacion') || lowerMessage.includes('digital')) {
-        return `¡Excelente elección! 💌 Nuestras invitaciones digitales web son  e incluyen diseño personalizado, RSVP digital y más. Puedes usar nuestra calculadora arriba para ver el precio exacto. ¿Qué tipo de evento es?`;
+        return `&iexcl;Excelente elecci&oacute;n! Las invitaciones digitales web van desde $1,800 MXN e incluyen dise&ntilde;o personalizado, RSVP digital y enlace para compartir. Puedes usar la calculadora para ver el precio exacto.`;
     } else if (lowerMessage.includes('precio') || lowerMessage.includes('costo')) {
-        return `💰 Nuestros precios varían según el servicio:<br>
-        📸 Solo Fotografía: <br>
-        🎬 Foto + Video: <br>
-        🚁 Paquete Premium + Dron: <br>
-        💌 Invitaciones Digitales: <br>
-        <a href="https://wa.me/5214779203776?text=Hola!%20Quiero%20información%20sobre%20precios%20💰" target="_blank" rel="noopener noreferrer">¡Cotiza ahora!</a>`;
+        return `Nuestros precios base:<br>
+        Fotograf&iacute;a + video para eventos: desde $6,500 MXN<br>
+        Paquete Plus recomendado: $11,500 MXN<br>
+        Paquete Premium: $14,000 MXN<br>
+        Invitaciones digitales: desde $1,800 MXN<br>
+        <a href="https://wa.me/5214779203776?text=Hola!%20Quiero%20informacion%20sobre%20precios" target="_blank" rel="noopener noreferrer">&iexcl;Cotiza ahora!</a>`;
     } else if (lowerMessage.includes('portafolio') || lowerMessage.includes('trabajo')) {
-        return `📸 ¡Claro! Puedes ver nuestro portafolio aquí mismo en la galería de fotos, o visitar nuestro Instagram @foro7 para ver trabajos recientes. También tenemos videos en nuestro canal de Vimeo. ¿Te gustaría ver algún tipo específico de evento?`;
+        return `Claro. Puedes revisar el portafolio en la galer&iacute;a del sitio y en redes: Instagram @foro7, YouTube y Vimeo. Si buscas un tipo de evento espec&iacute;fico, dime si es boda, XV a&ntilde;os, evento social o empresa.`;
     } else {
-        return `Gracias por tu mensaje 😊 Para una atención más personalizada, te recomiendo contactarnos directamente: <a href="https://wa.me/5214779203776?text=Hola!%20Tengo%20una%20consulta%20💬" target="_blank" rel="noopener noreferrer">WhatsApp</a> o al 477-920-3776. ¡Estaremos encantados de ayudarte!`;
+        return `Gracias por tu mensaje. Para atenci&oacute;n personalizada, escr&iacute;benos por <a href="https://wa.me/5214779203776?text=Hola!%20Tengo%20una%20consulta" target="_blank" rel="noopener noreferrer">WhatsApp</a> o llama al 477-920-3776.`;
     }
 }
+
 
 function handleChatKeyPress(event) {
     if (event.key === 'Enter') {

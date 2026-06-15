@@ -5,10 +5,14 @@ var K='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im56
 var H={'apikey':K,'Authorization':'Bearer '+K,'Content-Type':'application/json'};
 var SITE_SLUG=window.FORO7_SITE_SLUG||'foro7';
 function sid(){var s=localStorage.getItem('foro7_sid');if(!s){s=crypto.randomUUID();localStorage.setItem('foro7_sid',s);}return s;}
-var widget=document.createElement('div');
-widget.style.cssText='position:fixed;bottom:16px;right:16px;background:rgba(0,0,0,.7);color:#fff;padding:6px 14px;border-radius:20px;font-size:.8rem;z-index:9000;backdrop-filter:blur(4px);pointer-events:none;';
-widget.textContent='\uD83D\uDC41 \u2026';
-document.body.appendChild(widget);
+var SHOW_VISIT_COUNTER=localStorage.getItem('foro7_show_visit_counter')==='1';
+var widget={textContent:'',remove:function(){}};
+if(SHOW_VISIT_COUNTER){
+  widget=document.createElement('div');
+  widget.style.cssText='position:fixed;bottom:16px;right:16px;background:rgba(0,0,0,.7);color:#fff;padding:6px 14px;border-radius:20px;font-size:.8rem;z-index:9000;backdrop-filter:blur(4px);pointer-events:none;';
+  widget.textContent='\uD83D\uDC41 \u2026';
+  document.body.appendChild(widget);
+}
 async function init(){
   try{
     var r=await fetch(SB+'/rest/v1/eventos?slug=eq.'+SITE_SLUG+'&select=id&limit=1',{headers:H});
