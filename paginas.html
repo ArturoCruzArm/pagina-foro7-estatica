@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="manifest" href="manifest.json">
+    <title>P&aacute;ginas web para eventos - Foro 7 Producciones</title>
+    <meta name="description" content="P&aacute;ginas web personalizadas para bodas, XV a&ntilde;os y eventos: invitaci&oacute;n digital, RSVP, mapa, galer&iacute;a, selector de fotos y videos privados.">
+    <link rel="canonical" href="https://invitados.org/paginas.html">
+    <meta property="og:title" content="P&aacute;ginas web para eventos - Foro 7 Producciones">
+    <meta property="og:description" content="Una p&aacute;gina web personalizada para organizar, compartir y revivir tu evento.">
+    <meta property="og:url" content="https://invitados.org/paginas.html">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://invitados.org/og-image.webp">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .pages-hero {
+            background: linear-gradient(135deg, var(--color-primary-dark), var(--color-primary));
+            color: #fff;
+            padding: 140px 20px 72px;
+            text-align: center;
+        }
+        .pages-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.2rem, 5vw, 3.4rem);
+            margin-bottom: 14px;
+        }
+        .pages-hero p {
+            max-width: 760px;
+            margin: 0 auto 28px;
+            opacity: .92;
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+        .pages-actions {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+        .pages-section {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 72px 20px;
+        }
+        .pages-section h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--color-heading);
+            text-align: center;
+            margin-bottom: 14px;
+        }
+        .pages-section > p {
+            text-align: center;
+            color: var(--color-text-muted);
+            max-width: 720px;
+            margin: 0 auto 42px;
+            line-height: 1.7;
+        }
+        .pages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 18px;
+        }
+        .page-feature {
+            background: var(--color-bg-card);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 24px;
+            min-height: 190px;
+        }
+        .page-feature i {
+            color: var(--color-primary);
+            font-size: 1.7rem;
+            margin-bottom: 14px;
+        }
+        .page-feature h3 {
+            color: var(--color-heading);
+            margin-bottom: 8px;
+        }
+        .page-feature p {
+            color: var(--color-text);
+            font-size: .92rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+        .flow {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 14px;
+            counter-reset: step;
+        }
+        .flow-step {
+            background: var(--color-bg-alt);
+            border: 1px solid var(--color-border-light);
+            border-radius: 12px;
+            padding: 22px;
+            position: relative;
+        }
+        .flow-step::before {
+            counter-increment: step;
+            content: counter(step);
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--color-primary);
+            color: #fff;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        .pages-cta {
+            background: var(--color-bg-alt);
+            text-align: center;
+            padding: 72px 20px;
+        }
+        .pages-cta h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--color-heading);
+            margin-bottom: 12px;
+        }
+        .pages-cta p {
+            color: var(--color-text-muted);
+            max-width: 680px;
+            margin: 0 auto 24px;
+            line-height: 1.7;
+        }
+    </style>
+    <script>
+        (function() {
+            const theme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+</head>
+<body>
+    <div id="shared-header"></div>
+
+    <section class="pages-hero">
+        <h1>P&aacute;ginas web para eventos</h1>
+        <p>Una p&aacute;gina personalizada para que tus invitados tengan toda la informaci&oacute;n del evento y para que t&uacute; puedas organizar fotos, video, RSVP y detalles importantes en un solo lugar.</p>
+        <div class="pages-actions">
+            <a href="https://wa.me/5214779203776?text=Hola%2C%20quiero%20una%20pagina%20web%20para%20mi%20evento" class="cta-button primary" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> Cotizar p&aacute;gina</a>
+            <a href="paquetes.html" class="cta-button secondary"><i class="fas fa-box-open"></i> Ver paquetes</a>
+        </div>
+    </section>
+
+    <section class="pages-section">
+        <h2>&iquest;Qu&eacute; incluye?</h2>
+        <p>El contenido cambia seg&uacute;n tu evento, pero la idea es la misma: una experiencia clara, bonita y f&aacute;cil de compartir por WhatsApp.</p>
+        <div class="pages-grid">
+            <article class="page-feature">
+                <i class="fas fa-envelope-open-text"></i>
+                <h3>Invitaci&oacute;n digital</h3>
+                <p>Portada, datos del evento, cuenta regresiva, c&oacute;digo de vestimenta y mensaje para tus invitados.</p>
+            </article>
+            <article class="page-feature">
+                <i class="fas fa-clipboard-check"></i>
+                <h3>Confirmaci&oacute;n RSVP</h3>
+                <p>Formulario para confirmar asistencia y tener una lista m&aacute;s ordenada antes del evento.</p>
+            </article>
+            <article class="page-feature">
+                <i class="fas fa-map-marker-alt"></i>
+                <h3>Mapa y ubicaci&oacute;n</h3>
+                <p>Enlaces a sal&oacute;n, iglesia, estudio o locaciones para que tus invitados lleguen sin vueltas.</p>
+            </article>
+            <article class="page-feature">
+                <i class="fas fa-images"></i>
+                <h3>Galer&iacute;a y selector</h3>
+                <p>Despu&eacute;s del evento puedes revisar fotos y seleccionar las que quieres imprimir.</p>
+            </article>
+            <article class="page-feature">
+                <i class="fas fa-video"></i>
+                <h3>Videos privados</h3>
+                <p>Acceso ordenado a trailer, video completo o enlaces privados para compartir con familia.</p>
+            </article>
+            <article class="page-feature">
+                <i class="fas fa-file-signature"></i>
+                <h3>Contrato digital</h3>
+                <p>Resumen de acuerdos, fechas, entregas y detalles importantes para evitar confusiones.</p>
+            </article>
+        </div>
+    </section>
+
+    <section class="pages-section">
+        <h2>Flujo de trabajo</h2>
+        <p>La p&aacute;gina acompa&ntilde;a el evento desde la planeaci&oacute;n hasta la entrega final.</p>
+        <div class="flow">
+            <div class="flow-step">
+                <h3>Dise&ntilde;o inicial</h3>
+                <p>Tomamos tus datos, estilo, colores y fotos para armar la primera versi&oacute;n.</p>
+            </div>
+            <div class="flow-step">
+                <h3>Publicaci&oacute;n</h3>
+                <p>Te entregamos un enlace listo para compartir por WhatsApp y redes.</p>
+            </div>
+            <div class="flow-step">
+                <h3>Evento</h3>
+                <p>La p&aacute;gina sirve como centro de informaci&oacute;n para invitados y organizaci&oacute;n.</p>
+            </div>
+            <div class="flow-step">
+                <h3>Entrega</h3>
+                <p>Subimos fotos, video o selector cuando aplique al paquete contratado.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="pages-cta">
+        <h2>&iquest;Quieres una p&aacute;gina para tu evento?</h2>
+        <p>Cu&eacute;ntanos si es boda, XV a&ntilde;os, bautizo, graduaci&oacute;n o evento empresarial y te decimos qu&eacute; formato conviene.</p>
+        <a href="https://wa.me/5214779203776?text=Hola%2C%20quiero%20informacion%20sobre%20paginas%20web%20para%20eventos" class="cta-button primary" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> Pedir informaci&oacute;n</a>
+    </section>
+
+    <div id="shared-footer"></div>
+
+    <script src="shared-layout.js"></script>
+</body>
+</html>

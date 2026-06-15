@@ -232,35 +232,7 @@
     </script>
 </head>
 <body>
-    <header class="header">
-        <nav class="navbar">
-            <div class="nav-container">
-                <a href="index.html" class="nav-logo">
-                    <img src="logo.png" alt="Foro 7 Producciones" style="height:52px;width:auto;display:block;" width="974" height="402">
-                </a>
-                <ul class="nav-menu">
-                    <li><a href="index.html">Inicio</a></li>
-                    <li><a href="bodas.html">&#x1F48D; Bodas</a></li>
-                    <li><a href="xv-anos.html">&#x1F451; XV A&ntilde;os</a></li>
-                    <li><a href="eventos.html">&#x1F389; Eventos</a></li>
-                    <li><a href="empresas.html">&#x1F3E2; Empresas</a></li>
-                    <li><a href="corporativo.html">&#x1F4BC; Corporativo</a></li>
-                    <li><a href="redes.html">&#x1F4F1; Redes</a></li>
-                    <li><a href="paquetes.html" class="active">Paquetes</a></li>
-                    <li><a href="index.html#contacto">Contacto</a></li>
-                </ul>
-                <button id="theme-toggle" class="theme-toggle" aria-label="Cambiar tema">
-                    <i class="fas fa-moon"></i>
-                    <i class="fas fa-sun"></i>
-                </button>
-                <div class="nav-toggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </div>
-        </nav>
-    </header>
+    <div id="shared-header"></div>
 
     <section class="paquetes-hero">
         <h1>Paquetes de Fotograf&iacute;a y Video</h1>
@@ -442,59 +414,8 @@
         <a href="https://wa.me/5214779203776?text=Hola%2C%20quiero%20un%20paquete%20personalizado" class="btn-cotizar" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> Paquete Personalizado</a>
     </section>
 
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Foro 7 Producciones</h3>
-                    <p>Fotograf&iacute;a y video profesional para bodas y eventos sociales en Le&oacute;n, Guanajuato.</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Contacto R&aacute;pido</h4>
-                    <p><i class="fas fa-phone"></i> 477-920-3776</p>
-                    <p><i class="fas fa-envelope"></i> foro7.producciones@hotmail.com</p>
-                </div>
-                <div class="footer-section">
-                    <h4>S&iacute;guenos</h4>
-                    <div class="footer-social">
-                        <a href="https://www.instagram.com/foro7/" target="_blank" rel="noopener noreferrer" aria-label="Instagram @foro7"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.facebook.com/Foro7Prod" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://www.youtube.com/@Foro7" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                        <a href="https://wa.me/5214779203776" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Foro 7 Producciones. Todos los derechos reservados.</p>
-                <div class="footer-links">
-                    <a href="privacidad.html">Aviso de Privacidad</a>
-                    <span>|</span>
-                    <a href="terminos.html">T&eacute;rminos</a>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <div id="shared-footer"></div>
 
-    <script>
-        // Theme toggle
-        const toggle = document.getElementById('theme-toggle');
-        if (toggle) {
-            toggle.addEventListener('click', () => {
-                const current = document.documentElement.getAttribute('data-theme');
-                const next = current === 'dark' ? 'light' : 'dark';
-                document.documentElement.setAttribute('data-theme', next);
-                localStorage.setItem('theme', next);
-            });
-        }
-        // Mobile nav toggle
-        const navToggle = document.querySelector('.nav-toggle');
-        const navMenu = document.querySelector('.nav-menu');
-        if (navToggle && navMenu) {
-            navToggle.addEventListener('click', () => {
-                navMenu.classList.toggle('active');
-                navToggle.classList.toggle('active');
-            });
-        }
-    </script>
+    <script src="shared-layout.js"></script>
 </body>
 </html>

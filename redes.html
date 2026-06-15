@@ -64,26 +64,7 @@
     <link rel="manifest" href="manifest.json">
 </head>
 <body>
-    <nav class="navbar" id="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="nav-logo">
-                <img src="logo.png" alt="Foro 7 Producciones" style="height:52px;width:auto;display:block;" width="974" height="402">
-            </a>
-            <ul class="nav-menu">
-                    <li><a href="index.html">Inicio</a></li>
-                    <li><a href="bodas.html">&#x1F48D; Bodas</a></li>
-                    <li><a href="xv-anos.html">&#x1F451; XV A&ntilde;os</a></li>
-                    <li><a href="eventos.html">&#x1F942; Eventos</a></li>
-                    <li><a href="empresas.html">&#x1F4F8; Empresas</a></li>
-                    <li><a href="corporativo.html">&#x1F4BC; Corporativo</a></li>
-                    <li><a href="redes.html">&#x1F4F1; Redes</a></li>
-            </ul>
-            <div class="nav-actions">
-                <button class="theme-toggle" id="theme-toggle" aria-label="Cambiar tema"><i class="fas fa-moon"></i></button>
-                <div class="nav-toggle" id="nav-toggle"><span></span><span></span><span></span></div>
-            </div>
-        </div>
-    </nav>
+    <div id="shared-header"></div>
 
     <!-- Hero -->
     <section class="redes-hero" id="inicio">
@@ -193,53 +174,13 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Foro 7 Producciones</h3>
-                    <p>Fotografía y video profesional para bodas, XV años, eventos y empresas en León, Guanajuato.</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Contacto R&aacute;pido</h4>
-                    <p><i class="fas fa-phone"></i> 477-920-3776</p>
-                    <p><i class="fas fa-envelope"></i> foro7.producciones@hotmail.com</p>
-                </div>
-                <div class="footer-section">
-                    <h4>P&aacute;ginas</h4>
-                    <ul style="list-style:none;padding:0;margin:0;">
-                        <li style="margin-bottom:6px;"><a href="index.html" style="color:var(--text-muted,#aaa);text-decoration:none;">Inicio</a></li>
-                        <li style="margin-bottom:6px;"><a href="bodas.html" style="color:var(--text-muted,#aaa);text-decoration:none;">&#x1F48D; Bodas</a></li>
-                        <li style="margin-bottom:6px;"><a href="xv-anos.html" style="color:var(--text-muted,#aaa);text-decoration:none;">&#x1F451; XV A&ntilde;os</a></li>
-                        <li style="margin-bottom:6px;"><a href="eventos.html" style="color:var(--text-muted,#aaa);text-decoration:none;">&#x1F942; Eventos</a></li>
-                        <li style="margin-bottom:6px;"><a href="empresas.html" style="color:var(--text-muted,#aaa);text-decoration:none;">&#x1F4F8; Empresas</a></li>
-                        <li style="margin-bottom:6px;"><a href="corporativo.html" style="color:var(--text-muted,#aaa);text-decoration:none;">&#x1F4BC; Corporativo</a></li>
-                        <li style="margin-bottom:6px;"><a href="redes.html" style="color:#d4af37;text-decoration:none;">&#x1F4F1; Redes</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>S&iacute;guenos</h4>
-                    <div class="footer-social">
-                        <a href="https://www.instagram.com/foro7/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.tiktok.com/@forosietefotograf" target="_blank" rel="noopener noreferrer" aria-label="TikTok @foro7" style="font-size:13px;font-weight:700;">TK</a>
-                        <a href="https://www.facebook.com/Foro7Prod/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://www.youtube.com/@Foro7" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                        <a href="https://vimeo.com/produccionesforo7" target="_blank" rel="noopener noreferrer" aria-label="Vimeo"><i class="fab fa-vimeo-v"></i></a>
-                        <a href="https://wa.me/5214779203776" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Foro 7 Producciones. Le&oacute;n, Guanajuato, M&eacute;xico.</p>
-            </div>
-        </div>
-    </footer>
+    <div id="shared-footer"></div>
 
     <a href="https://wa.me/5214779203776?text=Hola,%20me%20interesa%20cotizar" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script src="script.js"></script>
     <script>AOS.init({duration:800,once:true,offset:80});</script>
+    <script src="shared-layout.js"></script>
 
 <script>window.FORO7_SITE_SLUG="pagina-foro7";</script>
 <script src="js/visitas-foro7.js"></script>
