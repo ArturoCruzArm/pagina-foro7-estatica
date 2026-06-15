@@ -3,33 +3,93 @@ let currentImageIndex = 0;
 const lightboxImages = [
     {
         src: 'images/gallery/boda-profesional-leon.webp',
-        title: 'Boda Profesional León',
-        description: 'Capturamos cada momento especial de tu boda con la más alta calidad profesional'
+        title: 'Boda profesional en León',
+        description: 'Cobertura completa de boda con retratos, ceremonia y momentos espontáneos.',
+        category: 'bodas'
     },
     {
         src: 'images/gallery/fotografia-boda.webp',
-        title: 'Fotografía de Boda',
-        description: 'Retratos únicos que reflejan la esencia de cada pareja'
+        title: 'Fotografía de boda',
+        description: 'Retratos de pareja y detalles del evento con estilo natural y elegante.',
+        category: 'bodas'
     },
     {
         src: 'images/gallery/video-4k-cinematografico.webp',
-        title: 'Video 4K Cinematográfico',
-        description: 'Producción cinematográfica de alta calidad para tu evento especial'
+        title: 'Video 4K cinematográfico',
+        description: 'Producción cinematográfica de alta calidad para conservar tu evento especial.',
+        category: 'video'
     },
     {
         src: 'images/gallery/tomas-aereas-dron.webp',
-        title: 'Tomas Aéreas con Dron',
-        description: 'Perspectivas únicas y espectaculares desde el aire'
+        title: 'Tomas aéreas con dron',
+        description: 'Perspectivas amplias del venue, iglesia y celebración desde el aire.',
+        category: 'dron'
     },
     {
         src: 'images/gallery/quinceanera-elegante.webp',
-        title: 'Quinceañera Elegante',
-        description: 'Celebraciones de XV años con estilo y distinción'
+        title: 'Quinceañera elegante',
+        description: 'Sesión de XV años con dirección de pose, locación y estilo editorial.',
+        category: 'xv'
     },
     {
         src: 'images/gallery/ceremonia-religiosa.webp',
-        title: 'Ceremonia Religiosa',
-        description: 'Momentos sagrados capturados con respeto y profesionalismo'
+        title: 'Ceremonia religiosa',
+        description: 'Momentos solemnes capturados con respeto, luz cuidada y discreción.',
+        category: 'bodas'
+    },
+    {
+        src: 'images/gallery/boda-retrato-pareja-foro7.webp',
+        title: 'Retrato de pareja',
+        description: 'Retratos emotivos de pareja para recordar la complicidad del día.',
+        category: 'bodas'
+    },
+    {
+        src: 'images/gallery/boda-recepcion-elegante-foro7.webp',
+        title: 'Recepción elegante',
+        description: 'Cobertura de recepción, decoración y retratos formales del evento.',
+        category: 'bodas'
+    },
+    {
+        src: 'images/gallery/boda-momento-recepcion-foro7.webp',
+        title: 'Momento en recepción',
+        description: 'Instantes naturales durante la celebración, sin perder elegancia.',
+        category: 'bodas'
+    },
+    {
+        src: 'images/gallery/xv-retrato-lila-foro7.webp',
+        title: 'Retrato editorial XV',
+        description: 'Sesión de XV años con luz natural, dirección de pose y acabado editorial.',
+        category: 'xv'
+    },
+    {
+        src: 'images/gallery/xv-expiatorio-leon-foro7.webp',
+        title: 'XV en Expiatorio',
+        description: 'Locaciones icónicas de León para una sesión memorable de XV años.',
+        category: 'xv'
+    },
+    {
+        src: 'images/gallery/xv-vestido-rosa-foro7.webp',
+        title: 'Vestido rosa en exterior',
+        description: 'Tomas amplias que muestran vestido, locación y personalidad de la quinceañera.',
+        category: 'xv'
+    },
+    {
+        src: 'images/gallery/xv-vestido-rojo-foro7.webp',
+        title: 'Vestido rojo ceremonial',
+        description: 'Retratos de impacto para destacar vestido, corona y producción.',
+        category: 'xv'
+    },
+    {
+        src: 'images/gallery/aniversario-bodas-plata-foro7.webp',
+        title: 'Aniversario de bodas',
+        description: 'Fotografía para aniversarios, renovaciones de votos y celebraciones familiares.',
+        category: 'eventos'
+    },
+    {
+        src: 'images/gallery/sesion-casual-foro7.webp',
+        title: 'Sesión casual',
+        description: 'Sesiones previas y retratos personales para complementar tu paquete.',
+        category: 'eventos'
     }
 ];
 

@@ -380,7 +380,7 @@
 
     <!-- Preload critical resources -->
     <link rel="preload" href="styles.css" as="style">
-    <link rel="preload" href="script.js?v=20260615-conversion3" as="script">
+    <link rel="preload" href="script.js?v=20260615-gallery1" as="script">
 
     <!-- Main CSS -->
     <link rel="stylesheet" href="styles.css">
@@ -1174,6 +1174,7 @@
                             <button class="filter-btn active" data-filter="all">Todos</button>
                             <button class="filter-btn" data-filter="bodas">Bodas</button>
                             <button class="filter-btn" data-filter="xv">XV Años</button>
+                            <button class="filter-btn" data-filter="eventos">Eventos</button>
                             <button class="filter-btn" data-filter="video">Video 4K</button>
                             <button class="filter-btn" data-filter="dron">Dron</button>
                         </div>
@@ -1181,7 +1182,7 @@
                         <div class="photo-gallery">
                             <div class="photo-item" data-category="bodas" onclick="openLightbox(0)">
                                 <img src="images/gallery/thumb/boda-profesional-leon.webp"
-                                     alt="Boda Profesional León - Foro 7 Producciones"
+                                     alt="Boda profesional en León - Foro 7 Producciones"
                                      loading="lazy"
                                      decoding="async"
                                      width="300"
@@ -1194,7 +1195,7 @@
                             </div>
                             <div class="photo-item" data-category="bodas" onclick="openLightbox(1)">
                                 <img src="images/gallery/thumb/fotografia-boda.webp"
-                                     alt="Fotografía de Boda León, Guanajuato"
+                                     alt="Fotografía de boda en León, Guanajuato"
                                      loading="lazy"
                                      decoding="async"
                                      width="300"
@@ -1207,7 +1208,7 @@
                             </div>
                             <div class="photo-item" data-category="video" onclick="openLightbox(2)">
                                 <img src="images/gallery/thumb/video-4k-cinematografico.webp"
-                                     alt="Ceremonia Especial - Video 4K"
+                                     alt="Video 4K cinematográfico para eventos"
                                      loading="lazy"
                                      decoding="async"
                                      width="300"
@@ -1220,7 +1221,7 @@
                             </div>
                             <div class="photo-item" data-category="dron" onclick="openLightbox(3)">
                                 <img src="images/gallery/thumb/tomas-aereas-dron.webp"
-                                     alt="Tomas Aéreas con Dron"
+                                     alt="Tomas aéreas con dron para bodas y eventos"
                                      loading="lazy"
                                      decoding="async"
                                      width="300"
@@ -1233,7 +1234,7 @@
                             </div>
                             <div class="photo-item" data-category="xv" onclick="openLightbox(4)">
                                 <img src="images/gallery/thumb/quinceanera-elegante.webp"
-                                     alt="Quinceañera Elegante"
+                                     alt="Quinceañera elegante con vestido formal"
                                      loading="lazy"
                                      decoding="async"
                                      width="300"
@@ -1246,7 +1247,7 @@
                             </div>
                             <div class="photo-item" data-category="bodas" onclick="openLightbox(5)">
                                 <img src="images/gallery/thumb/ceremonia-religiosa.webp"
-                                     alt="Ceremonia Religiosa"
+                                     alt="Ceremonia religiosa documentada por Foro 7 Producciones"
                                      loading="lazy"
                                      decoding="async"
                                      width="300"
@@ -1256,6 +1257,123 @@
                                     <span>Ver Imagen</span>
                                 </div>
                                 <div class="photo-category">Ceremonias</div>
+                            </div>
+                            <div class="photo-item" data-category="bodas" onclick="openLightbox(6)">
+                                <img src="images/gallery/thumb/boda-retrato-pareja-foro7.webp"
+                                     alt="Retrato cercano de novios por Foro 7 Producciones"
+                                     loading="lazy"
+                                     decoding="async"
+                                     width="300"
+                                     height="360">
+                                <div class="photo-overlay">
+                                    <i class="fas fa-search-plus"></i>
+                                    <span>Ver Imagen</span>
+                                </div>
+                                <div class="photo-category">Bodas</div>
+                            </div>
+                            <div class="photo-item" data-category="bodas" onclick="openLightbox(7)">
+                                <img src="images/gallery/thumb/boda-recepcion-elegante-foro7.webp"
+                                     alt="Novios en recepción elegante fotografiados por Foro 7 Producciones"
+                                     loading="lazy"
+                                     decoding="async"
+                                     width="300"
+                                     height="200">
+                                <div class="photo-overlay">
+                                    <i class="fas fa-search-plus"></i>
+                                    <span>Ver Imagen</span>
+                                </div>
+                                <div class="photo-category">Bodas</div>
+                            </div>
+                            <div class="photo-item" data-category="bodas" onclick="openLightbox(8)">
+                                <img src="images/gallery/thumb/boda-momento-recepcion-foro7.webp"
+                                     alt="Momento romántico de boda en recepción"
+                                     loading="lazy"
+                                     decoding="async"
+                                     width="300"
+                                     height="200">
+                                <div class="photo-overlay">
+                                    <i class="fas fa-search-plus"></i>
+                                    <span>Ver Imagen</span>
+                                </div>
+                                <div class="photo-category">Bodas</div>
+                            </div>
+                            <div class="photo-item" data-category="xv" onclick="openLightbox(9)">
+                                <img src="images/gallery/thumb/xv-retrato-lila-foro7.webp"
+                                     alt="Retrato editorial de quinceañera con vestido lila"
+                                     loading="lazy"
+                                     decoding="async"
+                                     width="300"
+                                     height="400">
+                                <div class="photo-overlay">
+                                    <i class="fas fa-search-plus"></i>
+                                    <span>Ver Imagen</span>
+                                </div>
+                                <div class="photo-category">XV Años</div>
+                            </div>
+                            <div class="photo-item" data-category="xv" onclick="openLightbox(10)">
+                                <img src="images/gallery/thumb/xv-expiatorio-leon-foro7.webp"
+                                     alt="Quinceañera frente al Templo Expiatorio de León"
+                                     loading="lazy"
+                                     decoding="async"
+                                     width="300"
+                                     height="360">
+                                <div class="photo-overlay">
+                                    <i class="fas fa-search-plus"></i>
+                                    <span>Ver Imagen</span>
+                                </div>
+                                <div class="photo-category">XV Años</div>
+                            </div>
+                            <div class="photo-item" data-category="xv" onclick="openLightbox(11)">
+                                <img src="images/gallery/thumb/xv-vestido-rosa-foro7.webp"
+                                     alt="Quinceañera con vestido rosa en sesión exterior"
+                                     loading="lazy"
+                                     decoding="async"
+                                     width="300"
+                                     height="250">
+                                <div class="photo-overlay">
+                                    <i class="fas fa-search-plus"></i>
+                                    <span>Ver Imagen</span>
+                                </div>
+                                <div class="photo-category">XV Años</div>
+                            </div>
+                            <div class="photo-item" data-category="xv" onclick="openLightbox(12)">
+                                <img src="images/gallery/thumb/xv-vestido-rojo-foro7.webp"
+                                     alt="Quinceañera con vestido rojo en escalinata"
+                                     loading="lazy"
+                                     decoding="async"
+                                     width="300"
+                                     height="399">
+                                <div class="photo-overlay">
+                                    <i class="fas fa-search-plus"></i>
+                                    <span>Ver Imagen</span>
+                                </div>
+                                <div class="photo-category">XV Años</div>
+                            </div>
+                            <div class="photo-item" data-category="eventos" onclick="openLightbox(13)">
+                                <img src="images/gallery/thumb/aniversario-bodas-plata-foro7.webp"
+                                     alt="Retrato de aniversario de bodas de plata"
+                                     loading="lazy"
+                                     decoding="async"
+                                     width="300"
+                                     height="450">
+                                <div class="photo-overlay">
+                                    <i class="fas fa-search-plus"></i>
+                                    <span>Ver Imagen</span>
+                                </div>
+                                <div class="photo-category">Eventos</div>
+                            </div>
+                            <div class="photo-item" data-category="eventos" onclick="openLightbox(14)">
+                                <img src="images/gallery/thumb/sesion-casual-foro7.webp"
+                                     alt="Sesión casual en exterior con luz natural"
+                                     loading="lazy"
+                                     decoding="async"
+                                     width="300"
+                                     height="359">
+                                <div class="photo-overlay">
+                                    <i class="fas fa-search-plus"></i>
+                                    <span>Ver Imagen</span>
+                                </div>
+                                <div class="photo-category">Sesiones</div>
                             </div>
                         </div>
                         
@@ -1891,7 +2009,7 @@
         }
     </script>
     <!-- Main script - defer for non-blocking load -->
-    <script src="script.js?v=20260615-conversion3" defer></script>
+    <script src="script.js?v=20260615-gallery1" defer></script>
 
     <!-- Cookie Consent Banner -->
     <div id="cookieConsent" class="cookie-consent" role="dialog" aria-labelledby="cookieTitle" aria-describedby="cookieDesc">
