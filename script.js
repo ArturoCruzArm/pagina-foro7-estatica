@@ -534,6 +534,59 @@ function sendToWhatsApp() {
     window.open(`https://wa.me/524779203776?text=${whatsappMsg}`, '_blank');
 }
 
+function sendEmailFromForm() {
+    const form = document.getElementById('contactForm');
+    if (!form) return true;
+
+    const nombre = form.querySelector('#nombre').value.trim();
+    const telefono = form.querySelector('#telefono').value.trim();
+    const email = form.querySelector('#email').value.trim();
+    const fechaEvento = form.querySelector('#fecha-evento').value;
+    const servicio = form.querySelector('#servicio').value;
+    const mensaje = form.querySelector('#mensaje').value.trim();
+
+    if (!nombre || !email || !mensaje) {
+        alert('Por favor, completa los campos obligatorios: Nombre, Email y Mensaje.');
+        return false;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        alert('Por favor, ingresa un email valido.');
+        return false;
+    }
+
+    const serviceNames = {
+        fotografia: 'Solo Fotografia',
+        video: 'Solo Video 4K',
+        completo: 'Fotografia + Video',
+        premium: 'Paquete Premium + Dron',
+        dron: 'Solo Tomas con Dron',
+        invitaciones: 'Invitaciones Personalizadas'
+    };
+
+    const lines = [
+        'Hola Foro 7, quiero cotizar mi evento.',
+        '',
+        'Nombre: ' + nombre,
+        telefono ? 'Telefono: ' + telefono : '',
+        'Email: ' + email,
+        fechaEvento ? 'Fecha del evento: ' + fechaEvento : '',
+        servicio ? 'Servicio de interes: ' + (serviceNames[servicio] || servicio) : '',
+        '',
+        'Mensaje:',
+        mensaje,
+        '',
+        'Enviado desde invitados.org'
+    ].filter(Boolean);
+
+    const subject = encodeURIComponent('Cotizacion Foro 7 - ' + nombre);
+    const body = encodeURIComponent(lines.join('\n'));
+    window.location.href = 'mailto:foro7.producciones@hotmail.com?subject=' + subject + '&body=' + body;
+    if (typeof trackContactForm === 'function') trackContactForm('email');
+    return false;
+}
+
 function getServiceName(value) {
     const services = {
         'fotografia': '📸 Solo Fotografía',

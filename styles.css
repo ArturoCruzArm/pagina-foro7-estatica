@@ -1117,6 +1117,16 @@ h3 {
     object-fit: cover;
 }
 
+.author-avatar.author-initials {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #D2691E 0%, #CD853F 100%);
+    color: #fff;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+
 .author-info .author-name {
     color: #8B4513;
     margin-bottom: 0.25rem;

@@ -380,7 +380,7 @@
 
     <!-- Preload critical resources -->
     <link rel="preload" href="styles.css" as="style">
-    <link rel="preload" href="script.js?v=20260615-conversion2" as="script">
+    <link rel="preload" href="script.js?v=20260615-conversion3" as="script">
 
     <!-- Main CSS -->
     <link rel="stylesheet" href="styles.css">
@@ -511,8 +511,8 @@
                             <div class="stat-label">Años de experiencia</div>
                         </div>
                         <div class="stat-item">
-                            <div class="stat-number">100%</div>
-                            <div class="stat-label">Satisfacción</div>
+                            <div class="stat-number">✓</div>
+                            <div class="stat-label">Contrato claro</div>
                         </div>
                     </div>
                     
@@ -1004,7 +1004,7 @@
                                     <i class="fab fa-whatsapp"></i>
                                     ¡Solicitar Cotización!
                                 </a>
-                                <p class="guarantee">✅ 100% Garantía de Satisfacción</p>
+                                <p class="guarantee">✅ Ajustes incluidos antes de publicar</p>
                             </div>
                         </div>
                     </div>
@@ -1069,9 +1069,7 @@
                             </div>
                         </div>
                         <div class="testimonial-author">
-                            <div class="author-avatar">
-                                <img src="images/testimonials/maria-gonzalez.webp" alt="María González" loading="lazy" decoding="async" width="60" height="60">
-                            </div>
+                            <div class="author-avatar author-initials" aria-hidden="true">MC</div>
                             <div class="author-info">
                                 <p class="author-name"><strong>María & Carlos González</strong></p>
                                 <p>Boda en Hacienda del Sol, León</p>
@@ -1095,9 +1093,7 @@
                             </div>
                         </div>
                         <div class="testimonial-author">
-                            <div class="author-avatar">
-                                <img src="images/testimonials/thumb/maria-gonzalez.webp" alt="Roberto Hernández" loading="lazy" decoding="async" width="60" height="60">
-                            </div>
+                            <div class="author-avatar author-initials" aria-hidden="true">RH</div>
                             <div class="author-info">
                                 <p class="author-name"><strong>Roberto Hernández</strong></p>
                                 <p>XV Años de Sofía, León</p>
@@ -1121,9 +1117,7 @@
                             </div>
                         </div>
                         <div class="testimonial-author">
-                            <div class="author-avatar">
-                                <img src="images/testimonials/thumb/maria-gonzalez.webp" alt="Ana Martínez" loading="lazy" decoding="async" width="60" height="60">
-                            </div>
+                            <div class="author-avatar author-initials" aria-hidden="true">AM</div>
                             <div class="author-info">
                                 <p class="author-name"><strong>Ana & Miguel Martínez</strong></p>
                                 <p>Boda en Jardín de los Remedios</p>
@@ -1138,22 +1132,22 @@
                         <div class="stat-icon">
                             <i class="fas fa-heart"></i>
                         </div>
-                        <div class="stat-number" data-target="98">0</div>
-                        <div class="stat-text">% Clientes Satisfechos</div>
+                        <div class="stat-number">15+</div>
+                        <div class="stat-text">A&ntilde;os de experiencia</div>
                     </div>
                     <div class="stat-box">
                         <div class="stat-icon">
                             <i class="fas fa-camera"></i>
                         </div>
-                        <div class="stat-number" data-target="15000">0</div>
-                        <div class="stat-text">Fotos Capturadas</div>
+                        <div class="stat-number">500+</div>
+                        <div class="stat-text">Eventos documentados</div>
                     </div>
                     <div class="stat-box">
                         <div class="stat-icon">
                             <i class="fas fa-award"></i>
                         </div>
-                        <div class="stat-number" data-target="50">0</div>
-                        <div class="stat-text">Eventos Premiados</div>
+                        <div class="stat-number">48-72h</div>
+                        <div class="stat-text">Adelanto de fotos</div>
                     </div>
                 </div>
             </div>
@@ -1603,7 +1597,7 @@
                                     <i class="fab fa-whatsapp" aria-hidden="true"></i>
                                     Enviar por WhatsApp
                                 </button>
-                                <a class="submit-btn email-btn" href="mailto:foro7.producciones@hotmail.com?subject=Cotizaci%C3%B3n%20Foro%207&body=Hola%20Foro%207%2C%20quiero%20cotizar%20mi%20evento.">
+                                <a class="submit-btn email-btn" href="mailto:foro7.producciones@hotmail.com?subject=Cotizaci%C3%B3n%20Foro%207&body=Hola%20Foro%207%2C%20quiero%20cotizar%20mi%20evento." onclick="return sendEmailFromForm()">
                                     <i class="fas fa-envelope" aria-hidden="true"></i>
                                     Enviar por correo
                                 </a>
@@ -1788,9 +1782,9 @@
             <div class="footer-bottom">
                 <p>&copy; 2026 Foro 7 Producciones. Todos los derechos reservados.</p>
                 <div class="footer-links">
-                    <a href="privacidad.html" onclick="event.preventDefault(); openPrivacyModal()">Aviso de Privacidad</a>
+                    <a href="privacidad.html">Aviso de Privacidad</a>
                     <span>|</span>
-                    <a href="#" onclick="openCreditsModal()">Créditos del Sitio</a>
+                    <a href="terminos.html">T&eacute;rminos</a>
                 </div>
             </div>
         </div>
@@ -1815,12 +1809,11 @@
     <div id="creditsModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeCreditsModal()">&times;</span>
-            <h2>Créditos del Sitio</h2>
-            <p><strong>Desarrollo Web:</strong> Claude Code Assistant</p>
-            <p><strong>Diseño:</strong> Diseño moderno responsive</p>
-            <p><strong>Imágenes:</strong> Unsplash.com</p>
+            <h2>Tecnolog&iacute;a del Sitio</h2>
+            <p><strong>Sitio y contenido:</strong> Foro 7 Producciones</p>
+            <p><strong>Fotograf&iacute;a y video:</strong> Archivo propio de Foro 7</p>
             <p><strong>Iconos:</strong> Font Awesome</p>
-            <p><strong>Tipografías:</strong> Google Fonts (Playfair Display, Inter)</p>
+            <p><strong>Tipograf&iacute;as:</strong> Google Fonts (Playfair Display, Inter)</p>
             <p><strong>Hosting:</strong> GitHub Pages</p>
         </div>
     </div>
@@ -1898,7 +1891,7 @@
         }
     </script>
     <!-- Main script - defer for non-blocking load -->
-    <script src="script.js?v=20260615-conversion2" defer></script>
+    <script src="script.js?v=20260615-conversion3" defer></script>
 
     <!-- Cookie Consent Banner -->
     <div id="cookieConsent" class="cookie-consent" role="dialog" aria-labelledby="cookieTitle" aria-describedby="cookieDesc">
