@@ -6,13 +6,21 @@
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "display_override": ["window-controls-overlay", "standalone", "browser"],
+  "display_override": [
+    "window-controls-overlay",
+    "standalone",
+    "browser"
+  ],
   "background_color": "#FFF8DC",
   "theme_color": "#D2691E",
   "orientation": "portrait-primary",
   "lang": "es-MX",
   "dir": "ltr",
-  "categories": ["photography", "business", "lifestyle"],
+  "categories": [
+    "photography",
+    "business",
+    "lifestyle"
+  ],
   "iarc_rating_id": "",
   "prefer_related_applications": false,
   "launch_handler": {
@@ -21,27 +29,27 @@
   "handle_links": "preferred",
   "icons": [
     {
-      "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgdmlld0JveD0iMCAwIDE5MiAxOTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxOTIiIGhlaWdodD0iMTkyIiByeD0iOTYiIGZpbGw9IiNEMjY5MUUiLz4KPHN2ZyB4PSI2NCIgeT0iNjQiIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cGF0aCBkPSJNMTIgMTJjMi4yMSAwIDQtMS43OSA0LTRzLTEuNzktNC00LTQtNCAxLjc5LTQgNCAxLjc5IDQgNCA0em0wIDJjLTIuNjcgMC04IDEuMzQtOCA0djJoMTZ2LTJjMC0yLjY2LTUuMzMtNC04LTR6IiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4KPGNpcmNsZSBjeD0iMTQ0IiBjeT0iNDgiIHI9IjE2IiBmaWxsPSIjRkY2NzAwIi8+CjxjaXJjbGUgY3g9IjE0NCIgY3k9IjQ4IiByPSIxMiIgZmlsbD0iI0ZGRkZGRiIvPgo8cGF0aCBkPSJNMTQ0IDQwaDJ2MTZoLTJ6IiBmaWxsPSIjRkY2NzAwIi8+CjxwYXRoIGQ9Ik0xMzYgNDZoMTZ2Mmg0NnoiIGZpbGw9IiNGRjY3MDAiLz4KPC9zdmc+",
+      "src": "android-chrome-192x192.png",
       "sizes": "192x192",
-      "type": "image/svg+xml",
+      "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgdmlld0JveD0iMCAwIDE5MiAxOTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxOTIiIGhlaWdodD0iMTkyIiByeD0iOTYiIGZpbGw9IiNEMjY5MUUiLz4KPHN2ZyB4PSI2NCIgeT0iNjQiIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cGF0aCBkPSJNMTIgMTJjMi4yMSAwIDQtMS43OSA0LTRzLTEuNzktNC00LTQtNCAxLjc5LTQgNCAxLjc5IDQgNCA0em0wIDJjLTIuNjcgMC04IDEuMzQtOCA0djJoMTZ2LTJjMC0yLjY2LTUuMzMtNC04LTR6IiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4KPGNpcmNsZSBjeD0iMTQ0IiBjeT0iNDgiIHI9IjE2IiBmaWxsPSIjRkY2NzAwIi8+CjxjaXJjbGUgY3g9IjE0NCIgY3k9IjQ4IiByPSIxMiIgZmlsbD0iI0ZGRkZGRiIvPgo8cGF0aCBkPSJNMTQ0IDQwaDJ2MTZoLTJ6IiBmaWxsPSIjRkY2NzAwIi8+CjxwYXRoIGQ9Ik0xMzYgNDZoMTZ2Mmg0NnoiIGZpbGw9IiNGRjY3MDAiLz4KPC9zdmc+",
+      "src": "android-chrome-192x192.png",
       "sizes": "192x192",
-      "type": "image/svg+xml",
+      "type": "image/png",
       "purpose": "maskable"
     },
     {
-      "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDUxMiA1MTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiByeD0iMjU2IiBmaWxsPSIjRDI2OTFFIi8+Cjx0ZXh0IHg9IjI1NiIgeT0iMzAwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgwIiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+RjwvdGV4dD4KPHN2ZyB4PSIxNzAiIHk9IjQwMCIgd2lkdGg9IjE3MiIgaGVpZ2h0PSI2NCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cGF0aCBkPSJNMTIgMmw0IDEyTDEyIDIybC00LTEyTDEyIDJ6IiBmaWxsPSJ3aGl0ZSIgb3BhY2l0eT0iMC43Ii8+CjwvdGc+Cjwvc3ZnPg==",
+      "src": "android-chrome-512x512.png",
       "sizes": "512x512",
-      "type": "image/svg+xml",
+      "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDUxMiA1MTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiByeD0iMjU2IiBmaWxsPSIjRDI2OTFFIi8+Cjx0ZXh0IHg9IjI1NiIgeT0iMzAwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgwIiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+RjwvdGV4dD4KPHN2ZyB4PSIxNzAiIHk9IjQwMCIgd2lkdGg9IjE3MiIgaGVpZ2h0PSI2NCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cGF0aCBkPSJNMTIgMmw0IDEyTDEyIDIybC00LTEyTDEyIDJ6IiBmaWxsPSJ3aGl0ZSIgb3BhY2l0eT0iMC43Ii8+CjwvdGc+Cjwvc3ZnPg==",
+      "src": "android-chrome-512x512.png",
       "sizes": "512x512",
-      "type": "image/svg+xml",
+      "type": "image/png",
       "purpose": "maskable"
     }
   ],
@@ -51,29 +59,47 @@
       "short_name": "Portafolio",
       "description": "Explora nuestro trabajo",
       "url": "/#portafolio",
-      "icons": [{ "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📷</text></svg>", "sizes": "96x96" }]
+      "icons": [
+        {
+          "src": "favicon-32x32.png",
+          "sizes": "32x32",
+          "type": "image/png"
+        }
+      ]
     },
     {
       "name": "Contactar",
       "short_name": "Contacto",
       "description": "Agenda tu cita",
       "url": "/#contacto",
-      "icons": [{ "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📞</text></svg>", "sizes": "96x96" }]
+      "icons": [
+        {
+          "src": "favicon-32x32.png",
+          "sizes": "32x32",
+          "type": "image/png"
+        }
+      ]
     },
     {
       "name": "WhatsApp",
       "short_name": "WhatsApp",
       "description": "Escríbenos por WhatsApp",
       "url": "https://wa.me/524779203776",
-      "icons": [{ "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💬</text></svg>", "sizes": "96x96" }]
+      "icons": [
+        {
+          "src": "favicon-32x32.png",
+          "sizes": "32x32",
+          "type": "image/png"
+        }
+      ]
     }
   ],
   "related_applications": [],
   "screenshots": [
     {
-      "src": "images/gallery/boda-profesional-leon.jpg",
+      "src": "images/gallery/boda-profesional-leon.webp",
       "sizes": "1280x720",
-      "type": "image/jpeg",
+      "type": "image/webp",
       "form_factor": "wide",
       "label": "Fotografía profesional de bodas"
     }
@@ -97,9 +123,16 @@
     {
       "action": "/",
       "accept": {
-        "image/jpeg": [".jpg", ".jpeg"],
-        "image/png": [".png"],
-        "image/webp": [".webp"]
+        "image/jpeg": [
+          ".jpg",
+          ".jpeg"
+        ],
+        "image/png": [
+          ".png"
+        ],
+        "image/webp": [
+          ".webp"
+        ]
       }
     }
   ],

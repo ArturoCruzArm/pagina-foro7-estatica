@@ -1,4 +1,4 @@
-// Service Worker para Producciones Foro 7
+﻿// Service Worker para Producciones Foro 7
 // Version 2.0.0 - Optimized with WebP support and improved caching
 
 const CACHE_NAME = 'foro7-v3.0.0';
@@ -12,7 +12,12 @@ const CORE_ASSETS = [
   './offline.html',
   './styles.css',
   './script.js',
-  './manifest.json'
+  './manifest.json',
+  './logo.png',
+  './favicon.ico',
+  './favicon-32x32.png',
+  './favicon-16x16.png',
+  './apple-touch-icon.png'
 ];
 
 // External resources to cache
@@ -117,8 +122,7 @@ function isImageRequest(url) {
          url.pathname.endsWith('.jpeg') ||
          url.pathname.endsWith('.png') ||
          url.pathname.endsWith('.gif') ||
-         url.pathname.endsWith('.svg') ||
-         url.hostname === 'images.unsplash.com';
+         url.pathname.endsWith('.svg');
 }
 
 // Check if request is for a static asset
@@ -258,7 +262,7 @@ async function syncContactForms() {
       if (self.registration.showNotification) {
         self.registration.showNotification('Mensaje enviado', {
           body: 'Tu mensaje de contacto ha sido procesado.',
-          icon: '/images/icon-192x192.png',
+          icon: '/logo.png',
           tag: 'contact-sync'
         });
       }
@@ -316,8 +320,8 @@ self.addEventListener('push', event => {
     const data = event.data.json();
     self.registration.showNotification(data.title, {
       body: data.body,
-      icon: '/images/icon-192x192.png',
-      badge: '/images/icon-72x72.png'
+      icon: '/logo.png',
+      badge: '/favicon-32x32.png'
     });
   }
 });

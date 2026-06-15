@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
 
     <!-- Google Analytics 4 with Consent Mode -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <!-- Google Analytics pendiente: agrega el Measurement ID real para activarlo. -->
     <script>
         // Initialize dataLayer
         window.dataLayer = window.dataLayer || [];
@@ -18,10 +18,13 @@
         });
 
         gtag('js', new Date());
-        gtag('config', 'G-XXXXXXXXXX', {
-            'anonymize_ip': true,
-            'cookie_flags': 'SameSite=None;Secure'
-        });
+        const GA_MEASUREMENT_ID = '';
+        if (GA_MEASUREMENT_ID) {
+            gtag('config', GA_MEASUREMENT_ID, {
+                'anonymize_ip': true,
+                'cookie_flags': 'SameSite=None;Secure'
+            });
+        }
 
         // Function to update consent (call when user accepts cookies)
         function acceptAnalytics() {
@@ -111,7 +114,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="preconnect" href="https://unpkg.com">
-    <link rel="preconnect" href="https://images.unsplash.com">
     <link rel="preconnect" href="https://www.youtube.com">
     <link rel="preconnect" href="https://vimeo.com">
     
@@ -120,14 +122,14 @@
     <link rel="dns-prefetch" href="https://wa.me">
     
     <!-- Preload critical images -->
-    <link rel="preload" href="images/gallery/boda-profesional-leon.jpg" as="image" fetchpriority="high">
+    <link rel="preload" href="images/gallery/boda-profesional-leon.webp" as="image" fetchpriority="high">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://invitados.org/">
     <meta property="og:title" content="XV Anos | Foro 7 Producciones - Leon, Gto.">
     <meta property="og:description" content="Fotografia y video 4K para XV Anos en Leon, Guanajuato. Hacemos de tu quinceañera un recuerdo eterno.">
-    <meta property="og:image" content="https://invitados.org/og-image.jpg">
+    <meta property="og:image" content="https://invitados.org/og-image.webp">
     <meta property="og:locale" content="es_MX">
     <meta property="og:site_name" content="Foro 7 Producciones">
 
@@ -136,7 +138,7 @@
     <meta property="twitter:url" content="https://invitados.org/">
     <meta property="twitter:title" content="Foro 7 Producciones - Fotografía y Video para Bodas">
     <meta property="twitter:description" content="Fotografía profesional y video 4K para bodas y eventos sociales en León, Guanajuato.">
-    <meta property="twitter:image" content="https://invitados.org/og-image.jpg">
+    <meta property="twitter:image" content="https://invitados.org/og-image.webp">
 
     <!-- Structured Data - JSON-LD for SEO -->
     <script type="application/ld+json">
@@ -150,8 +152,8 @@
         "url": "https://invitados.org",
         "telephone": "+52-477-920-3776",
         "email": "foro7.producciones@hotmail.com",
-        "image": "https://invitados.org/og-image.jpg",
-        "logo": "https://invitados.org/og-image.jpg",
+        "image": "https://invitados.org/og-image.webp",
+        "logo": "https://invitados.org/og-image.webp",
         "priceRange": "$$",
         "currenciesAccepted": "MXN",
         "paymentAccepted": "Cash, Credit Card, Bank Transfer",
@@ -253,7 +255,7 @@
         "@type": "Organization",
         "name": "Foro 7 Producciones",
         "url": "https://invitados.org",
-        "logo": "https://invitados.org/og-image.jpg",
+        "logo": "https://invitados.org/og-image.webp",
         "contactPoint": {
             "@type": "ContactPoint",
             "telephone": "+52-477-920-3776",
@@ -325,8 +327,10 @@
     </script>
 
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiByeD0iMTYiIGZpbGw9IiNEMjY5MUUiLz4KPHN2ZyB4PSIxMCIgeT0iMTAiIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cGF0aCBkPSJNMTIgMTJjMi4yMSAwIDQtMS43OSA0LTRzLTEuNzktNC00LTQtNCAxLjc5LTQgNCAxLjc5IDQgNCA0em0wIDJjLTIuNjcgMC04IDEuMzQtOCA0djJoMTZ2LTJjMC0yLjY2LTUuMzMtNC04LTR6IiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4KPC9zdmc+">
-    <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgdmlld0JveD0iMCAwIDE4MCAxODAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxODAiIGhlaWdodD0iMTgwIiByeD0iOTAiIGZpbGw9IiNEMjY5MUUiLz4KPC9zdmc+">
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 
     <!-- Manifest -->
     <link rel="manifest" href="manifest.json">
@@ -442,7 +446,7 @@
         <nav class="navbar">
             <div class="nav-container">
                 <a href="index.html" class="nav-logo">
-                    <img src="logo.png" alt="Foro 7 Producciones" style="height:52px;width:auto;display:block;">
+                    <img src="logo.png" alt="Foro 7 Producciones" style="height:52px;width:auto;display:block;" width="974" height="402">
                 </a>
                 <ul class="nav-menu">
                     <li><a href="#inicio">Inicio</a></li>
@@ -544,7 +548,7 @@
                 </div>
                 <div class="hero-image" data-aos="fade-left" data-aos-delay="200">
                     <div class="image-container">
-                        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                        <img src="images/gallery/boda-profesional-leon.webp"
                              alt="Boda elegante - Foro 7 Producciones"
                              fetchpriority="high"
                              decoding="async"
@@ -722,8 +726,8 @@
                     </div>
                 </div>
                 <div style="text-align:center;margin-top:40px;" data-aos="fade-up" data-aos-delay="400">
-                    <a href="https://studio.invitados.org" target="_blank" style="display:inline-block;background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.3);color:#d4af37;padding:14px 32px;border-radius:8px;font-size:15px;text-decoration:none;letter-spacing:1px;transition:all 0.3s;">Explorar Productos en 3D &#8594;</a>
-                    <a href="https://foro7.invitados.org/#paquetes" target="_blank" style="display:inline-block;background:transparent;border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.7);padding:14px 32px;border-radius:8px;font-size:15px;text-decoration:none;letter-spacing:1px;margin-left:12px;transition:all 0.3s;">Ver Paquetes y Precios &#8594;</a>
+                    <a href="https://studio.invitados.org" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.3);color:#d4af37;padding:14px 32px;border-radius:8px;font-size:15px;text-decoration:none;letter-spacing:1px;transition:all 0.3s;">Explorar Productos en 3D &#8594;</a>
+                    <a href="paquetes.html" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:transparent;border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.7);padding:14px 32px;border-radius:8px;font-size:15px;text-decoration:none;letter-spacing:1px;margin-left:12px;transition:all 0.3s;">Ver Paquetes y Precios &#8594;</a>
                 </div>
             </div>
         </section>
@@ -746,7 +750,7 @@
                                                 <div class="event-date">15 Diciembre 2025</div>
                                             </div>
                                             <div class="invitation-photo">
-                                                <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Pareja en su boda" loading="lazy" decoding="async" width="300" height="200">
+                                                <img src="images/gallery/thumb/boda-profesional-leon.webp" alt="Pareja en su boda" loading="lazy" decoding="async" width="300" height="200">
                                             </div>
                                             <div class="invitation-details">
                                                 <div class="detail-item">
@@ -779,7 +783,7 @@
                                                 <div class="event-date">22 Marzo 2025</div>
                                             </div>
                                             <div class="invitation-photo">
-                                                <img src="https://images.unsplash.com/photo-1594736797933-d0f06b6fde26?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Quinceañera elegante" loading="lazy" decoding="async" width="300" height="200">
+                                                <img src="images/gallery/thumb/quinceanera-elegante.webp" alt="Quinceañera elegante" loading="lazy" decoding="async" width="300" height="200">
                                             </div>
                                             <div class="invitation-details">
                                                 <div class="detail-item">
@@ -812,7 +816,7 @@
                                                 <div class="event-date">10 Abril 2025</div>
                                             </div>
                                             <div class="invitation-photo">
-                                                <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Bebé angelical" loading="lazy" decoding="async" width="300" height="200">
+                                                <img src="images/gallery/thumb/ceremonia-religiosa.webp" alt="Bebé angelical" loading="lazy" decoding="async" width="300" height="200">
                                             </div>
                                             <div class="invitation-details">
                                                 <div class="detail-item">
@@ -1029,7 +1033,7 @@
                         </div>
                         <div class="testimonial-author">
                             <div class="author-avatar">
-                                <img src="images/testimonials/maria-gonzalez.jpg" alt="María González" loading="lazy" decoding="async" width="60" height="60">
+                                <img src="images/testimonials/maria-gonzalez.webp" alt="María González" loading="lazy" decoding="async" width="60" height="60">
                             </div>
                             <div class="author-info">
                                 <p class="author-name"><strong>María & Carlos González</strong></p>
@@ -1055,7 +1059,7 @@
                         </div>
                         <div class="testimonial-author">
                             <div class="author-avatar">
-                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" alt="Roberto Hernández" loading="lazy" decoding="async" width="60" height="60">
+                                <img src="images/testimonials/thumb/maria-gonzalez.webp" alt="Roberto Hernández" loading="lazy" decoding="async" width="60" height="60">
                             </div>
                             <div class="author-info">
                                 <p class="author-name"><strong>Roberto Hernández</strong></p>
@@ -1081,7 +1085,7 @@
                         </div>
                         <div class="testimonial-author">
                             <div class="author-avatar">
-                                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" alt="Ana Martínez" loading="lazy" decoding="async" width="60" height="60">
+                                <img src="images/testimonials/thumb/maria-gonzalez.webp" alt="Ana Martínez" loading="lazy" decoding="async" width="60" height="60">
                             </div>
                             <div class="author-info">
                                 <p class="author-name"><strong>Ana & Miguel Martínez</strong></p>
@@ -1127,7 +1131,7 @@
                             <iframe src="https://www.youtube.com/embed/c6z6Fs1bxZ8" width="100%" height="400" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" title="Video destacado de Foro 7 Producciones - Bodas y eventos"></iframe>
                         </div>
                         <p>🎬 <strong>Video profesional capturado por Foro 7 Producciones</strong></p>
-                        <p>Visita nuestro canal: <a href="https://vimeo.com/produccionesforo7" target="_blank" rel="noopener" class="vimeo-link">📺 Más Videos en Vimeo</a></p>
+                        <p>Visita nuestro canal: <a href="https://vimeo.com/produccionesforo7" target="_blank" rel="noopener noreferrer" class="vimeo-link">📺 Más Videos en Vimeo</a></p>
                     </div>
                     
                     <div class="gallery-section">
@@ -1144,7 +1148,7 @@
 
                         <div class="photo-gallery">
                             <div class="photo-item" data-category="bodas" onclick="openLightbox(0)">
-                                <img src="images/gallery/boda-profesional-leon.jpg"
+                                <img src="images/gallery/thumb/boda-profesional-leon.webp"
                                      alt="Boda Profesional León - Foro 7 Producciones"
                                      loading="lazy"
                                      decoding="async"
@@ -1157,7 +1161,7 @@
                                 <div class="photo-category">Bodas</div>
                             </div>
                             <div class="photo-item" data-category="bodas" onclick="openLightbox(1)">
-                                <img src="images/gallery/fotografia-boda.jpg"
+                                <img src="images/gallery/thumb/fotografia-boda.webp"
                                      alt="Fotografía de Boda León, Guanajuato"
                                      loading="lazy"
                                      decoding="async"
@@ -1170,7 +1174,7 @@
                                 <div class="photo-category">Bodas</div>
                             </div>
                             <div class="photo-item" data-category="video" onclick="openLightbox(2)">
-                                <img src="images/gallery/video-4k-cinematografico.jpg"
+                                <img src="images/gallery/thumb/video-4k-cinematografico.webp"
                                      alt="Ceremonia Especial - Video 4K"
                                      loading="lazy"
                                      decoding="async"
@@ -1183,7 +1187,7 @@
                                 <div class="photo-category">Video 4K</div>
                             </div>
                             <div class="photo-item" data-category="dron" onclick="openLightbox(3)">
-                                <img src="images/gallery/tomas-aereas-dron.jpg"
+                                <img src="images/gallery/thumb/tomas-aereas-dron.webp"
                                      alt="Tomas Aéreas con Dron"
                                      loading="lazy"
                                      decoding="async"
@@ -1196,7 +1200,7 @@
                                 <div class="photo-category">Dron</div>
                             </div>
                             <div class="photo-item" data-category="xv" onclick="openLightbox(4)">
-                                <img src="images/gallery/quinceanera-elegante.jpg"
+                                <img src="images/gallery/thumb/quinceanera-elegante.webp"
                                      alt="Quinceañera Elegante"
                                      loading="lazy"
                                      decoding="async"
@@ -1209,7 +1213,7 @@
                                 <div class="photo-category">XV Años</div>
                             </div>
                             <div class="photo-item" data-category="bodas" onclick="openLightbox(5)">
-                                <img src="images/gallery/ceremonia-religiosa.jpg"
+                                <img src="images/gallery/thumb/ceremonia-religiosa.webp"
                                      alt="Ceremonia Religiosa"
                                      loading="lazy"
                                      decoding="async"
@@ -1226,7 +1230,7 @@
                         <div class="instagram-cta">
                             <p><strong>📸 ¿Quieres ver nuestro trabajo real?</strong></p>
                             <p>Visita nuestro Instagram para ver fotos y videos de bodas reales que hemos capturado:</p>
-                            <a href="https://www.instagram.com/foro7/" target="_blank" rel="noopener" class="instagram-link">
+                            <a href="https://www.instagram.com/foro7/" target="_blank" rel="noopener noreferrer" class="instagram-link">
                                 <i class="fab fa-instagram"></i>
                                 Ver Portafolio Completo @foro7
                             </a>
@@ -1236,11 +1240,11 @@
                     <div class="social-links">
                         <h3>Síguenos en Redes Sociales</h3>
                         <div class="social-buttons">
-                            <a href="https://www.fb.com/forosiete" target="_blank" rel="noopener" class="social-btn facebook">
+                            <a href="https://www.fb.com/forosiete" target="_blank" rel="noopener noreferrer" class="social-btn facebook">
                                 <i class="fab fa-facebook-f"></i>
                                 Forosiete
                             </a>
-                            <a href="https://www.instagram.com/foro7/" target="_blank" rel="noopener" class="social-btn instagram">
+                            <a href="https://www.instagram.com/foro7/" target="_blank" rel="noopener noreferrer" class="social-btn instagram">
                                 <i class="fab fa-instagram"></i>
                                 Instagram @foro7
                             </a>
@@ -1271,7 +1275,7 @@
                         </div>
                     </div>
                     <div class="about-image" data-aos="fade-left" data-aos-delay="200">
-                        <img src="https://images.unsplash.com/photo-1556103255-4443dbae8e5a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Equipo Foro 7 Producciones" loading="lazy" decoding="async" width="600" height="400">
+                        <img src="images/gallery/fotografia-boda.webp" alt="Equipo Foro 7 Producciones" loading="lazy" decoding="async" width="600" height="400">
                     </div>
                 </div>
             </div>
@@ -1436,9 +1440,9 @@
                     <div class="contact-form" data-aos="fade-left" data-aos-delay="200">
                         <h3>💬 Cotiza Tu Evento</h3>
                         <p class="form-description">Completa el formulario y nos pondremos en contacto contigo por WhatsApp</p>
-                        <form id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                        <form id="contactForm" action="#" method="POST">
                             <!-- Honeypot field for spam protection -->
-                            <input type="text" name="_gotcha" style="display:none">
+                            <input type="text" name="_gotcha" style="display:none" aria-hidden="true" aria-label="Campo antispam; no completar" tabindex="-1" autocomplete="off">
                             <!-- Redirect after submission -->
                             <input type="hidden" name="_next" value="https://invitados.org/#gracias">
                             <!-- Email subject -->
@@ -1518,7 +1522,7 @@
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3722.1!2d-101.6869!3d21.1169!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x842bbf4a9a8a8a8a%3A0x8a8a8a8a8a8a8a8a!2sPadilla%20112%2C%20Cumbres de Arbide%2C%20Le%C3%B3n%2C%20Gto.%2C%20M%C3%A9xico!5e0!3m2!1ses!2smx!4v1737385200000" width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy" title="Ubicación de Foro 7 Producciones en León, Guanajuato"></iframe>
                     </div>
                     <div class="map-actions">
-                        <a href="https://maps.app.goo.gl/8gQTCHnxK9ARnh9x6" target="_blank" rel="noopener" class="map-link">
+                        <a href="https://maps.app.goo.gl/8gQTCHnxK9ARnh9x6" target="_blank" rel="noopener noreferrer" class="map-link">
                             <i class="fas fa-map-marker-alt"></i>
                             Ver en Google Maps
                         </a>
@@ -1675,12 +1679,12 @@
                 <div class="footer-section">
                     <h4>Síguenos</h4>
                     <div class="footer-social">
-                        <a href="https://www.instagram.com/foro7/" target="_blank" rel="noopener" aria-label="Instagram @foro7"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.tiktok.com/@forosietefotograf" target="_blank" rel="noopener" aria-label="TikTok @foro7" style="font-size:13px;font-weight:700;">TK</a>
-                        <a href="https://www.fb.com/forosiete" target="_blank" rel="noopener" aria-label="Facebook Forosiete"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://www.youtube.com/@Foro7" target="_blank" rel="noopener" aria-label="YouTube @Foro7"><i class="fab fa-youtube"></i></a>
-                        <a href="https://vimeo.com/produccionesforo7" target="_blank" rel="noopener" aria-label="Canal de Vimeo"><i class="fab fa-vimeo-v"></i></a>
-                        <a href="https://wa.me/5214779203776" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://www.instagram.com/foro7/" target="_blank" rel="noopener noreferrer" aria-label="Instagram @foro7"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.tiktok.com/@forosietefotograf" target="_blank" rel="noopener noreferrer" aria-label="TikTok @foro7" style="font-size:13px;font-weight:700;">TK</a>
+                        <a href="https://www.fb.com/forosiete" target="_blank" rel="noopener noreferrer" aria-label="Facebook Forosiete"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.youtube.com/@Foro7" target="_blank" rel="noopener noreferrer" aria-label="YouTube @Foro7"><i class="fab fa-youtube"></i></a>
+                        <a href="https://vimeo.com/produccionesforo7" target="_blank" rel="noopener noreferrer" aria-label="Canal de Vimeo"><i class="fab fa-vimeo-v"></i></a>
+                        <a href="https://wa.me/5214779203776" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
             </div>
@@ -1745,7 +1749,7 @@
             <button class="lightbox-nav next" onclick="changeLightboxImage(1)" aria-label="Siguiente imagen">
                 <i class="fas fa-chevron-right"></i>
             </button>
-            <img id="lightboxImage" src="" alt="">
+            <img id="lightboxImage" src="" alt="" width="1200" height="800">
             <div class="lightbox-info">
                 <h3 id="lightboxTitle"></h3>
                 <p id="lightboxDescription"></p>
@@ -1760,7 +1764,7 @@
     </div>
 
     <!-- WhatsApp Float Button -->
-    <a href="https://wa.me/5214779203776" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
+    <a href="https://wa.me/5214779203776" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
 
@@ -1805,7 +1809,7 @@
             <p id="cookieDesc">
                 <strong id="cookieTitle">🍪 Cookies</strong><br>
                 Usamos cookies para mejorar tu experiencia y analizar el tráfico del sitio.
-                <a href="#privacidad">Más información</a>
+                <a href="privacidad.html">Más información</a>
             </p>
             <div class="cookie-buttons">
                 <button onclick="declineCookies()" class="cookie-btn decline">Rechazar</button>
@@ -1867,7 +1871,7 @@ button:has(.fa-comment-alt),a:has(.fa-comment-alt),div:has(>.fa-comment-alt){dis
 <button id="f7cb-btn" onclick="f7T()" aria-label="Abrir chat">💬</button>
 <div id="f7cb-win">
   <div id="f7cb-head">
-    <img src="logo.png" alt="Foro 7">
+    <img src="logo.png" alt="Foro 7" width="974" height="402">
     <div><div id="f7cb-hn">Asistente Foro 7</div><div id="f7cb-hs">🟢 En línea</div></div>
     <button id="f7cb-x" onclick="f7T()">×</button>
   </div>
@@ -1919,7 +1923,7 @@ const KB=[
    res:'🤝 <strong>Programa de Referidos</strong>\n\n🎁 <strong>Tú:</strong>  de crédito\n🎁 <strong>Tu amigo:</strong> 20% de descuento\n\n¡Sin límite de referidos!',
    qr:['Cotizar para mí','Contacto']},
   {kw:['contacto','whatsapp','llamar','telefono','asesor','cotizar'],
-   res:'📲 <strong>¡Contáctanos!</strong>\n\n📞 +52 477 920 3776\n📧 foro7.producciones@hotmail.com\n📍 Padilla 112, Cumbres de Arbide, León, Gto.\n\n<a href="'+WA+'" target="_blank" style="color:#d4af37;">👉 Abrir WhatsApp</a>',
+   res:'📲 <strong>¡Contáctanos!</strong>\n\n📞 +52 477 920 3776\n📧 foro7.producciones@hotmail.com\n📍 Padilla 112, Cumbres de Arbide, León, Gto.\n\n<a href="'+WA+'" target="_blank" rel="noopener noreferrer" style="color:#d4af37;">👉 Abrir WhatsApp</a>',
    qr:[]},
   {kw:['ubicacion','ubicación','donde','dónde','direccion','leon','gto'],
    res:'📍 <strong>León, Guanajuato</strong>\n\nPadilla 112, Cumbres de Arbide\nLeón, Gto.\n\n📞 +52 477 920 3776',

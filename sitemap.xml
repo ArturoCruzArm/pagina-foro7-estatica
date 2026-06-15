@@ -16,12 +16,12 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://invitados.org/en/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://invitados.org/"/>
     <image:image>
-      <image:loc>https://invitados.org/og-image.jpg</image:loc>
+      <image:loc>https://invitados.org/og-image.webp</image:loc>
       <image:title>Producciones Foro 7 - Fotografía y Video para Bodas</image:title>
       <image:caption>Fotografía profesional y video 4K para bodas y eventos en León, Guanajuato</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://invitados.org/images/gallery/boda-profesional-leon.jpg</image:loc>
+      <image:loc>https://invitados.org/images/gallery/boda-profesional-leon.webp</image:loc>
       <image:title>Boda Profesional en León</image:title>
       <image:caption>Fotografía de boda profesional en León, Guanajuato</image:caption>
     </image:image>
@@ -55,23 +55,23 @@
     <priority>0.95</priority>
     <mobile:mobile/>
     <image:image>
-      <image:loc>https://invitados.org/images/gallery/fotografia-boda.jpg</image:loc>
+      <image:loc>https://invitados.org/images/gallery/fotografia-boda.webp</image:loc>
       <image:title>Fotografía de Boda</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://invitados.org/images/gallery/video-4k-cinematografico.jpg</image:loc>
+      <image:loc>https://invitados.org/images/gallery/video-4k-cinematografico.webp</image:loc>
       <image:title>Video 4K Cinematográfico</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://invitados.org/images/gallery/tomas-aereas-dron.jpg</image:loc>
+      <image:loc>https://invitados.org/images/gallery/tomas-aereas-dron.webp</image:loc>
       <image:title>Tomas Aéreas con Dron</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://invitados.org/images/gallery/quinceanera-elegante.jpg</image:loc>
+      <image:loc>https://invitados.org/images/gallery/quinceanera-elegante.webp</image:loc>
       <image:title>Quinceañera Elegante</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://invitados.org/images/gallery/ceremonia-religiosa.jpg</image:loc>
+      <image:loc>https://invitados.org/images/gallery/ceremonia-religiosa.webp</image:loc>
       <image:title>Ceremonia Religiosa</image:title>
     </image:image>
   </url>

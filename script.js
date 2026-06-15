@@ -1,33 +1,33 @@
-﻿// Variables globales para lightbox
+// Variables globales para lightbox
 let currentImageIndex = 0;
 const lightboxImages = [
     {
-        src: 'images/gallery/boda-profesional-leon.jpg',
+        src: 'images/gallery/boda-profesional-leon.webp',
         title: 'Boda Profesional León',
         description: 'Capturamos cada momento especial de tu boda con la más alta calidad profesional'
     },
     {
-        src: 'images/gallery/fotografia-boda.jpg',
+        src: 'images/gallery/fotografia-boda.webp',
         title: 'Fotografía de Boda',
         description: 'Retratos únicos que reflejan la esencia de cada pareja'
     },
     {
-        src: 'images/gallery/video-4k-cinematografico.jpg',
+        src: 'images/gallery/video-4k-cinematografico.webp',
         title: 'Video 4K Cinematográfico',
         description: 'Producción cinematográfica de alta calidad para tu evento especial'
     },
     {
-        src: 'images/gallery/tomas-aereas-dron.jpg',
+        src: 'images/gallery/tomas-aereas-dron.webp',
         title: 'Tomas Aéreas con Dron',
         description: 'Perspectivas únicas y espectaculares desde el aire'
     },
     {
-        src: 'images/gallery/quinceanera-elegante.jpg',
+        src: 'images/gallery/quinceanera-elegante.webp',
         title: 'Quinceañera Elegante',
         description: 'Celebraciones de XV años con estilo y distinción'
     },
     {
-        src: 'images/gallery/ceremonia-religiosa.jpg',
+        src: 'images/gallery/ceremonia-religiosa.webp',
         title: 'Ceremonia Religiosa',
         description: 'Momentos sagrados capturados con respeto y profesionalismo'
     }
@@ -264,7 +264,8 @@ window.addEventListener('scroll', function() {
 });
 
 // Formulario de contacto
-document.getElementById('contactForm').addEventListener('submit', function(e) {
+const contactFormElement = document.getElementById('contactForm');
+if (contactFormElement) contactFormElement.addEventListener('submit', function(e) {
     e.preventDefault();
     
     // Obtener datos del formulario
@@ -335,7 +336,7 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     }
 
     // Limpiar formulario
-    document.getElementById('contactForm').reset();
+    contactFormElement.reset();
 });
 
 // Queue form for background sync
@@ -479,6 +480,7 @@ if ('IntersectionObserver' in window) {
 // Validación mejorada para el formulario
 function validateForm() {
     const form = document.getElementById('contactForm');
+    if (!form) return;
     const inputs = form.querySelectorAll('input[required], textarea[required]');
     
     inputs.forEach(input => {
@@ -504,6 +506,7 @@ function validateForm() {
 // Send form data to WhatsApp
 function sendToWhatsApp() {
     const form = document.getElementById('contactForm');
+    if (!form) return;
     const nombre = form.querySelector('#nombre').value.trim();
     const telefono = form.querySelector('#telefono').value.trim();
     const email = form.querySelector('#email').value.trim();
@@ -924,10 +927,11 @@ document.addEventListener('keydown', function(e) {
 function initUXEnhancements() {
     // Agregar indicador de carga para formulario
     const submitBtn = document.querySelector('.submit-btn');
-    if (submitBtn) {
+    const contactForm = document.getElementById('contactForm');
+    if (submitBtn && contactForm) {
         const originalText = submitBtn.textContent;
         
-        document.getElementById('contactForm').addEventListener('submit', function() {
+        contactForm.addEventListener('submit', function() {
             submitBtn.textContent = 'Enviando...';
             submitBtn.classList.add('loading');
             submitBtn.disabled = true;
@@ -1296,7 +1300,7 @@ function getBotResponse(message) {
     const lowerMessage = message.toLowerCase();
     
     if (lowerMessage.includes('boda') || lowerMessage.includes('matrimonio')) {
-        return `¡Perfecto! 💒 Nuestros paquetes de boda incluyen fotografía HD, video 4K y tomas con dron . ¿Te gustaría que te contactemos por WhatsApp para una cotización personalizada? <a href="https://wa.me/5214779203776?text=Hola!%20Me%20interesa%20un%20paquete%20de%20boda%20💒" target="_blank">¡Contactar ahora!</a>`;
+        return `¡Perfecto! 💒 Nuestros paquetes de boda incluyen fotografía HD, video 4K y tomas con dron . ¿Te gustaría que te contactemos por WhatsApp para una cotización personalizada? <a href="https://wa.me/5214779203776?text=Hola!%20Me%20interesa%20un%20paquete%20de%20boda%20💒" target="_blank" rel="noopener noreferrer">¡Contactar ahora!</a>`;
     } else if (lowerMessage.includes('invitacion') || lowerMessage.includes('digital')) {
         return `¡Excelente elección! 💌 Nuestras invitaciones digitales web son  e incluyen diseño personalizado, RSVP digital y más. Puedes usar nuestra calculadora arriba para ver el precio exacto. ¿Qué tipo de evento es?`;
     } else if (lowerMessage.includes('precio') || lowerMessage.includes('costo')) {
@@ -1305,11 +1309,11 @@ function getBotResponse(message) {
         🎬 Foto + Video: <br>
         🚁 Paquete Premium + Dron: <br>
         💌 Invitaciones Digitales: <br>
-        <a href="https://wa.me/5214779203776?text=Hola!%20Quiero%20información%20sobre%20precios%20💰" target="_blank">¡Cotiza ahora!</a>`;
+        <a href="https://wa.me/5214779203776?text=Hola!%20Quiero%20información%20sobre%20precios%20💰" target="_blank" rel="noopener noreferrer">¡Cotiza ahora!</a>`;
     } else if (lowerMessage.includes('portafolio') || lowerMessage.includes('trabajo')) {
         return `📸 ¡Claro! Puedes ver nuestro portafolio aquí mismo en la galería de fotos, o visitar nuestro Instagram @foro7 para ver trabajos recientes. También tenemos videos en nuestro canal de Vimeo. ¿Te gustaría ver algún tipo específico de evento?`;
     } else {
-        return `Gracias por tu mensaje 😊 Para una atención más personalizada, te recomiendo contactarnos directamente: <a href="https://wa.me/5214779203776?text=Hola!%20Tengo%20una%20consulta%20💬" target="_blank">WhatsApp</a> o al 477-920-3776. ¡Estaremos encantados de ayudarte!`;
+        return `Gracias por tu mensaje 😊 Para una atención más personalizada, te recomiendo contactarnos directamente: <a href="https://wa.me/5214779203776?text=Hola!%20Tengo%20una%20consulta%20💬" target="_blank" rel="noopener noreferrer">WhatsApp</a> o al 477-920-3776. ¡Estaremos encantados de ayudarte!`;
     }
 }
 
@@ -2171,8 +2175,8 @@ async function prefetchWhenIdle() {
         requestIdleCallback(() => {
             // Prefetch important resources when browser is idle
             const links = [
-                'images/gallery/fotografia-boda.jpg',
-                'images/gallery/video-4k-cinematografico.jpg'
+                'images/gallery/fotografia-boda.webp',
+                'images/gallery/video-4k-cinematografico.webp'
             ];
             links.forEach(href => {
                 const link = document.createElement('link');
