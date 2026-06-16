@@ -162,6 +162,160 @@
             line-height: 1.6;
             margin: 0;
         }
+
+        .bodas-slider-section {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 72px 20px 20px;
+            scroll-margin-top: 112px;
+        }
+        .bodas-slider-heading {
+            text-align: center;
+            max-width: 760px;
+            margin: 0 auto 32px;
+        }
+        .section-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--color-primary);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: .78rem;
+            letter-spacing: .08em;
+            margin-bottom: 10px;
+        }
+        .bodas-slider-heading h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--color-heading);
+            margin-bottom: 12px;
+        }
+        .bodas-slider-heading p {
+            color: var(--color-text-muted);
+            line-height: 1.7;
+            margin: 0;
+        }
+        .bodas-slider-shell {
+            position: relative;
+        }
+        .bodas-slider-track {
+            display: flex;
+            gap: 18px;
+            width: 100%;
+            max-width: 100%;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            padding: 4px 6px 18px;
+            scrollbar-width: none;
+        }
+        .bodas-slider-track::-webkit-scrollbar {
+            display: none;
+        }
+        .bodas-slide {
+            flex: 0 0 calc((100% - 18px) / 2);
+            scroll-snap-align: start;
+            background: var(--color-bg-card);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 12px 30px rgba(0,0,0,.12);
+        }
+        .bodas-slide img {
+            display: block;
+            width: 100%;
+            height: clamp(300px, 44vw, 520px);
+            object-fit: cover;
+            background: var(--color-bg-alt);
+        }
+        .bodas-slide-info {
+            padding: 18px 20px 20px;
+        }
+        .bodas-slide-info h3 {
+            color: var(--color-heading);
+            margin: 0 0 8px;
+            font-size: 1.08rem;
+        }
+        .bodas-slide-info p {
+            color: var(--color-text);
+            line-height: 1.55;
+            margin: 0;
+            font-size: .94rem;
+        }
+        .bodas-slider-btn {
+            position: absolute;
+            top: 42%;
+            z-index: 2;
+            width: 44px;
+            height: 44px;
+            border: 0;
+            border-radius: 50%;
+            background: #fff;
+            color: var(--color-primary);
+            box-shadow: 0 10px 24px rgba(0,0,0,.2);
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform .2s ease, background .2s ease;
+        }
+        .bodas-slider-btn:hover,
+        .bodas-slider-btn:focus-visible {
+            background: var(--color-primary);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+        .bodas-slider-btn.prev {
+            left: -8px;
+        }
+        .bodas-slider-btn.next {
+            right: -8px;
+        }
+        .bodas-slider-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 12px;
+        }
+        .bodas-slider-dot {
+            width: 10px;
+            height: 10px;
+            border: 0;
+            border-radius: 999px;
+            background: rgba(126, 85, 48, .28);
+            cursor: pointer;
+            transition: width .2s ease, background .2s ease;
+        }
+        .bodas-slider-dot.active {
+            width: 26px;
+            background: var(--color-primary);
+        }
+        .bodas-slider-cta {
+            text-align: center;
+            margin-top: 28px;
+        }
+        @media (min-width: 1100px) {
+            .bodas-slide {
+                flex-basis: calc((100% - 36px) / 3);
+            }
+        }
+        @media (max-width: 760px) {
+            .bodas-slider-track {
+                gap: 14px;
+                padding-left: 0;
+                padding-right: 0;
+            }
+            .bodas-slide {
+                flex-basis: 86%;
+            }
+            .bodas-slider-btn {
+                display: none;
+            }
+            .bodas-slide img {
+                height: 360px;
+            }
+        }
+
         .bodas-cta {
             background: var(--color-bg-alt);
             text-align: center;
@@ -206,7 +360,73 @@
         </div>
         <div class="bodas-actions">
             <a href="https://wa.me/5214779203776?text=Hola%2C%20quiero%20cotizar%20fotografia%20y%20video%20para%20mi%20boda" class="cta-button primary" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> Cotizar boda</a>
+            <a href="#bodas-slider" class="cta-button secondary"><i class="fas fa-images"></i> Ver slider</a>
             <a href="paquetes.html" class="cta-button secondary"><i class="fas fa-box-open"></i> Ver paquetes</a>
+        </div>
+    </section>
+
+
+    <section class="bodas-slider-section" id="bodas-slider" aria-labelledby="bodas-slider-title">
+        <div class="bodas-slider-heading">
+            <span class="section-kicker"><i class="fas fa-images"></i> Bodas reales</span>
+            <h2 id="bodas-slider-title">Slider de bodas</h2>
+            <p>Una muestra rápida de retratos, recepción, detalles y momentos que tus invitados también van a querer volver a ver.</p>
+        </div>
+        <div class="bodas-slider-shell">
+            <button class="bodas-slider-btn prev" type="button" data-bodas-slider="prev" aria-label="Ver boda anterior">
+                <i class="fas fa-chevron-left" aria-hidden="true"></i>
+            </button>
+            <div class="bodas-slider-track" id="bodasSliderTrack" tabindex="0" aria-label="Galería deslizable de bodas">
+                <article class="bodas-slide">
+                    <img src="images/gallery/boda-retrato-pareja-foro7.webp" alt="Retrato cercano de novios por Foro 7 Producciones" width="853" height="1024" loading="eager" decoding="async">
+                    <div class="bodas-slide-info">
+                        <h3>Retratos de pareja</h3>
+                        <p>Dirección sutil para que la conexión se vea natural, sin poses rígidas.</p>
+                    </div>
+                </article>
+                <article class="bodas-slide">
+                    <img src="images/gallery/boda-recepcion-elegante-foro7.webp" alt="Novios en recepción elegante fotografiados por Foro 7 Producciones" width="1536" height="1024" loading="eager" decoding="async">
+                    <div class="bodas-slide-info">
+                        <h3>Recepción elegante</h3>
+                        <p>Cuidamos decoración, luz y ambiente para que la fiesta luzca como la planeaste.</p>
+                    </div>
+                </article>
+                <article class="bodas-slide">
+                    <img src="images/gallery/boda-momento-recepcion-foro7.webp" alt="Momento romántico de boda en recepción" width="1536" height="1024" loading="eager" decoding="async">
+                    <div class="bodas-slide-info">
+                        <h3>Momentos espontáneos</h3>
+                        <p>Besos, abrazos, brindis y reacciones reales capturadas sin interrumpir el evento.</p>
+                    </div>
+                </article>
+                <article class="bodas-slide">
+                    <img src="images/gallery/boda-profesional-leon.webp" alt="Ceremonia de boda en León capturada por Foro 7 Producciones" width="1200" height="1800" loading="eager" decoding="async">
+                    <div class="bodas-slide-info">
+                        <h3>Ceremonia completa</h3>
+                        <p>Fotos clave del sí, la salida, la familia y los momentos que no se repiten.</p>
+                    </div>
+                </article>
+                <article class="bodas-slide">
+                    <img src="images/gallery/fotografia-boda.webp" alt="Detalle de argollas y ramo de boda" width="1200" height="800" loading="eager" decoding="async">
+                    <div class="bodas-slide-info">
+                        <h3>Detalles importantes</h3>
+                        <p>Argollas, ramo, vestido y decoración: lo pequeño también cuenta la historia.</p>
+                    </div>
+                </article>
+                <article class="bodas-slide">
+                    <img src="images/gallery/aniversario-bodas-plata-foro7.webp" alt="Retrato de aniversario y renovación de votos" width="1024" height="1536" loading="eager" decoding="async">
+                    <div class="bodas-slide-info">
+                        <h3>Aniversarios y renovaciones</h3>
+                        <p>También documentamos bodas de plata, renovaciones de votos y celebraciones familiares.</p>
+                    </div>
+                </article>
+            </div>
+            <button class="bodas-slider-btn next" type="button" data-bodas-slider="next" aria-label="Ver siguiente boda">
+                <i class="fas fa-chevron-right" aria-hidden="true"></i>
+            </button>
+        </div>
+        <div class="bodas-slider-dots" aria-label="Navegación del slider de bodas"></div>
+        <div class="bodas-slider-cta">
+            <a href="https://wa.me/5214779203776?text=Hola%2C%20vi%20el%20slider%20de%20bodas%20y%20quiero%20cotizar%20mi%20fecha" class="cta-button primary" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> Cotizar mi boda</a>
         </div>
     </section>
 
@@ -281,5 +501,59 @@
     <div id="shared-footer"></div>
 
     <script src="shared-layout.js"></script>
+
+    <script>
+        (function() {
+            const track = document.getElementById('bodasSliderTrack');
+            if (!track) return;
+
+            const slides = Array.from(track.querySelectorAll('.bodas-slide'));
+            const dotsContainer = document.querySelector('.bodas-slider-dots');
+            const prevButton = document.querySelector('[data-bodas-slider="prev"]');
+            const nextButton = document.querySelector('[data-bodas-slider="next"]');
+            let currentIndex = 0;
+            let scrollTimer = null;
+
+            function setActive(index) {
+                currentIndex = (index + slides.length) % slides.length;
+                dotsContainer.querySelectorAll('.bodas-slider-dot').forEach((dot, dotIndex) => {
+                    dot.classList.toggle('active', dotIndex === currentIndex);
+                    dot.setAttribute('aria-current', dotIndex === currentIndex ? 'true' : 'false');
+                });
+            }
+
+            function goToSlide(index) {
+                const nextIndex = (index + slides.length) % slides.length;
+                slides[nextIndex].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+                setActive(nextIndex);
+            }
+
+            slides.forEach((_, index) => {
+                const dot = document.createElement('button');
+                dot.type = 'button';
+                dot.className = 'bodas-slider-dot';
+                dot.setAttribute('aria-label', `Ver foto ${index + 1} del slider de bodas`);
+                dot.addEventListener('click', () => goToSlide(index));
+                dotsContainer.appendChild(dot);
+            });
+
+            prevButton.addEventListener('click', () => goToSlide(currentIndex - 1));
+            nextButton.addEventListener('click', () => goToSlide(currentIndex + 1));
+
+            track.addEventListener('scroll', () => {
+                clearTimeout(scrollTimer);
+                scrollTimer = setTimeout(() => {
+                    const trackLeft = track.getBoundingClientRect().left;
+                    const closest = slides.reduce((best, slide, index) => {
+                        const distance = Math.abs(slide.getBoundingClientRect().left - trackLeft);
+                        return distance < best.distance ? { index, distance } : best;
+                    }, { index: currentIndex, distance: Infinity });
+                    setActive(closest.index);
+                }, 80);
+            }, { passive: true });
+
+            setActive(0);
+        })();
+    </script>
 </body>
 </html>
