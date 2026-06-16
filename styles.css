@@ -123,6 +123,216 @@ section {
     padding: 0 20px;
 }
 
+/* ===================================
+   Service Carousels
+   =================================== */
+.service-carousel-section {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 72px 20px 24px;
+    scroll-margin-top: 112px;
+}
+
+.service-carousel-section.is-alt {
+    max-width: none;
+    background: var(--color-bg-alt);
+}
+
+.service-carousel-section.is-alt > .service-carousel-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+}
+
+.service-carousel-heading {
+    max-width: 760px;
+    margin: 0 auto 32px;
+    text-align: center;
+}
+
+.section-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--color-primary);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    margin-bottom: 10px;
+}
+
+.service-carousel-heading h2 {
+    font-family: 'Playfair Display', serif;
+    color: var(--color-heading);
+    margin-bottom: 12px;
+}
+
+.service-carousel-heading p {
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    margin: 0;
+}
+
+.service-carousel-shell {
+    position: relative;
+}
+
+.service-carousel-track {
+    display: flex;
+    gap: 18px;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    padding: 4px 6px 18px;
+    scrollbar-width: none;
+}
+
+.service-carousel-track::-webkit-scrollbar {
+    display: none;
+}
+
+.service-carousel-slide {
+    flex: 0 0 calc((100% - 18px) / 2);
+    scroll-snap-align: start;
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+.service-carousel-slide img {
+    display: block;
+    width: 100%;
+    height: clamp(300px, 40vw, 500px);
+    object-fit: cover;
+    background: var(--color-bg-alt);
+}
+
+.service-carousel-info {
+    padding: 18px 20px 20px;
+}
+
+.service-carousel-info h3 {
+    color: var(--color-heading);
+    margin: 0 0 8px;
+    font-size: 1.08rem;
+}
+
+.service-carousel-info p {
+    color: var(--color-text);
+    line-height: 1.55;
+    margin: 0;
+    font-size: 0.94rem;
+}
+
+.service-carousel-btn {
+    position: absolute;
+    top: 42%;
+    z-index: 2;
+    width: 44px;
+    height: 44px;
+    border: 0;
+    border-radius: 50%;
+    background: #fff;
+    color: var(--color-primary);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform var(--transition-fast), background var(--transition-fast), color var(--transition-fast);
+}
+
+.service-carousel-btn:hover,
+.service-carousel-btn:focus-visible {
+    background: var(--color-primary);
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+.service-carousel-btn.prev {
+    left: -8px;
+}
+
+.service-carousel-btn.next {
+    right: -8px;
+}
+
+.service-carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.service-carousel-dot {
+    width: 10px;
+    height: 10px;
+    border: 0;
+    border-radius: 999px;
+    background: rgba(126, 85, 48, 0.28);
+    cursor: pointer;
+    transition: width var(--transition-fast), background var(--transition-fast);
+}
+
+.service-carousel-dot.active {
+    width: 26px;
+    background: var(--color-primary);
+}
+
+.service-carousel-cta {
+    text-align: center;
+    margin-top: 28px;
+}
+
+[data-theme="dark"] .service-carousel-btn {
+    background: var(--color-bg-card);
+    color: var(--color-primary-light);
+}
+
+@media (min-width: 1100px) {
+    .service-carousel-slide {
+        flex-basis: calc((100% - 36px) / 3);
+    }
+}
+
+@media (max-width: 760px) {
+    .service-carousel-section {
+        padding: 56px 16px 18px;
+    }
+
+    .service-carousel-track {
+        gap: 14px;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .service-carousel-slide {
+        flex-basis: 86%;
+    }
+
+    .service-carousel-slide img {
+        height: min(74vw, 440px);
+        min-height: 280px;
+    }
+
+    .service-carousel-btn {
+        width: 40px;
+        height: 40px;
+    }
+
+    .service-carousel-btn.prev {
+        left: 4px;
+    }
+
+    .service-carousel-btn.next {
+        right: 4px;
+    }
+}
+
 /* Theme Toggle Button */
 .theme-toggle {
     background: rgba(255, 255, 255, 0.2);

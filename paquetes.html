@@ -36,6 +36,13 @@
             max-width: 600px;
             margin: 0 auto;
         }
+        .paquetes-actions {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 28px;
+        }
         .paquetes-grid {
             max-width: 1200px;
             margin: 0 auto;
@@ -237,6 +244,48 @@
     <section class="paquetes-hero">
         <h1>Paquetes de Fotograf&iacute;a y Video</h1>
         <p>Elige el paquete ideal para tu evento. Todos incluyen fotograf&iacute;a profesional, video y tomas con dron.</p>
+        <div class="paquetes-actions">
+            <a href="#paquetes-carousel" class="cta-button secondary"><i class="fas fa-images"></i> Ver carrusel</a>
+            <a href="https://wa.me/5214779203776?text=Hola%2C%20quiero%20comparar%20paquetes%20de%20foto%20y%20video" class="cta-button primary" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> Comparar por WhatsApp</a>
+        </div>
+    </section>
+
+    <section class="service-carousel-section" id="paquetes-carousel" aria-labelledby="paquetes-carousel-title" data-service-carousel data-carousel-label="paquetes de foto y video">
+        <div class="service-carousel-heading">
+            <span class="section-kicker"><i class="fas fa-box-open"></i> Qu&eacute; recibes</span>
+            <h2 id="paquetes-carousel-title">Carrusel de paquetes</h2>
+            <p>Revisa visualmente el tipo de cobertura, fotos, video, drone y entrega que puedes sumar a tu paquete.</p>
+        </div>
+        <div class="service-carousel-shell">
+            <button class="service-carousel-btn prev" type="button" data-carousel-prev aria-label="Ver entrega anterior"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
+            <div class="service-carousel-track" tabindex="0" aria-label="Galer&iacute;a deslizable de paquetes" data-carousel-track>
+                <article class="service-carousel-slide" data-carousel-slide>
+                    <img src="images/gallery/boda-profesional-leon.webp" alt="Cobertura completa de boda en paquete de foto y video" width="1200" height="1800" loading="lazy" decoding="async">
+                    <div class="service-carousel-info"><h3>Cobertura completa</h3><p>Desde sesi&oacute;n y ceremonia hasta fiesta, seg&uacute;n horas contratadas y tipo de evento.</p></div>
+                </article>
+                <article class="service-carousel-slide" data-carousel-slide>
+                    <img src="images/gallery/xv-vestido-rosa-foro7.webp" alt="Retratos editados incluidos en paquetes de XV a&ntilde;os" width="1024" height="1536" loading="lazy" decoding="async">
+                    <div class="service-carousel-info"><h3>Fotos editadas</h3><p>Selecci&oacute;n cuidada en alta resoluci&oacute;n para imprimir, publicar y conservar.</p></div>
+                </article>
+                <article class="service-carousel-slide" data-carousel-slide>
+                    <img src="images/gallery/video-4k-cinematografico.webp" alt="Video cinematogr&aacute;fico incluido en paquetes" width="1200" height="800" loading="lazy" decoding="async">
+                    <div class="service-carousel-info"><h3>Video cinematogr&aacute;fico</h3><p>Pel&iacute;cula completa, trailer o highlight seg&uacute;n el nivel de paquete elegido.</p></div>
+                </article>
+                <article class="service-carousel-slide" data-carousel-slide>
+                    <img src="images/gallery/tomas-aereas-dron.webp" alt="Tomas con drone incluidas en paquetes" width="1200" height="800" loading="lazy" decoding="async">
+                    <div class="service-carousel-info"><h3>Drone incluido</h3><p>Tomas a&eacute;reas para abrir el video, mostrar el lugar y darle escala a la historia.</p></div>
+                </article>
+                <article class="service-carousel-slide" data-carousel-slide>
+                    <img src="images/gallery/fotografia-boda.webp" alt="Detalles y fotos impresas para entrega final" width="1200" height="800" loading="lazy" decoding="async">
+                    <div class="service-carousel-info"><h3>Entrega final</h3><p>USB, galer&iacute;a, impresiones y ampliaciones seg&uacute;n el paquete contratado.</p></div>
+                </article>
+            </div>
+            <button class="service-carousel-btn next" type="button" data-carousel-next aria-label="Ver siguiente entrega"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
+        </div>
+        <div class="service-carousel-dots" aria-label="Navegaci&oacute;n del carrusel de paquetes" data-carousel-dots></div>
+        <div class="service-carousel-cta">
+            <a href="https://wa.me/5214779203776?text=Hola%2C%20vi%20el%20carrusel%20de%20paquetes%20y%20quiero%20elegir%20uno" class="cta-button primary" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> Elegir paquete</a>
+        </div>
     </section>
 
     <div class="paquetes-grid">

@@ -150,6 +150,110 @@
             '</footer>';
     }
 
+    /* ---- SERVICE CAROUSELS ---- */
+
+    function initServiceCarousels() {
+        var carousels = document.querySelectorAll('[data-service-carousel]');
+        if (!carousels.length) return;
+
+        Array.prototype.forEach.call(carousels, function (carousel, carouselIndex) {
+            if (carousel.getAttribute('data-carousel-ready') === 'true') return;
+
+            var track = carousel.querySelector('[data-carousel-track]');
+            if (!track) return;
+
+            var slides = Array.prototype.slice.call(track.querySelectorAll('[data-carousel-slide]'));
+            if (!slides.length) return;
+
+            var dotsContainer = carousel.querySelector('[data-carousel-dots]');
+            var prevButton = carousel.querySelector('[data-carousel-prev]');
+            var nextButton = carousel.querySelector('[data-carousel-next]');
+            var currentIndex = 0;
+            var scrollTimer = null;
+            var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            var label = carousel.getAttribute('data-carousel-label') || 'carrusel';
+
+            carousel.setAttribute('data-carousel-ready', 'true');
+
+            if (!track.hasAttribute('tabindex')) {
+                track.setAttribute('tabindex', '0');
+            }
+
+            function setActive(index) {
+                currentIndex = (index + slides.length) % slides.length;
+                if (!dotsContainer) return;
+
+                Array.prototype.forEach.call(dotsContainer.querySelectorAll('.service-carousel-dot'), function (dot, dotIndex) {
+                    var active = dotIndex === currentIndex;
+                    dot.classList.toggle('active', active);
+                    dot.setAttribute('aria-current', active ? 'true' : 'false');
+                });
+            }
+
+            function goToSlide(index) {
+                var nextIndex = (index + slides.length) % slides.length;
+                var targetLeft = slides[nextIndex].offsetLeft - track.offsetLeft;
+
+                track.scrollTo({
+                    left: targetLeft,
+                    behavior: reduceMotion ? 'auto' : 'smooth'
+                });
+                setActive(nextIndex);
+            }
+
+            if (dotsContainer && !dotsContainer.children.length) {
+                slides.forEach(function (_, index) {
+                    var dot = document.createElement('button');
+                    dot.type = 'button';
+                    dot.className = 'service-carousel-dot';
+                    dot.setAttribute('aria-label', 'Ver foto ' + (index + 1) + ' de ' + label);
+                    dot.addEventListener('click', function () {
+                        goToSlide(index);
+                    });
+                    dotsContainer.appendChild(dot);
+                });
+            }
+
+            if (prevButton) {
+                prevButton.addEventListener('click', function () {
+                    goToSlide(currentIndex - 1);
+                });
+            }
+
+            if (nextButton) {
+                nextButton.addEventListener('click', function () {
+                    goToSlide(currentIndex + 1);
+                });
+            }
+
+            track.addEventListener('keydown', function (event) {
+                if (event.key === 'ArrowLeft') {
+                    event.preventDefault();
+                    goToSlide(currentIndex - 1);
+                }
+                if (event.key === 'ArrowRight') {
+                    event.preventDefault();
+                    goToSlide(currentIndex + 1);
+                }
+            });
+
+            track.addEventListener('scroll', function () {
+                clearTimeout(scrollTimer);
+                scrollTimer = setTimeout(function () {
+                    var trackLeft = track.getBoundingClientRect().left;
+                    var closest = slides.reduce(function (best, slide, index) {
+                        var distance = Math.abs(slide.getBoundingClientRect().left - trackLeft);
+                        return distance < best.distance ? { index: index, distance: distance } : best;
+                    }, { index: currentIndex, distance: Infinity });
+
+                    setActive(closest.index);
+                }, 80);
+            }, { passive: true });
+
+            setActive(carouselIndex === 0 ? 0 : currentIndex);
+        });
+    }
+
     /* ---- INIT ---- */
 
     function initSharedLayout() {
@@ -185,6 +289,8 @@
                 navBtn.classList.toggle('active');
             });
         }
+
+        initServiceCarousels();
     }
 
     // Run when DOM is ready
