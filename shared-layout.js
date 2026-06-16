@@ -36,7 +36,9 @@
     var socials = [
         { href: 'https://www.instagram.com/foro7/',            icon: 'fab fa-instagram',  label: 'Instagram @foro7' },
         { href: 'https://www.tiktok.com/@forosietefotograf',   icon: '',                  label: 'TikTok',  text: 'TK' },
-        { href: 'https://www.fb.com/forosiete',                icon: 'fab fa-facebook-f', label: 'Facebook' },
+        { href: 'https://www.facebook.com/Foro7Prod',          icon: '',                  label: 'Facebook página Foro7Prod', text: 'FB' },
+        { href: 'https://www.facebook.com/Foro7Productor',     icon: '',                  label: 'Facebook perfil Foro7Productor', text: 'AP' },
+        { href: 'https://www.facebook.com/forosiete/',         icon: '',                  label: 'Facebook perfil Forosiete', text: 'F7' },
         { href: 'https://www.youtube.com/@Foro7',              icon: 'fab fa-youtube',    label: 'YouTube' },
         { href: 'https://vimeo.com/produccionesforo7',         icon: 'fab fa-vimeo-v',    label: 'Vimeo' },
         { href: 'https://wa.me/5214779203776',                 icon: 'fab fa-whatsapp',   label: 'WhatsApp' }

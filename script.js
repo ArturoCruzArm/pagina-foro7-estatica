@@ -1157,6 +1157,10 @@ function initPriceCalculator() {
     const extrasPrice = document.getElementById('extrasPrice');
     const discountPrice = document.getElementById('discountPrice');
     const totalPrice = document.getElementById('totalPrice');
+
+    if (!eventTypeSelect || !guestCountSlider || !guestDisplay || !basePrice || !extrasPrice || !discountPrice || !totalPrice) {
+        return;
+    }
     
     function calculatePrice() {
         // Precio base del evento
