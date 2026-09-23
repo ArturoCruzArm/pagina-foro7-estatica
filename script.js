@@ -1418,14 +1418,14 @@ function getBotResponse(message) {
     const lowerMessage = message.toLowerCase();
 
     if (lowerMessage.includes('boda') || lowerMessage.includes('matrimonio')) {
-        return `&iexcl;Perfecto! Nuestros paquetes de boda van desde $6,500 MXN e incluyen fotograf&iacute;a profesional, video y tomas con dron seg&uacute;n el paquete. <a href="https://wa.me/5214779203776?text=Hola!%20Me%20interesa%20un%20paquete%20de%20boda" target="_blank" rel="noopener noreferrer">&iexcl;Contactar ahora!</a>`;
+        return `&iexcl;Perfecto! Nuestros paquetes de boda van desde $5,990 MXN e incluyen fotograf&iacute;a profesional y video 4K; el Premium suma tomas con dron. <a href="https://wa.me/5214779203776?text=Hola!%20Me%20interesa%20un%20paquete%20de%20boda" target="_blank" rel="noopener noreferrer">&iexcl;Contactar ahora!</a>`;
     } else if (lowerMessage.includes('invitacion') || lowerMessage.includes('digital')) {
         return `&iexcl;Excelente elecci&oacute;n! Las invitaciones digitales web van desde $1,800 MXN e incluyen dise&ntilde;o personalizado, RSVP digital y enlace para compartir. Puedes usar la calculadora para ver el precio exacto.`;
     } else if (lowerMessage.includes('precio') || lowerMessage.includes('costo')) {
         return `Nuestros precios base:<br>
-        Fotograf&iacute;a + video para eventos: desde $6,500 MXN<br>
-        Paquete Plus recomendado: $11,500 MXN<br>
-        Paquete Premium: $14,000 MXN<br>
+        Fotograf&iacute;a + video para eventos: desde $5,990 MXN<br>
+        Paquete Plus (el m&aacute;s solicitado): $7,490 MXN<br>
+        Paquete Premium: $9,990 MXN<br>
         Invitaciones digitales: desde $1,800 MXN<br>
         <a href="https://wa.me/5214779203776?text=Hola!%20Quiero%20informacion%20sobre%20precios" target="_blank" rel="noopener noreferrer">&iexcl;Cotiza ahora!</a>`;
     } else if (lowerMessage.includes('portafolio') || lowerMessage.includes('trabajo')) {
